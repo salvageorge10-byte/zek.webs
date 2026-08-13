@@ -1,26 +1,192 @@
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Fade-in + slide-up al entrar en el viewport ---------- */
 (() => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealTargets = document.querySelectorAll('.steps li, .type-card, .testi-card, .contact-card, .ig-card');
+  // Grupos que entran escalonados: los hijos de un mismo grupo se retrasan entre sí.
+  const groups = [
+    '.stats-inner',
+    '.steps',
+    '.type-grid',
+    '.testi-grid',
+    '.portfolio-grid',
+    '.faq-list',
+    '.contact-cards',
+  ];
+
+  // Encabezados y bloques sueltos que entran de a uno.
+  const singles = [
+    '.process > .eyebrow', '.process > h2',
+    '.types > .eyebrow', '.types > h2',
+    '.testimonials > .eyebrow', '.testimonials > h2',
+    '.faq > .eyebrow', '.faq > h2',
+    '.portfolio-head', '.portfolio-cta',
+    '.contact-inner > .eyebrow', '.contact-inner > h2', '.contact-inner > .contact-sub',
+  ];
+
+  const targets = [];
+
+  groups.forEach((sel) => {
+    const parent = document.querySelector(sel);
+    if (!parent) return;
+    Array.from(parent.children).forEach((child, i) => {
+      // el escalonado se corta a los 4 para que nunca se sienta lento
+      child.style.setProperty('--reveal-delay', `${Math.min(i, 3) * 80}ms`);
+      targets.push(child);
+    });
+  });
+
+  singles.forEach((sel) => {
+    const el = document.querySelector(sel);
+    if (el) targets.push(el);
+  });
+
+  if (!targets.length) return;
 
   if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-    revealTargets.forEach((el) => el.classList.add('in-view'));
-  } else {
-    revealTargets.forEach((el) => el.classList.add('reveal'));
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    revealTargets.forEach((el) => observer.observe(el));
+    targets.forEach((el) => el.classList.add('in-view'));
+    return;
   }
+
+  targets.forEach((el) => el.classList.add('reveal'));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+})();
+
+/* ---------- Logo: pulso al click + scroll suave al inicio ---------- */
+(() => {
+  const brand = document.querySelector('.brand');
+  if (!brand) return;
+
+  brand.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if (!prefersReducedMotion) {
+      brand.classList.remove('is-tapped');
+      // reinicia la animación aunque se hagan clicks seguidos
+      void brand.offsetWidth;
+      brand.classList.add('is-tapped');
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    });
+
+    history.replaceState(null, '', '#inicio');
+  });
+
+  brand.addEventListener('animationend', () => brand.classList.remove('is-tapped'));
+})();
+
+/* ---------- FAQ: despliegue animado por altura ---------- */
+(() => {
+  const items = document.querySelectorAll('.faq-item');
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const summary = item.querySelector('summary');
+    const body = item.querySelector('p');
+    if (!summary || !body) return;
+
+    // el ícono +/- se dibuja con CSS sobre este span
+    const icon = document.createElement('span');
+    icon.className = 'faq-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    summary.appendChild(icon);
+
+    // envolvemos el texto para poder animar su altura
+    const wrap = document.createElement('div');
+    wrap.className = 'faq-body';
+    body.parentNode.insertBefore(wrap, body);
+    wrap.appendChild(body);
+
+    let animating = false;
+
+    const setHeight = (to) => {
+      wrap.style.height = `${to}px`;
+    };
+
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (animating) return;
+
+      const isOpen = item.hasAttribute('open');
+
+      if (prefersReducedMotion) {
+        item.toggleAttribute('open');
+        wrap.style.height = isOpen ? '0px' : 'auto';
+        return;
+      }
+
+      animating = true;
+
+      if (!isOpen) {
+        item.setAttribute('open', '');
+        setHeight(0);
+        requestAnimationFrame(() => setHeight(wrap.scrollHeight));
+      } else {
+        setHeight(wrap.scrollHeight);
+        requestAnimationFrame(() => setHeight(0));
+      }
+
+      const done = () => {
+        wrap.removeEventListener('transitionend', done);
+        if (isOpen) item.removeAttribute('open');
+        else wrap.style.height = 'auto'; // permite que el texto refluya al cambiar de tamaño
+        animating = false;
+      };
+
+      wrap.addEventListener('transitionend', done);
+    });
+
+    // si la ventana cambia de ancho, el alto fijo dejaría de servir
+    window.addEventListener('resize', () => {
+      if (item.hasAttribute('open') && !animating) wrap.style.height = 'auto';
+    }, { passive: true });
+  });
+})();
+
+/* ---------- Previews del portfolio: se cargan solo al acercarse ---------- */
+(() => {
+  const frames = document.querySelectorAll('.work-viewport iframe[data-src]');
+  if (!frames.length) return;
+
+  const load = (frame) => {
+    if (frame.dataset.loaded) return;
+    frame.dataset.loaded = '1';
+    frame.src = frame.dataset.src;
+    frame.addEventListener('load', () => frame.classList.add('is-loaded'), { once: true });
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    frames.forEach(load);
+    return;
+  }
+
+  // margen amplio: el preview ya está listo cuando la tarjeta entra en pantalla
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        load(entry.target);
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: '300px 0px' }
+  );
+
+  frames.forEach((frame) => observer.observe(frame));
 })();
 
 /* ---------- Help chat (client-side FAQ assistant, no external calls) ---------- */
@@ -38,20 +204,21 @@
   const WHATSAPP_URL = 'https://wa.me/5492216438512?text=Hola%20ZEK%2C%20tengo%20una%20consulta';
 
   const responses = [
-    { keys: ['proceso', 'como trabajan', 'cómo trabajan', 'pasos', 'trabajan'], text: 'Trabajamos en 4 pasos: nos contás tu idea, armamos una propuesta a medida, construimos el sitio y lo lanzamos. Podés ver el detalle en la sección "Proceso".' },
-    { keys: ['precio', 'costo', 'cuanto sale', 'cuánto sale', 'presupuesto', 'vale', 'plata'], text: 'Cada proyecto se cotiza a medida según lo que necesite tu negocio. Escribinos por WhatsApp y te pasamos un presupuesto sin compromiso.' },
-    { keys: ['tiempo', 'tarda', 'demora', 'cuando', 'cuándo', 'plazo'], text: 'La primera propuesta de diseño la tenés en 72 horas. El sitio completo, según la complejidad, entre 1 y 3 semanas.' },
-    { keys: ['tipos', 'rubro', 'tienda', 'restaurante', 'gastro', 'servicio', 'portfolio', 'personal'], text: 'Hacemos tiendas online, sitios de servicios, restaurantes y portfolios personales. Si tu rubro es otro, contanos igual.' },
-    { keys: ['dominio', 'hosting', 'mantenimiento', 'soporte'], text: 'El dominio, el hosting y el contenido quedan 100% a tu nombre, y ofrecemos soporte y actualizaciones después del lanzamiento.' },
-    { keys: ['hola', 'buenas', 'buen dia', 'buenas tardes', 'buenas noches'], text: '¡Hola! ¿En qué te puedo ayudar? Preguntame sobre el proceso, tiempos, precios o tipos de sitio.' },
-    { keys: ['gracias'], text: '¡De nada! Cualquier otra duda, acá estoy.' },
+    { keys: ['proceso', 'como trabajan', 'cómo trabajan', 'pasos', 'estrategia', 'diseño', 'desarrollo'], text: 'Trabajamos en 4 pasos: analizamos tu negocio para definir estrategia, creamos un diseño visual único, construimos un sitio rápido y optimizado, y lo lanzamos con soporte completo. Podés ver más en "Proceso".' },
+    { keys: ['precio', 'presupuesto', 'costo', 'cuanto sale', 'cuánto sale', 'vale', 'plata', 'tarifa'], text: 'Cada proyecto se cotiza a medida. El rango típico para webs profesionales es de $2.000 a $8.000 USD según funcionalidades e integraciones. Ofrecemos consulta gratuita sin compromiso. Escribinos por WhatsApp.' },
+    { keys: ['tiempo', 'tarda', 'demora', 'cuando', 'cuándo', 'plazo', '48', '2 a 4 semanas'], text: 'La propuesta inicial la tenés en 48 horas. El sitio completo tarda entre 2 a 4 semanas según complejidad. E-commerce y plataformas especiales pueden tomar más tiempo, pero lo definimos desde el inicio.' },
+    { keys: ['tipos', 'rubro', 'tienda', 'restaurante', 'gastro', 'ecommerce', 'servicio', 'portfolio', 'personal', 'web'], text: 'Hacemos e-commerce, sitios de servicios/lead generation, restaurantes, y portfolios personales. Si tu rubro es otro, contanos igual. Cada proyecto es único y estratégico para tu negocio.' },
+    { keys: ['dominio', 'hosting', 'mantenimiento', 'soporte', 'lanzamiento', 'después'], text: 'El dominio, hosting y código fuente quedan 100% a tu nombre. Incluimos soporte técnico por 30 días post-lanzamiento. Mantenimiento y actualizaciones se contratan aparte en planes mensuales.' },
+    { keys: ['plantilla', 'template', 'genérico', 'custom', 'original', 'diseño'], text: '100% diseño original. No usamos plantillas genéricas. Cada web es única, diseñada estratégicamente para tu negocio, marca y objetivos de conversión.' },
+    { keys: ['hola', 'buenas', 'buen dia', 'buenas tardes', 'buenas noches'], text: '¡Hola! Soy el asistente de ZEK. ¿En qué te ayudo? Preguntame sobre proceso, presupuesto, tiempos o tipos de sitios.' },
+    { keys: ['gracias'], text: '¡De nada! Cualquier otra consulta, acá estoy para ayudarte.' },
   ];
 
   const chipQuestions = {
     proceso: '¿Cómo es el proceso de trabajo?',
-    precio: '¿Cuánto cuesta una web?',
-    tiempos: '¿Cuánto tarda el proyecto?',
-    tipos: '¿Con qué tipos de sitio trabajan?',
+    precio: '¿Cuál es el presupuesto?',
+    tiempos: '¿Cuánto tarda un proyecto?',
+    tipos: '¿Qué tipos de web hacen?',
   };
 
   function findResponse(text) {
