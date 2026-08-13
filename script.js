@@ -1,66 +1,161 @@
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- Fade-in + slide-up al entrar en el viewport ---------- */
+/* ---------- Año del footer ---------- */
 (() => {
-  // Grupos que entran escalonados: los hijos de un mismo grupo se retrasan entre sí.
-  const groups = [
-    '.stats-inner',
-    '.steps',
-    '.type-grid',
-    '.testi-grid',
-    '.portfolio-grid',
-    '.faq-list',
-    '.contact-cards',
-  ];
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+})();
 
-  // Encabezados y bloques sueltos que entran de a uno.
-  const singles = [
-    '.process > .eyebrow', '.process > h2',
-    '.types > .eyebrow', '.types > h2',
-    '.testimonials > .eyebrow', '.testimonials > h2',
-    '.faq > .eyebrow', '.faq > h2',
-    '.portfolio-head', '.portfolio-cta',
-    '.contact-inner > .eyebrow', '.contact-inner > h2', '.contact-inner > .contact-sub',
-  ];
-
+/* ---------- Apariciones ligadas al scroll ----------
+   No es un disparo unico: cada bloque tiene un progreso 0..1 que depende
+   de donde esta en pantalla, y se recalcula en cada cuadro mientras baja
+   o sube. Para que no cueste, solo se calculan los que estan cerca del
+   viewport; de eso se encarga el observer que llena "activos". */
+(() => {
   const targets = [];
 
-  groups.forEach((sel) => {
-    const parent = document.querySelector(sel);
-    if (!parent) return;
-    Array.from(parent.children).forEach((child, i) => {
+  // marca(el, variante, retraso) — el retraso se traduce a un desfasaje
+  // en pixeles, que es lo que escalona la entrada cuando es por scroll
+  const mark = (el, kind = 'up', delay = 0) => {
+    if (!el || el.dataset.reveal) return;
+
+    // La variante "mask" mueve un hijo, no la caja: si recortaramos el
+    // propio elemento su area visible seria 0 y el observer no dispararia.
+    if (kind === 'mask') {
+      const inner = document.createElement('span');
+      inner.className = 'mask-inner';
+      while (el.firstChild) inner.appendChild(el.firstChild);
+      el.appendChild(inner);
+    }
+
+    el.dataset.reveal = kind;
+    el._revShift = delay * 0.45;   // ms -> px de desfasaje
+    targets.push(el);
+  };
+
+  const markAll = (sel, kind = 'up', step = 90, base = 0, root = document) => {
+    root.querySelectorAll(sel).forEach((el, i) => {
       // el escalonado se corta a los 4 para que nunca se sienta lento
-      child.style.setProperty('--reveal-delay', `${Math.min(i, 3) * 80}ms`);
-      targets.push(child);
+      mark(el, kind, base + Math.min(i, 3) * step);
     });
+  };
+
+  // --- encabezado de cada seccion: volanta, filete, titulo y bajada ---
+  document.querySelectorAll('.eyebrow').forEach((eyebrow) => {
+    const rule = document.createElement('span');
+    rule.className = 'eyebrow-rule';
+    rule.setAttribute('aria-hidden', 'true');
+    eyebrow.parentNode.insertBefore(rule, eyebrow);
+    mark(rule, 'line', 0);
+    mark(eyebrow, 'up', 90);
+
+    const holder = eyebrow.parentNode;
+    mark(holder.querySelector('.section-title'), 'mask', 160);
+    mark(holder.querySelector('.section-lead'), 'up', 260);
   });
 
-  singles.forEach((sel) => {
-    const el = document.querySelector(sel);
-    if (el) targets.push(el);
+  markAll('.values-inner .value', 'up', 90);
+
+  // --- portfolio: primero la imagen, despues la ficha ---
+  document.querySelectorAll('[data-work]').forEach((work) => {
+    mark(work.querySelector('.work-visual'), 'zoom', 0);
+    mark(work.querySelector('.work-info'), 'up', 150);
   });
+  mark(document.querySelector('.portfolio-cta'), 'up', 0);
+
+  markAll('.plan-grid .plan', 'up', 90);
+  markAll('.steps li', 'up', 90);
+  markAll('.inc-grid .inc', 'up', 80);
+  markAll('.faq-list .faq-item', 'up', 70);
+  markAll('.contact-cards .contact-card', 'up', 90);
+  mark(document.querySelector('.contact-note'), 'up', 180);
+  markAll('.footer-brand, .footer-links', 'up', 80);
 
   if (!targets.length) return;
 
-  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-    targets.forEach((el) => el.classList.add('in-view'));
+  if (prefersReducedMotion) {
+    targets.forEach((el) => el.style.setProperty('--p', '1'));
     return;
   }
 
-  targets.forEach((el) => el.classList.add('reveal'));
+  const clamp = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+
+  // el bloque empieza a entrar cuando su borde superior cruza el 92% de
+  // la pantalla y termina de acomodarse un 32% mas arriba
+  const START = 0.92;
+  const RUN = 0.32;
+
+  let ticking = false;
+
+  // Dos pasadas: primero se leen todas las posiciones y recien despues se
+  // escriben los valores. Mezclarlas obligaria al navegador a recalcular
+  // el layout en cada elemento.
+  function update() {
+    const vh = window.innerHeight;
+    const doc = document.documentElement;
+
+    // Al final de la pagina ya no queda scroll para completar la entrada:
+    // lo que esta a la vista tiene que verse entero igual.
+    const atBottom = window.scrollY + vh >= doc.scrollHeight - 2;
+
+    const ps = targets.map((el) => {
+      const top = el.getBoundingClientRect().top;
+      if (atBottom && top < vh) return 1;
+      return clamp((vh * START - top - (el._revShift || 0)) / (vh * RUN));
+    });
+
+    targets.forEach((el, i) => el.style.setProperty('--p', ps[i].toFixed(3)));
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+
+  window.addEventListener('resize', update, { passive: true });
+
+  update();
+})();
+
+/* ---------- Nav: resalta la seccion que se esta leyendo ---------- */
+(() => {
+  const links = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+
+  const map = new Map();
+  links.forEach((link) => {
+    const section = document.querySelector(link.getAttribute('href'));
+    if (section) map.set(section, link);
+  });
+  if (!map.size) return;
+
+  const visible = new Set();
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
       });
+
+      // si hay varias a la vista, gana la que este mas arriba
+      let top = null;
+      visible.forEach((s) => {
+        if (!top || s.getBoundingClientRect().top < top.getBoundingClientRect().top) top = s;
+      });
+
+      // si no hay ninguna en la banda (ej. secciones que no estan en el
+      // menu), se conserva la ultima marcada en vez de apagarlas todas
+      if (!top) return;
+      links.forEach((l) => l.classList.remove('is-current'));
+      map.get(top).classList.add('is-current');
     },
-    { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
+    { rootMargin: '-84px 0px -55% 0px' }
   );
 
-  targets.forEach((el) => observer.observe(el));
+  map.forEach((_, section) => observer.observe(section));
 })();
 
 /* ---------- Logo: pulso al click + scroll suave al inicio ---------- */
@@ -113,10 +208,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
     let animating = false;
 
-    const setHeight = (to) => {
-      wrap.style.height = `${to}px`;
-    };
-
     summary.addEventListener('click', (e) => {
       e.preventDefault();
       if (animating) return;
@@ -133,11 +224,11 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
       if (!isOpen) {
         item.setAttribute('open', '');
-        setHeight(0);
-        requestAnimationFrame(() => setHeight(wrap.scrollHeight));
+        wrap.style.height = '0px';
+        requestAnimationFrame(() => { wrap.style.height = `${wrap.scrollHeight}px`; });
       } else {
-        setHeight(wrap.scrollHeight);
-        requestAnimationFrame(() => setHeight(0));
+        wrap.style.height = `${wrap.scrollHeight}px`;
+        requestAnimationFrame(() => { wrap.style.height = '0px'; });
       }
 
       const done = () => {
@@ -150,157 +241,90 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       wrap.addEventListener('transitionend', done);
     });
 
-    // si la ventana cambia de ancho, el alto fijo dejaría de servir
     window.addEventListener('resize', () => {
       if (item.hasAttribute('open') && !animating) wrap.style.height = 'auto';
     }, { passive: true });
   });
 })();
 
-/* ---------- Previews del portfolio: se cargan solo al acercarse ---------- */
+/* ---------- Efectos ligados al scroll ----------
+   Un solo listener con rAF para todo: el paneo de las capturas del
+   portfolio y el parallax del mockup del hero. Se comporta igual en
+   celular y en escritorio, así las portadas se ven siempre iguales. */
 (() => {
-  const frames = document.querySelectorAll('.work-viewport iframe[data-src]');
-  if (!frames.length) return;
+  if (prefersReducedMotion) return;
 
-  const load = (frame) => {
-    if (frame.dataset.loaded) return;
-    frame.dataset.loaded = '1';
-    frame.src = frame.dataset.src;
-    frame.addEventListener('load', () => frame.classList.add('is-loaded'), { once: true });
+  const shots = Array.from(document.querySelectorAll('[data-work] .work-shot'));
+  const stage = document.querySelector('.stage-inner');
+  if (!shots.length && !stage) return;
+
+  // Cuánto llega a desplazarse la captura. El recorrido completo es 70%;
+  // usamos una fracción para que la portada nunca quede lejos.
+  const PAN = 24;
+  const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+
+  let ticking = false;
+
+  const update = () => {
+    const vh = window.innerHeight;
+
+    shots.forEach((shot) => {
+      const card = shot.closest('[data-work]');
+      const r = card.getBoundingClientRect();
+
+      // fuera de pantalla: no gastamos cálculo
+      if (r.bottom < -200 || r.top > vh + 200) return;
+
+      const cardCenter = r.top + r.height / 2;
+      const vpCenter = vh / 2;
+
+      // 0 mientras la tarjeta entra o está centrada -> se ve la portada.
+      // Crece solo cuando la tarjeta empieza a salir por arriba.
+      const p = clamp((vpCenter - cardCenter) / (vh / 2 + r.height / 2), 0, 1);
+      shot.style.setProperty('--pan', `${(-p * PAN).toFixed(2)}%`);
+    });
+
+    if (stage) {
+      const r = stage.getBoundingClientRect();
+      if (r.bottom > -200 && r.top < vh + 200) {
+        // el mockup sube un poco más lento que la página
+        const off = clamp((vh / 2 - (r.top + r.height / 2)) * 0.06, -40, 40);
+        stage.style.setProperty('--par', `${off.toFixed(1)}px`);
+      }
+    }
+
+    ticking = false;
   };
 
-  if (!('IntersectionObserver' in window)) {
-    frames.forEach(load);
-    return;
-  }
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
 
-  // margen amplio: el preview ya está listo cuando la tarjeta entra en pantalla
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        load(entry.target);
-        observer.unobserve(entry.target);
-      });
-    },
-    { rootMargin: '300px 0px' }
-  );
-
-  frames.forEach((frame) => observer.observe(frame));
+  window.addEventListener('resize', update, { passive: true });
+  update();
 })();
 
-/* ---------- Help chat (client-side FAQ assistant, no external calls) ---------- */
+/* ---------- Barra de progreso de lectura ---------- */
 (() => {
-  const toggle = document.getElementById('chatToggle');
-  const panel = document.getElementById('chatPanel');
-  const closeBtn = document.getElementById('chatClose');
-  const log = document.getElementById('chatLog');
-  const form = document.getElementById('chatForm');
-  const input = document.getElementById('chatInput');
-  const chips = document.getElementById('chatChips');
+  const bar = document.getElementById('progress');
+  if (!bar) return;
 
-  if (!toggle || !panel || !form || !input || !log) return;
+  let ticking = false;
 
-  const WHATSAPP_URL = 'https://wa.me/5492216438512?text=Hola%20ZEK%2C%20tengo%20una%20consulta';
-
-  const responses = [
-    { keys: ['proceso', 'como trabajan', 'cómo trabajan', 'pasos', 'estrategia', 'diseño', 'desarrollo'], text: 'Trabajamos en 4 pasos: analizamos tu negocio para definir estrategia, creamos un diseño visual único, construimos un sitio rápido y optimizado, y lo lanzamos con soporte completo. Podés ver más en "Proceso".' },
-    { keys: ['precio', 'presupuesto', 'costo', 'cuanto sale', 'cuánto sale', 'vale', 'plata', 'tarifa'], text: 'Cada proyecto se cotiza a medida. El rango típico para webs profesionales es de $2.000 a $8.000 USD según funcionalidades e integraciones. Ofrecemos consulta gratuita sin compromiso. Escribinos por WhatsApp.' },
-    { keys: ['tiempo', 'tarda', 'demora', 'cuando', 'cuándo', 'plazo', '48', '2 a 4 semanas'], text: 'La propuesta inicial la tenés en 48 horas. El sitio completo tarda entre 2 a 4 semanas según complejidad. E-commerce y plataformas especiales pueden tomar más tiempo, pero lo definimos desde el inicio.' },
-    { keys: ['tipos', 'rubro', 'tienda', 'restaurante', 'gastro', 'ecommerce', 'servicio', 'portfolio', 'personal', 'web'], text: 'Hacemos e-commerce, sitios de servicios/lead generation, restaurantes, y portfolios personales. Si tu rubro es otro, contanos igual. Cada proyecto es único y estratégico para tu negocio.' },
-    { keys: ['dominio', 'hosting', 'mantenimiento', 'soporte', 'lanzamiento', 'después'], text: 'El dominio, hosting y código fuente quedan 100% a tu nombre. Incluimos soporte técnico por 30 días post-lanzamiento. Mantenimiento y actualizaciones se contratan aparte en planes mensuales.' },
-    { keys: ['plantilla', 'template', 'genérico', 'custom', 'original', 'diseño'], text: '100% diseño original. No usamos plantillas genéricas. Cada web es única, diseñada estratégicamente para tu negocio, marca y objetivos de conversión.' },
-    { keys: ['hola', 'buenas', 'buen dia', 'buenas tardes', 'buenas noches'], text: '¡Hola! Soy el asistente de ZEK. ¿En qué te ayudo? Preguntame sobre proceso, presupuesto, tiempos o tipos de sitios.' },
-    { keys: ['gracias'], text: '¡De nada! Cualquier otra consulta, acá estoy para ayudarte.' },
-  ];
-
-  const chipQuestions = {
-    proceso: '¿Cómo es el proceso de trabajo?',
-    precio: '¿Cuál es el presupuesto?',
-    tiempos: '¿Cuánto tarda un proyecto?',
-    tipos: '¿Qué tipos de web hacen?',
+  const update = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    bar.style.transform = `scaleX(${max > 0 ? doc.scrollTop / max : 0})`;
+    ticking = false;
   };
 
-  function findResponse(text) {
-    const t = text.toLowerCase();
-    const hit = responses.find((r) => r.keys.some((k) => t.includes(k)));
-    return hit ? hit.text : null;
-  }
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
 
-  function addMessage(role, text) {
-    const bubble = document.createElement('div');
-    bubble.className = `chat-msg chat-msg--${role}`;
-    bubble.textContent = text;
-    log.appendChild(bubble);
-    log.scrollTop = log.scrollHeight;
-    return bubble;
-  }
-
-  function addFallback() {
-    const bubble = document.createElement('div');
-    bubble.className = 'chat-msg chat-msg--bot';
-    bubble.textContent = 'No tengo una respuesta puntual para eso. Escribinos directo y te ayudamos personalmente: ';
-    const link = document.createElement('a');
-    link.href = WHATSAPP_URL;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.textContent = 'abrir WhatsApp';
-    bubble.appendChild(link);
-    log.appendChild(bubble);
-    log.scrollTop = log.scrollHeight;
-  }
-
-  function respondTo(question) {
-    addMessage('user', question);
-    const answer = findResponse(question);
-    window.setTimeout(() => {
-      if (answer) {
-        addMessage('bot', answer);
-      } else {
-        addFallback();
-      }
-    }, 300);
-  }
-
-  function openChat() {
-    panel.hidden = false;
-    toggle.setAttribute('aria-expanded', 'true');
-    if (!log.dataset.greeted) {
-      addMessage('bot', '¡Hola! Soy el asistente de ZEK 👋 Preguntame sobre el proceso, tiempos, precios o tipos de sitio.');
-      log.dataset.greeted = 'true';
-    }
-    input.focus();
-  }
-
-  function closeChat() {
-    panel.hidden = true;
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.focus();
-  }
-
-  toggle.addEventListener('click', () => {
-    if (panel.hidden) openChat();
-    else closeChat();
-  });
-
-  closeBtn.addEventListener('click', closeChat);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !panel.hidden) closeChat();
-  });
-
-  chips.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-q]');
-    if (!btn) return;
-    const question = chipQuestions[btn.dataset.q];
-    if (question) respondTo(question);
-  });
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const value = input.value.trim();
-    if (!value) return;
-    respondTo(value);
-    input.value = '';
-  });
+  update();
 })();
