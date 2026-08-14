@@ -254,7 +254,11 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 (() => {
   if (prefersReducedMotion) return;
 
-  const shots = Array.from(document.querySelectorAll('[data-work] .work-shot'));
+  // En tactil el recorrido lo maneja la animacion "tour" (mas abajo), asi
+  // que el paneo por scroll se deja de lado para que no se pisen.
+  const tactil = window.matchMedia('(hover: none)').matches;
+
+  const shots = tactil ? [] : Array.from(document.querySelectorAll('[data-work] .work-shot'));
   const stage = document.querySelector('.stage-inner');
   if (!shots.length && !stage) return;
 
@@ -327,4 +331,43 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   }, { passive: true });
 
   update();
+})();
+
+/* ---------- Recorrido automático en pantallas táctiles ----------
+   En la computadora alcanza con pasar el mouse por encima para que la
+   captura recorra el sitio. En el celular no hay hover, así que el
+   recorrido arranca solo cuando la tarjeta queda centrada, y se corta al
+   salir: nunca hay más de una animando a la vez. */
+(() => {
+  if (prefersReducedMotion) return;
+  if (!window.matchMedia('(hover: none)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  // Se observa la ventana del navegador, no la tarjeta entera: la tarjeta
+  // completa mide mas que la pantalla de un celular y en equipos chicos
+  // nunca llegaria a cumplir el umbral. La imagen mide ~320px y siempre
+  // entra holgada.
+  const frames = document.querySelectorAll('[data-work] .work-visual');
+  if (!frames.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const card = entry.target.closest('[data-work]');
+        if (!card) return;
+
+        if (entry.isIntersecting) {
+          card.classList.add('is-touring');
+          return;
+        }
+
+        // Al salir se quita la clase para que, si volvés a subir, el
+        // recorrido se vuelva a reproducir desde la portada.
+        card.classList.remove('is-touring');
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  frames.forEach((f) => observer.observe(f));
 })();

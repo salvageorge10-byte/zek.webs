@@ -1031,11 +1031,26 @@ svg { display: block; }
   }
 }
 
-/* En táctil no hay hover, pero el paneo por scroll (más abajo, en JS)
-   se aplica igual en todos los dispositivos: la portada siempre queda
-   a la vista mientras la tarjeta está centrada en pantalla. */
+/* En táctil no hay hover, así que el recorrido arranca solo cuando la
+   tarjeta queda centrada en pantalla. Baja por el sitio y vuelve a la
+   portada, de modo que el estado en reposo sigue siendo el mismo que en
+   la computadora. */
 @media (hover: none) {
-  .work-cue { opacity: 1; }
+  .work-cue { opacity: 1; transition: opacity 400ms ease-out; }
+
+  .work.is-touring .work-shot {
+    /* sin fill-mode: al terminar vuelve a mandar el paneo por scroll */
+    animation: tour 14s cubic-bezier(0.45, 0, 0.3, 1) 700ms 1;
+  }
+
+  .work.is-touring .work-cue { opacity: 0; }
+
+  @keyframes tour {
+    0%   { transform: translateY(0); }
+    46%  { transform: translateY(-70%); }
+    58%  { transform: translateY(-70%); }
+    100% { transform: translateY(0); }
+  }
 }
 
 /* ==========================================================================
