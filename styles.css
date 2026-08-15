@@ -889,14 +889,8 @@ svg { display: block; }
   border-bottom: 1px solid var(--line);
 }
 
-.work-chrome .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-.work-chrome .dot:nth-child(1) { background: #E9756B; }
-.work-chrome .dot:nth-child(2) { background: #E3B457; }
-.work-chrome .dot:nth-child(3) { background: #74C289; }
-
 .work-url {
   flex: 1;
-  margin-left: 8px;
   padding: 4px 12px;
   border-radius: 999px;
   background: var(--paper);
