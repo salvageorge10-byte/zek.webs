@@ -105,7 +105,7 @@
   --font-body:    'Inter', system-ui, sans-serif;
 
   /* --- métrica --- */
-  --max-w:   1180px;
+  --max-w:   1280px;
   --gutter:  1.75rem;
 
   /* escala de espaciado ampliada: el sitio respira más */
@@ -202,6 +202,19 @@ svg { display: block; }
   color: var(--gold);
   margin-bottom: var(--space-2);
 }
+
+/* filete dorado que acompaña a cada volanta */
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 34px;
+  height: 2px;
+  margin-bottom: var(--space-2);
+  background: var(--gold-bright);
+}
+
+/* en los bloques centrados el filete también va al centro */
+.contact-inner .eyebrow::before { margin-left: auto; margin-right: auto; }
 
 .section-title {
   font-size: clamp(1.9rem, 3.6vw, 2.9rem);
@@ -503,16 +516,16 @@ svg { display: block; }
   padding-bottom: 7%;
 }
 
-/* Capa aparte para el movimiento: así el flotado y el parallax del
-   scroll (--par, que setea el JS) conviven en un mismo transform. */
+/* Capa aparte para el flotado, así el movimiento no toca la composición
+   de las sombras ni de los fondos que hay detrás. */
 .stage-inner {
   position: relative;
   animation: stage-float 8s ease-in-out infinite;
 }
 
 @keyframes stage-float {
-  0%, 100% { transform: translateY(calc(var(--par, 0px))); }
-  50%      { transform: translateY(calc(var(--par, 0px) - 7px)); }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
 }
 
 /* mancha crema que integra el mockup con el fondo */
@@ -912,16 +925,18 @@ svg { display: block; }
 .portfolio-grid {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 
 /* --- fila --- */
 
+/* La ventana se lleva la mayor parte del ancho: es lo que el visitante
+   viene a mirar, y con la columna angosta quedaba mucho papel al costado. */
 .work {
   display: grid;
-  grid-template-columns: 1.08fr 1fr;
+  grid-template-columns: 1.42fr 1fr;
   align-items: center;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 /* alternamos el lado de la imagen para que la lectura no sea monótona */
@@ -988,11 +1003,11 @@ svg { display: block; }
   display: block;
   width: 100%;
   height: auto;
-  /* --pan lo maneja el scroll: 0% = portada. La captura mide 2100px
-     sobre un marco de 630, así que -70% recorrería la página entera. */
-  transform: translateY(var(--pan, 0%));
-  transition: transform 260ms linear;
-  will-change: transform;
+  /* en reposo se ve la portada; el recorrido lo dispara el hover (o, en
+     táctil, la animación "tour"). La captura mide 2100px sobre un marco
+     de ~660, así que -70% recorre la página entera. */
+  transform: translateY(0);
+  transition: transform 320ms var(--ease);
 }
 
 /* sombra inferior: sugiere que hay más página por debajo */
@@ -1202,9 +1217,9 @@ svg { display: block; }
 /* ficha de datos */
 .work-meta {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: start;
-  gap: var(--space-3);
+  /* minmax(0,·) para que las columnas se achiquen en vez de desbordar */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
   margin: var(--space-3) 0;
   padding: var(--space-2) 0;
   border-top: 1px solid var(--line);
@@ -1317,6 +1332,12 @@ svg { display: block; }
 
 /* --- responsive del portfolio --- */
 
+/* entre 980 y 1180 la columna de texto queda muy angosta si la ventana
+   se queda con todo, así que se reparte un poco más parejo */
+@media (max-width: 1180px) {
+  .work { grid-template-columns: 1.2fr 1fr; }
+}
+
 @media (max-width: 980px) {
   .work {
     grid-template-columns: 1fr;
@@ -1346,6 +1367,172 @@ svg { display: block; }
 }
 
 /* ==========================================================================
+   Qué hacemos — el servicio explicado en detalle
+   ========================================================================== */
+
+.craft {
+  background: var(--paper-alt);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.craft-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-6) var(--gutter);
+}
+
+.craft-head {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: end;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.craft-head-lead { padding-bottom: 0.3rem; }
+
+/* --- cuerpo: texto largo a la izquierda, ficha a la derecha --- */
+
+.craft-body {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: start;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.craft-text p {
+  color: var(--ink-mute);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 62ch;
+}
+
+/* la entrada va un punto más grande: es la definición del servicio */
+.craft-open {
+  font-size: 1.12rem !important;
+  line-height: 1.6 !important;
+  color: var(--ink-soft) !important;
+}
+
+.craft-text h3 {
+  margin-top: var(--space-4);
+  margin-bottom: 0.6rem;
+  font-size: 1.02rem;
+  letter-spacing: -0.005em;
+}
+
+/* barrita dorada al costado de cada subtítulo */
+.craft-text h3::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  margin-right: 0.6rem;
+  vertical-align: middle;
+  background: var(--gold-bright);
+}
+
+/* --- ficha de datos duros --- */
+
+.craft-facts {
+  position: sticky;
+  top: 96px;
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+}
+
+.craft-facts > p {
+  font-family: var(--font-word);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-2);
+}
+
+.fact-list { display: block; }
+
+.fact-list > div {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.fact-list > div:first-of-type { border-top: 0; padding-top: 0; }
+.fact-list > div:last-of-type  { padding-bottom: 0; }
+
+.fact-list dt {
+  font-family: var(--font-word);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.fact-list dd {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-mute);
+}
+
+/* --- lo que se le puede poner adentro --- */
+
+.craft-caps {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+
+.caps-title {
+  font-size: 1.02rem;
+  margin-bottom: var(--space-3);
+}
+
+.caps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.6rem var(--space-3);
+}
+
+.caps-grid li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* tilde dibujado con dos bordes: sin SVG por cada ítem */
+.caps-grid li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 5px;
+  height: 9px;
+  margin-top: 0.35rem;
+  border: solid var(--gold-bright);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 980px) {
+  .craft-head { grid-template-columns: 1fr; align-items: start; }
+  .craft-body { grid-template-columns: 1fr; gap: var(--space-4); }
+  .craft-facts { position: static; }
+  .craft-text p { max-width: none; }
+}
+
+/* ==========================================================================
    Proceso
    ========================================================================== */
 
@@ -1363,18 +1550,32 @@ svg { display: block; }
 
 .steps {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
   margin-top: var(--space-5);
 }
 
 .steps li {
+  display: flex;
+  flex-direction: column;
   padding-top: var(--space-2);
   border-top: 2px solid var(--line);
   transition: border-color 320ms ease-out;
 }
 
 .steps li:hover { border-top-color: var(--gold-bright); }
+
+/* el plazo queda pegado abajo, alineado entre columnas */
+.step-when {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  font-family: var(--font-word);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
 
 .step-num {
   display: block;
@@ -1386,8 +1587,12 @@ svg { display: block; }
   margin-bottom: var(--space-2);
 }
 
-.steps h3 { font-size: 1.08rem; margin-bottom: 0.4rem; }
-.steps p  { font-size: 0.93rem; color: var(--ink-mute); }
+.steps h3 { font-size: 1.02rem; margin-bottom: 0.4rem; }
+.steps p  { font-size: 0.9rem; line-height: 1.6; color: var(--ink-mute); }
+
+@media (max-width: 1100px) {
+  .steps { grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+}
 
 /* ==========================================================================
    Tipos de proyecto
@@ -1612,15 +1817,27 @@ svg { display: block; }
    FAQ
    ========================================================================== */
 
-.faq {
+.faq { padding: var(--space-6) var(--gutter); }
+
+/* Encabezado a la izquierda y preguntas a la derecha: con una sola
+   columna angosta quedaba media pantalla en blanco. */
+.faq-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: var(--space-6) var(--gutter);
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: start;
+  gap: var(--space-5);
 }
 
-.faq-list {
-  max-width: 780px;
-  margin-top: var(--space-5);
+/* el encabezado acompaña mientras se abren y cierran las preguntas */
+.faq-head { position: sticky; top: 108px; }
+
+.faq-list { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .faq-inner { grid-template-columns: 1fr; gap: var(--space-4); }
+  .faq-head  { position: static; }
 }
 
 .faq-item {
@@ -1879,76 +2096,6 @@ svg { display: block; }
 .wa-float:hover::after { animation-play-state: paused; opacity: 0; }
 
 /* ==========================================================================
-   Apariciones ligadas al scroll
-   --p va de 0 a 1 y lo actualiza el JS en cada cuadro segun donde este el
-   elemento en pantalla. Al ser continuo, la animacion tambien se deshace
-   si volves a subir, en vez de dispararse una sola vez.
-   El valor por defecto es 1: sin JS todo se ve normal.
-   ========================================================================== */
-
-[data-reveal] {
-  --p: 1;
-  transition: opacity 130ms linear, transform 130ms linear;
-}
-
-/* por defecto: sube y aparece */
-[data-reveal="up"] {
-  opacity: var(--p);
-  transform: translateY(calc((1 - var(--p)) * 30px));
-}
-
-/* la imagen del proyecto entra con un acercamiento minimo */
-[data-reveal="zoom"] {
-  opacity: var(--p);
-  transform:
-    translateY(calc((1 - var(--p)) * 28px))
-    scale(calc(1 + (1 - var(--p)) * 0.03));
-}
-
-/* titulos: el texto asoma por detras del borde.
-   La caja conserva su tamano; se mueve el <span> de adentro, porque si
-   recortaramos la caja observada su area visible seria 0. */
-[data-reveal="mask"] {
-  overflow: hidden;
-  /* aire extra para que no se corten las colas de la g, la j o la y */
-  padding-bottom: 0.14em;
-  margin-bottom: -0.14em;
-}
-
-[data-reveal="mask"] > .mask-inner {
-  display: block;
-  opacity: var(--p);
-  transform: translateY(calc((1 - var(--p)) * 105%));
-  transition: opacity 130ms linear, transform 130ms linear;
-}
-
-/* filetes: la caja queda igual y se dibuja el relleno de adentro */
-[data-reveal="line"] { background: none; overflow: hidden; }
-
-[data-reveal="line"]::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--gold-bright);
-  transform: scaleX(var(--p));
-  transform-origin: left;
-  transition: transform 130ms linear;
-}
-
-/* filete dorado que acompania a cada volanta */
-.eyebrow-rule {
-  display: block;
-  width: 34px;
-  height: 2px;
-  margin-bottom: var(--space-2);
-  background: var(--gold-bright);
-}
-
-/* en los bloques centrados el filete tambien va al centro */
-.contact-inner .eyebrow-rule { margin-left: auto; margin-right: auto; }
-
-/* ==========================================================================
    Navegacion: seccion activa
    ========================================================================== */
 
@@ -1958,17 +2105,6 @@ svg { display: block; }
 /* el nav es fijo: los anclajes frenan mas abajo para no quedar tapados */
 section[id] { scroll-margin-top: 84px; }
 
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal],
-  [data-reveal] > .mask-inner {
-    --p: 1;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  [data-reveal="line"]::after { transform: scaleX(1) !important; }
-}
-
 /* ==========================================================================
    Responsive
    ========================================================================== */
@@ -1977,7 +2113,6 @@ section[id] { scroll-margin-top: 84px; }
   :root { --space-6: 6.5rem; --space-5: 4rem; }
 
   .portfolio-head { grid-template-columns: 1fr; align-items: start; }
-  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -1992,7 +2127,7 @@ section[id] { scroll-margin-top: 84px; }
   .hero-cta .btn { width: 100%; }
 
 
-  .portfolio-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+  .portfolio-grid { gap: var(--space-5); }
   .steps { grid-template-columns: 1fr; }
 
   .portfolio-cta { flex-direction: column; align-items: flex-start; }
@@ -2000,12 +2135,6 @@ section[id] { scroll-margin-top: 84px; }
   .footer-inner { justify-content: center; text-align: center; }
 
   .wa-float { width: 56px; height: 56px; }
-
-  /* en pantallas chicas el reveal es más corto y sin escalonado */
-  /* en pantallas chicas el recorrido es mas corto y sin escalonado */
-  [data-reveal="up"]   { transform: translateY(16px); }
-  [data-reveal="zoom"] { transform: translateY(14px) scale(1.015); }
-  [data-reveal] { --rev-delay: 0ms !important; transition-duration: 520ms; }
 }
 
 /* ==========================================================================
