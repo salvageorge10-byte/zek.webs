@@ -29,6 +29,11 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23FFFFFF%22/><path d=%22M18,18 L82,18 L82,32 L42,68 L82,68 L82,82 L18,82 L18,68 L58,32 L18,32 Z%22 fill=%22%23C9A24B%22/></svg>">
 <link rel="apple-touch-icon" href="assets/zek-mark-champagne.png">
 
+<!-- Las dos que se ven en la primera pantalla: sin esto el navegador
+     recien las descubre cuando termina de leer el CSS -->
+<link rel="preload" href="assets/fonts/playfair-display-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -90,7 +95,9 @@
           <div class="laptop-lid">
             <div class="laptop-screen">
               <picture>
-                <source srcset="assets/work/hero-wl-desk.webp" type="image/webp">
+                <source type="image/webp"
+                  srcset="assets/work/hero-wl-desk-720.webp 720w, assets/work/hero-wl-desk.webp 1280w"
+                  sizes="(max-width: 860px) min(540px, calc(100vw - 2.5rem)), (max-width: 1240px) 52vw, 669px">
                 <img src="assets/work/hero-wl-desk.jpg" alt="Sitio de Whole Lotta Burgers desarrollado por ZEK, visto en notebook" width="1280" height="800" loading="eager" decoding="async" fetchpriority="high">
               </picture>
             </div>
@@ -105,7 +112,9 @@
             <span class="phone-notch" aria-hidden="true"></span>
             <div class="phone-screen">
               <picture>
-                <source srcset="assets/work/hero-wl-mob.webp" type="image/webp">
+                <source type="image/webp"
+                  srcset="assets/work/hero-wl-mob-320.webp 320w, assets/work/hero-wl-mob.webp 460w"
+                  sizes="(max-width: 860px) 24vw, 155px">
                 <img src="assets/work/hero-wl-mob.jpg" alt="El mismo sitio adaptado a celular" width="460" height="995" loading="eager" decoding="async">
               </picture>
             </div>
@@ -173,7 +182,7 @@
             <span class="work-screen">
               <picture>
                 <source srcset="assets/work/wholelotta.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/wholelotta.jpg" alt="Recorrido por el sitio de Whole Lotta Burgers" width="840" height="2100" loading="lazy" decoding="async">
+                <img class="work-shot" src="assets/work/wholelotta.jpg" alt="Recorrido por el sitio de Whole Lotta Burgers" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
               </picture>
             </span>
             <span class="work-cue" aria-hidden="true">
@@ -225,7 +234,7 @@
             <span class="work-screen">
               <picture>
                 <source srcset="assets/work/enola.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/enola.jpg" alt="Recorrido por el sitio de Enola Indumentaria" width="840" height="2100" loading="lazy" decoding="async">
+                <img class="work-shot" src="assets/work/enola.jpg" alt="Recorrido por el sitio de Enola Indumentaria" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
               </picture>
             </span>
             <span class="work-cue" aria-hidden="true">
@@ -277,7 +286,7 @@
             <span class="work-screen">
               <picture>
                 <source srcset="assets/work/sancho.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/sancho.jpg" alt="Recorrido por el sitio de Sancho · Tapas y Barra" width="840" height="2100" loading="lazy" decoding="async">
+                <img class="work-shot" src="assets/work/sancho.jpg" alt="Recorrido por el sitio de Sancho · Tapas y Barra" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
               </picture>
             </span>
             <span class="work-cue" aria-hidden="true">
@@ -329,7 +338,7 @@
             <span class="work-screen">
               <picture>
                 <source srcset="assets/work/brodogs.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/brodogs.jpg" alt="Recorrido por el sitio de Brodog's" width="840" height="2100" loading="lazy" decoding="async">
+                <img class="work-shot" src="assets/work/brodogs.jpg" alt="Recorrido por el sitio de Brodog's" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
               </picture>
             </span>
             <span class="work-cue" aria-hidden="true">
@@ -381,7 +390,7 @@
             <span class="work-screen">
               <picture>
                 <source srcset="assets/work/luna.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/luna.jpg" alt="Recorrido por el sitio de Veterinaria Luna" width="840" height="2100" loading="lazy" decoding="async">
+                <img class="work-shot" src="assets/work/luna.jpg" alt="Recorrido por el sitio de Veterinaria Luna" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
               </picture>
             </span>
             <span class="work-cue" aria-hidden="true">
@@ -433,7 +442,7 @@
             <span class="work-screen">
               <picture>
                 <source srcset="assets/work/comaqui.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/comaqui.jpg" alt="Recorrido por el sitio de Comaqui · Parrilla & Bodegón" width="840" height="2100" loading="lazy" decoding="async">
+                <img class="work-shot" src="assets/work/comaqui.jpg" alt="Recorrido por el sitio de Comaqui · Parrilla & Bodegón" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
               </picture>
             </span>
             <span class="work-cue" aria-hidden="true">
@@ -485,7 +494,7 @@
             <span class="work-screen">
               <picture>
                 <source srcset="assets/work/hermanos.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/hermanos.jpg" alt="Recorrido por el sitio de Los Hermanos" width="840" height="2100" loading="lazy" decoding="async">
+                <img class="work-shot" src="assets/work/hermanos.jpg" alt="Recorrido por el sitio de Los Hermanos" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
               </picture>
             </span>
             <span class="work-cue" aria-hidden="true">
@@ -748,6 +757,6 @@
   <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm5.8 14.15c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.1.11-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.37c.26-.29.56-.36.75-.36l.54.01c.17.01.4-.03.63.48.24.53.8 1.85.87 1.99.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.16 1.52 1.88 1.05.93 1.93 1.22 2.21 1.35.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.61.76 1.89.9.28.14.46.21.53.32.07.13.07.7-.17 1.38z"/></svg>
 </a>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>
