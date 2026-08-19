@@ -113,8 +113,8 @@
   --space-2: 1rem;
   --space-3: 1.75rem;
   --space-4: 3rem;
-  --space-5: 5rem;
-  --space-6: 9rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
 
   --radius:    16px;
   --radius-sm: 10px;
@@ -429,6 +429,21 @@ svg { display: block; }
   background: var(--paper);
 }
 
+/* El verde vivo de la marca (#25D366) con texto blanco da 2:1 y el
+   #1DA851 da 3.1:1: los dos por debajo de AA. Se usa un verde mas
+   cerrado, que llega a 5.1:1 y sigue leyendose como WhatsApp. */
+.btn-wa {
+  background: #177F3E;
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(23, 127, 62, 0.26);
+}
+
+.btn-wa:hover {
+  background: #12692F;   /* 6.8:1 */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(23, 127, 62, 0.32);
+}
+
 .btn-ghost:hover {
   border-color: var(--gold-bright);
   background: var(--gold-wash);
@@ -443,7 +458,7 @@ svg { display: block; }
 .hero {
   position: relative;
   overflow: hidden;
-  padding: var(--space-5) var(--gutter);
+  padding: var(--space-5) var(--gutter) calc(var(--space-5) + 1rem);
   background:
     radial-gradient(ellipse 60% 50% at 78% 32%, rgba(201, 162, 75, 0.09), transparent 68%),
     linear-gradient(180deg, #FEFDFB 0%, var(--paper) 62%);
@@ -455,7 +470,8 @@ svg { display: block; }
   max-width: var(--max-w);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1.04fr;
+  /* el mockup manda: es la prueba de lo que hacemos */
+  grid-template-columns: 0.82fr 1.18fr;
   align-items: center;
   gap: var(--space-4);
 }
@@ -1199,6 +1215,31 @@ svg { display: block; }
   max-width: 52ch;
 }
 
+/* resultado del proyecto: el dato que importa, antes del relato */
+.work-result {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  align-self: flex-start;
+  margin-bottom: var(--space-2);
+  padding: 0.42rem 0.9rem;
+  border: 1px solid rgba(201, 162, 75, 0.45);
+  border-radius: 999px;
+  background: var(--gold-wash);
+  font-family: var(--font-word);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--gold);
+  transition: border-color 300ms ease-out, background-color 300ms ease-out;
+}
+
+/* solo se refuerza el borde: si el fondo se oscurece, el dorado del
+   texto baja de 4.6:1 a 4.4:1 y deja de cumplir AA */
+.work:hover .work-result { border-color: var(--gold-bright); }
+
+.work-result svg { flex-shrink: 0; }
+
 /* ficha de datos */
 .work-meta {
   display: grid;
@@ -1285,7 +1326,7 @@ svg { display: block; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--space-2);
-  margin-top: var(--space-6);
+  margin-top: var(--space-4);
   padding: var(--space-3) var(--space-4);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1346,6 +1387,48 @@ svg { display: block; }
 }
 
 /* ==========================================================================
+   CTA intermedio — para el que no llega hasta el final
+   ========================================================================== */
+
+.cta-band {
+  padding: 0 var(--gutter) var(--space-5);
+}
+
+.cta-band-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(ellipse 70% 140% at 88% 50%, rgba(37, 211, 102, 0.10), transparent 70%),
+    linear-gradient(100deg, var(--gold-wash), rgba(201, 162, 75, 0) 62%),
+    var(--paper);
+}
+
+.cta-band-copy h2 {
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.cta-band-copy p {
+  margin-top: 0.4rem;
+  font-size: 0.96rem;
+  color: var(--ink-mute);
+}
+
+@media (max-width: 700px) {
+  .cta-band-inner { padding: var(--space-3); }
+  .cta-band .btn  { width: 100%; }
+}
+
+/* ==========================================================================
    Proceso
    ========================================================================== */
 
@@ -1358,7 +1441,9 @@ svg { display: block; }
 .process-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: var(--space-6) var(--gutter);
+  /* menos aire arriba (viene pegado al CTA) y abajo, porque la seccion
+     siguiente comparte fondo y las dos tandas de padding se sumaban */
+  padding: var(--space-5) var(--gutter) var(--space-4);
 }
 
 .steps {
@@ -1422,83 +1507,39 @@ svg { display: block; }
   box-shadow: var(--shadow-md);
 }
 
-.plan-head {
-  padding-bottom: var(--space-2);
+.plan-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
   margin-bottom: var(--space-2);
-  border-bottom: 1px solid var(--line);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--paper-alt);
+  color: var(--gold);
+  transition: border-color 320ms ease-out, background-color 320ms ease-out, transform 320ms var(--ease);
 }
 
-.plan-num {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--line);
-  margin-bottom: 0.6rem;
-  transition: color 340ms ease-out;
+.plan:hover .plan-icon {
+  border-color: var(--gold-bright);
+  background: var(--gold-wash);
+  transform: translateY(-2px);
 }
 
-.plan:hover .plan-num { color: var(--gold-bright); }
-
-.plan-head h3 {
+.plan h3 {
   font-family: var(--font-display);
-  font-size: 1.32rem;
+  font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.55rem;
 }
 
-.plan-for {
-  font-family: var(--font-word);
-  font-size: 0.74rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-/* el caso concreto en el que conviene */
-.plan-when {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  padding: var(--space-2);
-  margin-bottom: var(--space-2);
-  border-radius: var(--radius-sm);
-  background: var(--paper-alt);
-  border-left: 2px solid var(--gold-bright);
-}
-
-.plan-when b {
-  font-family: var(--font-word);
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.plan-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+/* una sola frase: en el celular el bloque anterior se hacia largo */
+.plan-one {
   margin-bottom: var(--space-3);
-}
-
-.plan-list li {
-  position: relative;
-  padding-left: 1.35rem;
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: 0.96rem;
+  line-height: 1.6;
   color: var(--ink-mute);
-}
-
-.plan-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.62em;
-  width: 7px;
-  height: 7px;
-  border: 1.5px solid var(--gold-bright);
-  border-radius: 50%;
 }
 
 .plan-link {
@@ -1526,9 +1567,25 @@ svg { display: block; }
   max-width: 62ch;
 }
 
+/* en el celular el icono se pone al lado del titulo: la tarjeta baja de
+   cuatro lineas de alto a dos, y se ven las tres de un vistazo */
 @media (max-width: 980px) {
-  .plan-grid { grid-template-columns: 1fr; gap: var(--space-3); }
-  .plan-list { margin-bottom: var(--space-2); }
+  .plan-grid { grid-template-columns: 1fr; gap: var(--space-2); }
+
+  .plan {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-2);
+    align-items: center;
+  }
+
+  .plan-icon { width: 44px; height: 44px; margin-bottom: 0; }
+  .plan h3   { grid-column: 2; margin-bottom: 0; }
+
+  .plan-one,
+  .plan-link { grid-column: 1 / -1; }
+
+  .plan-one { margin: var(--space-2) 0; }
 }
 
 /* ==========================================================================
@@ -1544,7 +1601,7 @@ svg { display: block; }
 .included-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: var(--space-6) var(--gutter);
+  padding: var(--space-4) var(--gutter) var(--space-5);
 }
 
 .inc-grid {
@@ -1724,7 +1781,7 @@ svg { display: block; }
 .contact-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: var(--space-6) var(--gutter);
+  padding: var(--space-5) var(--gutter);
   text-align: center;
 }
 
@@ -1734,7 +1791,7 @@ svg { display: block; }
 .contact-cards {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
 }
 
 .contact-card {
@@ -1763,7 +1820,7 @@ svg { display: block; }
 
 /* el número queda como dato, no como botón: la acción es el flotante */
 .contact-note {
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
   font-size: 0.92rem;
   color: var(--ink-mute);
 }
