@@ -6,11 +6,14 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   if (year) year.textContent = new Date().getFullYear();
 })();
 
-/* ---------- Apariciones ligadas al scroll ----------
-   No es un disparo unico: cada bloque tiene un progreso 0..1 que depende
-   de donde esta en pantalla, y se recalcula en cada cuadro mientras baja
-   o sube. Para que no cueste, solo se calculan los que estan cerca del
-   viewport; de eso se encarga el observer que llena "activos". */
+/* ---------- Todo lo que depende del scroll, en un solo lugar ----------
+   Antes eran tres modulos con su propio listener y su propio rAF: las
+   apariciones, el paneo de las capturas con el parallax del hero, y la
+   barra de progreso. Cada uno leia posiciones despues de que el anterior
+   habia escrito estilos, y esa alternancia obliga al navegador a
+   recalcular el layout entero en cada vuelta.
+   Aca se hace una sola pasada de lecturas y despues una sola de
+   escrituras, con un unico listener. */
 (() => {
   const targets = [];
 
@@ -71,40 +74,86 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   mark(document.querySelector('.contact-note'), 'up', 180);
   markAll('.footer-brand, .footer-links', 'up', 80);
 
-  if (!targets.length) return;
+  const bar = document.getElementById('progress');
 
   if (prefersReducedMotion) {
     targets.forEach((el) => el.style.setProperty('--p', '1'));
-    return;
+    if (!bar) return;
   }
 
-  const clamp = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+  // En tactil el recorrido de las capturas lo maneja la animacion "tour"
+  // (mas abajo), asi que el paneo por scroll se deja de lado.
+  const tactil = window.matchMedia('(hover: none)').matches;
+  const shots = (prefersReducedMotion || tactil)
+    ? []
+    : Array.from(document.querySelectorAll('[data-work] .work-shot'));
+  const stage = prefersReducedMotion ? null : document.querySelector('.stage-inner');
+  const reveals = prefersReducedMotion ? [] : targets;
+
+  if (!reveals.length && !shots.length && !stage && !bar) return;
+
+  const clamp = (v, a = 0, b = 1) => (v < a ? a : v > b ? b : v);
 
   // el bloque empieza a entrar cuando su borde superior cruza el 92% de
   // la pantalla y termina de acomodarse un 32% mas arriba
   const START = 0.92;
   const RUN = 0.32;
 
+  // Cuánto llega a desplazarse la captura. El recorrido completo es 70%;
+  // usamos una fracción para que la portada nunca quede lejos.
+  const PAN = 24;
+
   let ticking = false;
 
-  // Dos pasadas: primero se leen todas las posiciones y recien despues se
-  // escriben los valores. Mezclarlas obligaria al navegador a recalcular
-  // el layout en cada elemento.
   function update() {
     const vh = window.innerHeight;
     const doc = document.documentElement;
+
+    /* ---- 1) lecturas: nada de escribir estilos en esta parte ---- */
 
     // Al final de la pagina ya no queda scroll para completar la entrada:
     // lo que esta a la vista tiene que verse entero igual.
     const atBottom = window.scrollY + vh >= doc.scrollHeight - 2;
 
-    const ps = targets.map((el) => {
+    const ps = reveals.map((el) => {
       const top = el.getBoundingClientRect().top;
       if (atBottom && top < vh) return 1;
       return clamp((vh * START - top - (el._revShift || 0)) / (vh * RUN));
     });
 
-    targets.forEach((el, i) => el.style.setProperty('--p', ps[i].toFixed(3)));
+    const pans = shots.map((shot) => {
+      const r = shot.closest('[data-work]').getBoundingClientRect();
+      // fuera de pantalla: no gastamos calculo
+      if (r.bottom < -200 || r.top > vh + 200) return null;
+      // 0 mientras la tarjeta entra o esta centrada -> se ve la portada.
+      // Crece solo cuando la tarjeta empieza a salir por arriba.
+      const p = clamp((vh / 2 - (r.top + r.height / 2)) / (vh / 2 + r.height / 2));
+      return `${(-p * PAN).toFixed(2)}%`;
+    });
+
+    let par = null;
+    if (stage) {
+      const r = stage.getBoundingClientRect();
+      if (r.bottom > -200 && r.top < vh + 200) {
+        // el mockup sube un poco mas lento que la pagina
+        par = `${clamp((vh / 2 - (r.top + r.height / 2)) * 0.06, -40, 40).toFixed(1)}px`;
+      }
+    }
+
+    const max = doc.scrollHeight - doc.clientHeight;
+    const avance = max > 0 ? doc.scrollTop / max : 0;
+
+    /* ---- 2) escrituras ---- */
+
+    for (let i = 0; i < reveals.length; i++) {
+      reveals[i].style.setProperty('--p', ps[i].toFixed(3));
+    }
+    for (let i = 0; i < shots.length; i++) {
+      if (pans[i] !== null) shots[i].style.setProperty('--pan', pans[i]);
+    }
+    if (par !== null) stage.style.setProperty('--par', par);
+    if (bar) bar.style.transform = `scaleX(${avance})`;
+
     ticking = false;
   }
 
@@ -146,9 +195,17 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
         if (!top || s.getBoundingClientRect().top < top.getBoundingClientRect().top) top = s;
       });
 
-      // si no hay ninguna en la banda (ej. secciones que no estan en el
-      // menu), se conserva la ultima marcada en vez de apagarlas todas
-      if (!top) return;
+      // Arriba de todo no se esta leyendo ninguna seccion del menu: hay
+      // que apagarlas. Sin esto quedaba subrayada la ultima que se habia
+      // visitado, aunque estuvieras de nuevo en la portada.
+      if (!top) {
+        if (window.scrollY < window.innerHeight * 0.6) {
+          links.forEach((l) => l.classList.remove('is-current'));
+        }
+        // en el resto de los huecos (secciones que no estan en el menu)
+        // se conserva la ultima marcada en vez de apagarlas todas
+        return;
+      }
       links.forEach((l) => l.classList.remove('is-current'));
       map.get(top).classList.add('is-current');
     },
@@ -222,115 +279,53 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
       animating = true;
 
+      // Se lee la altura una sola vez y se fuerza el recalculo antes de
+      // pedir el valor final. Sin ese recalculo el navegador puede unir
+      // los dos cambios en uno solo: al cerrar partiria de "auto", que no
+      // se puede interpolar, no habria transicion y nunca llegaria el
+      // transitionend que libera la tarjeta.
+      const alto = wrap.scrollHeight;
+
       if (!isOpen) {
         item.setAttribute('open', '');
         wrap.style.height = '0px';
-        requestAnimationFrame(() => { wrap.style.height = `${wrap.scrollHeight}px`; });
+        void wrap.offsetHeight;
+        wrap.style.height = `${alto}px`;
       } else {
-        wrap.style.height = `${wrap.scrollHeight}px`;
-        requestAnimationFrame(() => { wrap.style.height = '0px'; });
+        wrap.style.height = `${alto}px`;
+        void wrap.offsetHeight;
+        wrap.style.height = '0px';
       }
 
-      const done = () => {
+      let red;
+
+      const done = (ev) => {
+        // El parrafo de adentro tambien anima (opacidad y desplazamiento)
+        // y sus eventos burbujean hasta aca: sin este filtro, el primero
+        // que llega corta la animacion de altura por la mitad.
+        if (ev && (ev.target !== wrap || ev.propertyName !== 'height')) return;
+
+        clearTimeout(red);
         wrap.removeEventListener('transitionend', done);
+        wrap.removeEventListener('transitioncancel', done);
+
         if (isOpen) item.removeAttribute('open');
         else wrap.style.height = 'auto'; // permite que el texto refluya al cambiar de tamaño
         animating = false;
       };
 
+      // Red de seguridad: si por lo que sea no llega ningun evento, la
+      // pregunta no puede quedar trabada para siempre.
+      red = setTimeout(done, 600);
+
       wrap.addEventListener('transitionend', done);
+      wrap.addEventListener('transitioncancel', done);
     });
 
     window.addEventListener('resize', () => {
       if (item.hasAttribute('open') && !animating) wrap.style.height = 'auto';
     }, { passive: true });
   });
-})();
-
-/* ---------- Efectos ligados al scroll ----------
-   Un solo listener con rAF para todo: el paneo de las capturas del
-   portfolio y el parallax del mockup del hero. Se comporta igual en
-   celular y en escritorio, así las portadas se ven siempre iguales. */
-(() => {
-  if (prefersReducedMotion) return;
-
-  // En tactil el recorrido lo maneja la animacion "tour" (mas abajo), asi
-  // que el paneo por scroll se deja de lado para que no se pisen.
-  const tactil = window.matchMedia('(hover: none)').matches;
-
-  const shots = tactil ? [] : Array.from(document.querySelectorAll('[data-work] .work-shot'));
-  const stage = document.querySelector('.stage-inner');
-  if (!shots.length && !stage) return;
-
-  // Cuánto llega a desplazarse la captura. El recorrido completo es 70%;
-  // usamos una fracción para que la portada nunca quede lejos.
-  const PAN = 24;
-  const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
-
-  let ticking = false;
-
-  const update = () => {
-    const vh = window.innerHeight;
-
-    shots.forEach((shot) => {
-      const card = shot.closest('[data-work]');
-      const r = card.getBoundingClientRect();
-
-      // fuera de pantalla: no gastamos cálculo
-      if (r.bottom < -200 || r.top > vh + 200) return;
-
-      const cardCenter = r.top + r.height / 2;
-      const vpCenter = vh / 2;
-
-      // 0 mientras la tarjeta entra o está centrada -> se ve la portada.
-      // Crece solo cuando la tarjeta empieza a salir por arriba.
-      const p = clamp((vpCenter - cardCenter) / (vh / 2 + r.height / 2), 0, 1);
-      shot.style.setProperty('--pan', `${(-p * PAN).toFixed(2)}%`);
-    });
-
-    if (stage) {
-      const r = stage.getBoundingClientRect();
-      if (r.bottom > -200 && r.top < vh + 200) {
-        // el mockup sube un poco más lento que la página
-        const off = clamp((vh / 2 - (r.top + r.height / 2)) * 0.06, -40, 40);
-        stage.style.setProperty('--par', `${off.toFixed(1)}px`);
-      }
-    }
-
-    ticking = false;
-  };
-
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
-  }, { passive: true });
-
-  window.addEventListener('resize', update, { passive: true });
-  update();
-})();
-
-/* ---------- Barra de progreso de lectura ---------- */
-(() => {
-  const bar = document.getElementById('progress');
-  if (!bar) return;
-
-  let ticking = false;
-
-  const update = () => {
-    const doc = document.documentElement;
-    const max = doc.scrollHeight - doc.clientHeight;
-    bar.style.transform = `scaleX(${max > 0 ? doc.scrollTop / max : 0})`;
-    ticking = false;
-  };
-
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
-  }, { passive: true });
-
-  update();
 })();
 
 /* ---------- Recorrido automático en pantallas táctiles ----------
