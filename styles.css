@@ -1437,11 +1437,23 @@ svg { display: block; }
 }
 
 @media (max-width: 560px) {
+  /* la card se estaba haciendo muy larga en el celular: se achica el
+     padding y el aire entre bloques, sin sacar informacion */
+  .work-info { padding: var(--space-3); }
+  .work-head { margin-bottom: var(--space-1); }
+  .work-info h3 { margin-bottom: var(--space-1); }
+
+  .work-desc { line-height: 1.55; }
+
   .work-meta {
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-1) var(--space-2);
+    margin: var(--space-2) 0;
   }
   .work-meta dd { max-width: none; }
+
+  .work-tags { margin-bottom: var(--space-2); }
+
   .work-link { align-self: stretch; justify-content: center; }
 }
 
