@@ -366,3 +366,38 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
   frames.forEach((f) => observer.observe(f));
 })();
+
+/* ---------- EXPERIMENTAL: el mockup del hero cambia de proyecto al scrollear ----------
+   Bloque aparte a propósito: si no convence, se borra entero (y el CSS de
+   .screen-swap en styles.css) sin tocar el resto del sitio. */
+(() => {
+  if (prefersReducedMotion) return;
+
+  const stage = document.querySelector('.hero-stage');
+  if (!stage) return;
+
+  const clamp = (v, a = 0, b = 1) => (v < a ? a : v > b ? b : v);
+
+  let ticking = false;
+
+  // el cambio se completa rapido (160px de scroll): el mockup no es
+  // sticky, asi que si tardara mas terminaria de cambiar cuando ya
+  // esta tapado por el nav.
+  const RANGE = 160;
+
+  function update() {
+    const p = clamp(window.scrollY / RANGE);
+    stage.style.setProperty('--swap', p.toFixed(3));
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+
+  window.addEventListener('resize', update, { passive: true });
+
+  update();
+})();

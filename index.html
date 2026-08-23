@@ -52,6 +52,7 @@
 
     <nav class="nav-links" aria-label="Secciones y contacto">
       <a class="nav-link" href="#portfolio">Portfolio</a>
+      <a class="nav-link" href="#precios">Precios</a>
       <a class="nav-link" href="#proceso">Proceso</a>
       <a class="nav-link" href="#servicios">Servicios</a>
       <a class="nav-ig" href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer">
@@ -100,6 +101,12 @@
                   sizes="(max-width: 860px) min(540px, calc(100vw - 2.5rem)), (max-width: 1240px) 52vw, 669px">
                 <img src="assets/work/hero-wl-desk.jpg" alt="Sitio de Whole Lotta Burgers desarrollado por ZEK, visto en notebook" width="1280" height="800" loading="eager" decoding="async" fetchpriority="high">
               </picture>
+              <picture class="screen-swap" aria-hidden="true">
+                <source type="image/webp"
+                  srcset="assets/work/hero-v25-desk-720.webp 720w, assets/work/hero-v25-desk.webp 1280w"
+                  sizes="(max-width: 860px) min(540px, calc(100vw - 2.5rem)), (max-width: 1240px) 52vw, 669px">
+                <img src="assets/work/hero-v25-desk.jpg" alt="" width="1280" height="800" loading="eager" decoding="async">
+              </picture>
             </div>
           </div>
           <div class="laptop-hinge" aria-hidden="true"></div>
@@ -117,6 +124,12 @@
                   sizes="(max-width: 860px) 24vw, 155px">
                 <img src="assets/work/hero-wl-mob.jpg" alt="El mismo sitio adaptado a celular" width="460" height="995" loading="eager" decoding="async">
               </picture>
+              <picture class="screen-swap" aria-hidden="true">
+                <source type="image/webp"
+                  srcset="assets/work/hero-v25-mob-320.webp 320w, assets/work/hero-v25-mob.webp 460w"
+                  sizes="(max-width: 860px) 24vw, 155px">
+                <img src="assets/work/hero-v25-mob.jpg" alt="" width="460" height="995" loading="eager" decoding="async">
+              </picture>
             </div>
           </div>
         </div>
@@ -127,37 +140,45 @@
   </section>
 
   <!-- ===================== QUÉ INCLUYE ===================== -->
-  <section class="values" aria-label="Cómo trabaja ZEK">
+  <section class="values" aria-label="Qué hacemos">
+    <div class="values-lead">
+      <p class="eyebrow">Qué hacemos</p>
+      <p class="values-copy">Diseñamos y programamos el sitio completo de tu negocio: la carta digital, el sistema de turnos o el pedido por WhatsApp — funcionando de verdad, no solo una landing bonita.</p>
+      <a class="btn btn-ghost values-cta" href="#servicios">
+        Ver qué hacemos
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
     <div class="values-inner">
-      <div class="value">
+      <a class="value" href="#portfolio">
         <span class="value-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </span>
         <span class="value-text">
-          <strong>Diseño 100% personalizado</strong>
-          <small>Ni una plantilla. Cada sitio se dibuja para el negocio que lo va a usar.</small>
+          <strong>Diseño con identidad propia<svg class="value-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></strong>
+          <small>Cada proyecto del portfolio se ve distinto: la carta de una hamburguesería no se parece en nada al sitio de una escribanía.</small>
         </span>
-      </div>
+      </a>
 
-      <div class="value">
+      <a class="value" href="#portfolio">
         <span class="value-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg>
         </span>
         <span class="value-text">
-          <strong>Optimizada para todos los dispositivos</strong>
-          <small>Se ve igual de bien en el celular, en la tablet y en la computadora.</small>
+          <strong>Funciones reales, no solo diseño<svg class="value-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></strong>
+          <small>Pedido por WhatsApp, turnos online o un menú que el local edita solo — como en los casos de este portfolio.</small>
         </span>
-      </div>
+      </a>
 
-      <div class="value">
+      <a class="value" href="#servicios">
         <span class="value-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V11M11 21V6M16 21v-7M21 21V9"/></svg>
         </span>
         <span class="value-text">
-          <strong>Pensada para hacer crecer tu negocio</strong>
-          <small>Cada sección empuja al cliente hacia el pedido, la reserva o la consulta.</small>
+          <strong>Pensada para que el cliente actúe<svg class="value-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></strong>
+          <small>El pedido, el turno o la consulta quedan a un clic, no escondidos en un menú.</small>
         </span>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -172,6 +193,53 @@
     </div>
 
     <div class="portfolio-grid">
+
+      <article class="work work--static" data-work>
+        <div class="work-visual">
+          <a class="work-frame" href="https://veinticincoocho.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Veinticinco Ocho en una pestaña nueva">
+            <span class="work-chrome" aria-hidden="true">
+              <span class="work-url">veinticincoocho.com</span>
+            </span>
+            <span class="work-screen">
+              <picture>
+                <source srcset="assets/work/veinticincoocho.webp" type="image/webp">
+                <img class="work-shot" src="assets/work/veinticincoocho.jpg" alt="Portada del sitio de Veinticinco Ocho" width="1280" height="900" loading="lazy" decoding="async" fetchpriority="low">
+              </picture>
+            </span>
+            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
+          </a>
+        </div>
+
+        <div class="work-info">
+          <div class="work-head">
+            <span class="work-index">01</span>
+            <span class="work-cat">Barbería</span>
+            <span class="work-live"><i></i>Online</span>
+          </div>
+
+          <h3>Veinticinco Ocho</h3>
+          <p class="work-desc">Un estudio de barbería donde el turno se reserva online, sin sala de espera. El cliente elige corte, barbero y horario en un mismo paso, ve el precio de cada servicio antes de confirmar y puede conocer al equipo —seis barberos, cada uno con su perfil— antes de sentarse en la silla.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Estudio de imagen masculina</dd></div>
+            <div><dt>Zona</dt><dd>Camino Centenario 358 · City Bell</dd></div>
+            <div><dt>Proyecto</dt><dd>Reserva de turnos online</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>Reserva de turnos online</li>
+              <li>Perfil de cada barbero</li>
+              <li>Precios por servicio</li>
+              <li>Turnos de 20 minutos</li>
+              <li>Ubicación y horarios</li>
+          </ul>
+
+          <a class="work-link" href="https://veinticincoocho.vercel.app/" target="_blank" rel="noopener noreferrer">
+            Ver el sitio
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+          </a>
+        </div>
+      </article>
 
       <article class="work" data-work>
         <div class="work-visual">
@@ -195,13 +263,12 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">01</span>
+            <span class="work-index">02</span>
             <span class="work-cat">Gastronomía</span>
             <span class="work-live"><i></i>Online</span>
           </div>
 
           <h3>Whole Lotta Burgers</h3>
-          <p class="work-result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>[resultado]</span></p>
           <p class="work-desc">Una hamburguesería con identidad rockera muy marcada y fotos de producto que pedían una web a la altura. Armamos una carta de 39 productos con imagen grande, el estado del local en vivo y el pedido online a un toque, sin que el cliente tenga que preguntar si está abierto.</p>
 
           <dl class="work-meta">
@@ -219,58 +286,6 @@
           </ul>
 
           <a class="work-link" href="https://wholelottaburguerscom.vercel.app/" target="_blank" rel="noopener noreferrer">
-            Ver el sitio
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="work" data-work>
-        <div class="work-visual">
-          <a class="work-frame" href="https://enolaindumentaria-1jfhoficialcom.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Enola Indumentaria en una pestaña nueva">
-            <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">enolaindumentaria.com</span>
-            </span>
-            <span class="work-screen">
-              <picture>
-                <source srcset="assets/work/enola.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/enola.jpg" alt="Recorrido por el sitio de Enola Indumentaria" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
-              </picture>
-            </span>
-            <span class="work-cue" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              Recorrer
-            </span>
-            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
-          </a>
-        </div>
-
-        <div class="work-info">
-          <div class="work-head">
-            <span class="work-index">02</span>
-            <span class="work-cat">E-commerce</span>
-            <span class="work-live"><i></i>Online</span>
-          </div>
-
-          <h3>Enola Indumentaria</h3>
-          <p class="work-result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>[resultado]</span></p>
-          <p class="work-desc">Una marca de confección premium que vendía por mensajes sueltos. Armamos un catálogo donde la clienta filtra por colección, revisa talles y materiales, y llega a la consulta con la prenda ya elegida — en vez de preguntar "¿qué tenés?".</p>
-
-          <dl class="work-meta">
-            <div><dt>Rubro</dt><dd>Indumentaria femenina</dd></div>
-            <div><dt>Zona</dt><dd>La Plata · envíos a todo el país</dd></div>
-            <div><dt>Proyecto</dt><dd>Catálogo con consulta</dd></div>
-          </dl>
-
-          <ul class="work-tags">
-              <li>Catálogo por colección</li>
-              <li>Ficha con talles</li>
-              <li>Consulta por WhatsApp</li>
-              <li>Mercado Pago</li>
-              <li>Envíos nacionales</li>
-          </ul>
-
-          <a class="work-link" href="https://enolaindumentaria-1jfhoficialcom.vercel.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
           </a>
@@ -305,7 +320,6 @@
           </div>
 
           <h3>Sancho · Tapas y Barra</h3>
-          <p class="work-result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>[resultado]</span></p>
           <p class="work-desc">Un bar sin reservas donde se pide en la barra. El problema no era mostrar la carta: era explicar cómo funciona el lugar antes de que el cliente llegue. La web cuenta el sistema, la historia del local y la paella de los jueves.</p>
 
           <dl class="work-meta">
@@ -357,7 +371,6 @@
           </div>
 
           <h3>Brodog's</h3>
-          <p class="work-result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>[resultado]</span></p>
           <p class="work-desc">El menú está conectado a una base de datos que el local edita solo: cambian un precio y la web se actualiza sin tocar código. El cliente arma el pedido eligiendo simple, doble o triple, y le llega a WhatsApp con el resumen ya escrito.</p>
 
           <dl class="work-meta">
@@ -381,21 +394,17 @@
         </div>
       </article>
 
-      <article class="work" data-work>
+      <article class="work work--static" data-work>
         <div class="work-visual">
-          <a class="work-frame" href="https://veteninarialuna.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Veterinaria Luna en una pestaña nueva">
+          <a class="work-frame" href="https://escribaniadelavaultrocco.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Escribanía Delavault Rocco en una pestaña nueva">
             <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">veterinarialuna.app</span>
+              <span class="work-url">delavaultrocco.com</span>
             </span>
             <span class="work-screen">
               <picture>
-                <source srcset="assets/work/luna.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/luna.jpg" alt="Recorrido por el sitio de Veterinaria Luna" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
+                <source srcset="assets/work/escribania.webp" type="image/webp">
+                <img class="work-shot" src="assets/work/escribania.jpg" alt="Portada del sitio de Escribanía Delavault Rocco" width="1280" height="900" loading="lazy" decoding="async" fetchpriority="low">
               </picture>
-            </span>
-            <span class="work-cue" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              Recorrer
             </span>
             <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
           </a>
@@ -404,132 +413,28 @@
         <div class="work-info">
           <div class="work-head">
             <span class="work-index">05</span>
-            <span class="work-cat">Salud animal</span>
+            <span class="work-cat">Escribanía</span>
             <span class="work-live"><i></i>Online</span>
           </div>
 
-          <h3>Veterinaria Luna</h3>
-          <p class="work-result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>[resultado]</span></p>
-          <p class="work-desc">Más de cuatro décadas de trayectoria y todo se manejaba por teléfono. Ordenamos los servicios en secciones claras, separamos el turno común de la urgencia — que ahora salta a la vista — y sumamos el pet shop en la misma página.</p>
+          <h3>Escribanía Delavault Rocco</h3>
+          <p class="work-desc">Una escribanía de La Plata que necesitaba transmitir seriedad y trayectoria institucional antes que nada. Ordenamos los cinco trámites que más consultan —compraventas, poderes, testamentos, donaciones, certificación de firmas— y dejamos la consulta por WhatsApp y el teléfono siempre a la vista.</p>
 
           <dl class="work-meta">
-            <div><dt>Rubro</dt><dd>Clínica veterinaria</dd></div>
-            <div><dt>Zona</dt><dd>Calle 39, La Plata</dd></div>
-            <div><dt>Proyecto</dt><dd>Servicios + turnos</dd></div>
+            <div><dt>Rubro</dt><dd>Escribanía · estudio notarial</dd></div>
+            <div><dt>Zona</dt><dd>Calle 48 · La Plata</dd></div>
+            <div><dt>Proyecto</dt><dd>Sitio institucional + consulta</dd></div>
           </dl>
 
           <ul class="work-tags">
-              <li>Turnos por WhatsApp</li>
-              <li>Urgencias destacadas</li>
-              <li>Servicios ordenados</li>
-              <li>Pet shop</li>
-              <li>Horarios y ubicación</li>
+              <li>5 trámites notariales</li>
+              <li>Consulta por WhatsApp</li>
+              <li>Por qué elegirnos</li>
+              <li>Preguntas frecuentes</li>
+              <li>Teléfono directo</li>
           </ul>
 
-          <a class="work-link" href="https://veteninarialuna.netlify.app/" target="_blank" rel="noopener noreferrer">
-            Ver el sitio
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="work" data-work>
-        <div class="work-visual">
-          <a class="work-frame" href="https://comaquiparrillacom.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Comaqui · Parrilla & Bodegón en una pestaña nueva">
-            <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">comaquiparrilla.com</span>
-            </span>
-            <span class="work-screen">
-              <picture>
-                <source srcset="assets/work/comaqui.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/comaqui.jpg" alt="Recorrido por el sitio de Comaqui · Parrilla & Bodegón" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
-              </picture>
-            </span>
-            <span class="work-cue" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              Recorrer
-            </span>
-            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
-          </a>
-        </div>
-
-        <div class="work-info">
-          <div class="work-head">
-            <span class="work-index">06</span>
-            <span class="work-cat">Gastronomía</span>
-            <span class="work-live"><i></i>Online</span>
-          </div>
-
-          <h3>Comaqui · Parrilla & Bodegón</h3>
-          <p class="work-result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>[resultado]</span></p>
-          <p class="work-desc">Carnes a la brasa en una esquina con historia. Acá el trabajo fue de clima: la web tenía que transmitir cómo se siente el lugar antes de entrar. Carta completa, vinos por corte y el teléfono de reservas fijo en pantalla.</p>
-
-          <dl class="work-meta">
-            <div><dt>Rubro</dt><dd>Parrilla y bodegón</dd></div>
-            <div><dt>Zona</dt><dd>Centenario y 462, City Bell</dd></div>
-            <div><dt>Proyecto</dt><dd>Carta + reservas</dd></div>
-          </dl>
-
-          <ul class="work-tags">
-              <li>Carta completa</li>
-              <li>Vinos por corte</li>
-              <li>Reserva telefónica</li>
-              <li>Identidad del local</li>
-              <li>Cómo llegar</li>
-          </ul>
-
-          <a class="work-link" href="https://comaquiparrillacom.netlify.app/" target="_blank" rel="noopener noreferrer">
-            Ver el sitio
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="work" data-work>
-        <div class="work-visual">
-          <a class="work-frame" href="https://loshermanosweb.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Los Hermanos en una pestaña nueva">
-            <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">loshermanos.app</span>
-            </span>
-            <span class="work-screen">
-              <picture>
-                <source srcset="assets/work/hermanos.webp" type="image/webp">
-                <img class="work-shot" src="assets/work/hermanos.jpg" alt="Recorrido por el sitio de Los Hermanos" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
-              </picture>
-            </span>
-            <span class="work-cue" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              Recorrer
-            </span>
-            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
-          </a>
-        </div>
-
-        <div class="work-info">
-          <div class="work-head">
-            <span class="work-index">07</span>
-            <span class="work-cat">Gastronomía</span>
-            <span class="work-live"><i></i>Online</span>
-          </div>
-
-          <h3>Los Hermanos</h3>
-          <p class="work-result"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>[resultado]</span></p>
-          <p class="work-desc">Mandaban el PDF de la carta por WhatsApp cada vez que cambiaba un precio. Ahora el cliente entra y ve la carta actualizada, con reservas y ubicación en la misma pantalla — y el local edita una sola vez.</p>
-
-          <dl class="work-meta">
-            <div><dt>Rubro</dt><dd>Restaurante de mesa</dd></div>
-            <div><dt>Zona</dt><dd>City Bell, La Plata</dd></div>
-            <div><dt>Proyecto</dt><dd>Carta digital</dd></div>
-          </dl>
-
-          <ul class="work-tags">
-              <li>Carta digital</li>
-              <li>Reservas de mesa</li>
-              <li>Medios de pago</li>
-              <li>Ubicación y horarios</li>
-          </ul>
-
-          <a class="work-link" href="https://loshermanosweb.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <a class="work-link" href="https://escribaniadelavaultrocco.vercel.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
           </a>
@@ -542,6 +447,64 @@
       <span>¿Querés que la próxima sea la tuya?</span>
       <strong>Hablemos ↗</strong>
     </a>
+  </section>
+
+  <!-- ===================== PRECIOS ===================== -->
+  <section class="pricing" id="precios" aria-labelledby="pricing-title">
+    <div class="pricing-inner">
+      <p class="eyebrow">Precios</p>
+      <h2 id="pricing-title" class="section-title">Planes claros, sin sorpresas.</h2>
+      <p class="section-lead">Precio de referencia para arrancar. Si tu negocio necesita algo distinto, lo ajustamos igual.</p>
+
+      <div class="price-grid">
+
+        <article class="price">
+          <h3>Plan Básico</h3>
+          <p class="price-tag"><span class="price-num">$149.000</span><span class="price-cur">ARS</span></p>
+          <p class="price-one">Landing page de una sola página, para tener presencia profesional online.</p>
+          <ul class="price-list">
+            <li>Diseño responsive (celular y compu)</li>
+            <li>Botón directo a WhatsApp</li>
+            <li>Mapa de ubicación</li>
+            <li>Horarios de atención</li>
+            <li>Galería de fotos</li>
+            <li>Enlaces a redes sociales</li>
+          </ul>
+        </article>
+
+        <article class="price price--highlight">
+          <span class="price-badge">Más elegido</span>
+          <h3>Plan Profesional</h3>
+          <p class="price-tag"><span class="price-num">$219.000</span><span class="price-cur">ARS</span></p>
+          <p class="price-one">Una web más completa y moderna, con mejor estructura y posicionamiento.</p>
+          <ul class="price-list">
+            <li>Todo lo del Plan Básico</li>
+            <li>Dominio propio incluido el primer año</li>
+            <li>Estructura web más compleja</li>
+            <li>Animaciones avanzadas</li>
+            <li>SEO optimizado</li>
+            <li>15 días de soporte post-lanzamiento</li>
+          </ul>
+        </article>
+
+        <article class="price">
+          <h3>Plan Premium</h3>
+          <p class="price-tag"><span class="price-num">$329.000</span><span class="price-cur">ARS</span></p>
+          <p class="price-one">Para vender, gestionar y reservar directamente desde la web.</p>
+          <ul class="price-list">
+            <li>Todo lo del Plan Profesional</li>
+            <li>Tienda online integrada</li>
+            <li>Sistema de ventas</li>
+            <li>Sistema de reservas y turnos</li>
+            <li>SEO avanzado</li>
+            <li>30 días de soporte post-lanzamiento</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <p class="pricing-note">El dominio propio incluido en los planes Profesional y Premium cubre el primer año. La renovación, a partir del segundo, se cotiza por separado.</p>
+    </div>
   </section>
 
   <!-- ===================== TIPOS DE PROYECTO ===================== -->
@@ -560,7 +523,7 @@
           <h3>Carta y menú digital</h3>
           <p class="plan-one">Tu carta siempre actualizada y el pedido llegando por WhatsApp, listo para leer.</p>
           <a class="plan-link" href="#portfolio">
-            Ver los 4 casos
+            Ver los 3 casos
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </article>
@@ -572,19 +535,7 @@
           <h3>Sitio de servicios</h3>
           <p class="plan-one">Tus servicios explicados y los turnos entrando ordenados, sin repetir todo por teléfono.</p>
           <a class="plan-link" href="#portfolio">
-            Ver Veterinaria Luna
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </article>
-
-        <article class="plan">
-          <span class="plan-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          </span>
-          <h3>Catálogo y tienda</h3>
-          <p class="plan-one">Tu catálogo con talles y precios, para que la consulta llegue con el producto elegido.</p>
-          <a class="plan-link" href="#portfolio">
-            Ver Enola Indumentaria
+            Ver Veinticinco Ocho
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </article>
@@ -683,6 +634,7 @@
 
   <!-- ===================== FAQ ===================== -->
   <section class="faq" id="faq" aria-labelledby="faq-title">
+   <div class="faq-inner">
     <p class="eyebrow">Preguntas frecuentes</p>
     <h2 id="faq-title" class="section-title">Antes de escribirnos</h2>
     <div class="faq-list">
@@ -692,7 +644,7 @@
       </details>
       <details class="faq-item">
         <summary>¿Cuánto cuesta?</summary>
-        <p>Cada proyecto se cotiza a medida según lo que necesite tu negocio. Escribinos y te pasamos un presupuesto sin compromiso.</p>
+        <p>Tenés tres planes con precio fijo más arriba, desde $149.000. Si tu negocio necesita algo que no entra en ninguno, lo cotizamos a medida.</p>
       </details>
       <details class="faq-item">
         <summary>¿El sitio queda a mi nombre?</summary>
@@ -707,6 +659,7 @@
         <p>Sí — tiendas, servicios, gastronomía y proyectos personales. Si no encontrás tu rubro, contanos igual.</p>
       </details>
     </div>
+   </div>
   </section>
 
   <!-- ===================== CONTACTO ===================== -->
