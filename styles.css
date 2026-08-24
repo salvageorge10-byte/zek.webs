@@ -1192,7 +1192,7 @@ svg { display: block; }
   }
 }
 
-/* Veinticinco Ocho usa una sola captura (portada), no una tira larga:
+/* Algunas cards usan una sola captura (portada), no una tira larga:
    no hay a donde panear, asi que se anula el recorrido en todos los modos. */
 .work--static .work-shot,
 .work--static.is-touring .work-shot {
