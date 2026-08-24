@@ -766,22 +766,6 @@ svg { display: block; }
 }
 
 /* ==========================================================================
-   EXPERIMENTAL — cambio de proyecto en el mockup al hacer scroll.
-   Si no convence, se borra este bloque entero + el suyo en script.js;
-   las imagenes de Whole Lotta de abajo quedan intactas.
-   ========================================================================== */
-.screen-swap {
-  position: absolute;
-  inset: 0;
-  display: block;
-  opacity: var(--swap, 0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .screen-swap { display: none; }
-}
-
-/* ==========================================================================
    Entrada del hero
    ========================================================================== */
 
