@@ -328,6 +328,65 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
 })();
 
+/* ---------- Armador de consulta ----------
+   El visitante elige tipo, rubro y plan, y el mensaje de WhatsApp se
+   escribe solo. El texto va precargado a proposito: lo redacta el que
+   consulta con sus propias elecciones, no es un "hola" automatico.
+   El boton flotante sigue abriendo el chat vacio. */
+(() => {
+  const caja = document.getElementById('armar');
+  const salida = document.getElementById('b-msg');
+  const enviar = document.getElementById('b-send');
+  const contador = document.getElementById('b-done');
+  if (!caja || !salida || !enviar) return;
+
+  const TEL = '5492216715279';
+  const elegido = { tipo: '', rubro: '', plan: '' };
+
+  const redactar = () => {
+    const t = elegido.tipo || 'una web';
+    let m = `Hola ZEK, quiero ${t}`;
+    m += elegido.rubro ? ` para mi negocio de ${elegido.rubro}.` : ' para mi negocio.';
+    if (elegido.plan) m += ` Estaba mirando ${elegido.plan}.`;
+    return m;
+  };
+
+  const refrescar = () => {
+    const texto = redactar();
+    salida.textContent = texto;
+    enviar.href = `https://wa.me/${TEL}?text=${encodeURIComponent(texto)}`;
+    if (contador) {
+      contador.textContent = ['tipo', 'rubro', 'plan']
+        .filter((k) => caja.querySelector(`[data-group="${k}"] .b-opt.is-on`)).length;
+    }
+  };
+
+  caja.querySelectorAll('.b-group').forEach((grupo) => {
+    const clave = grupo.dataset.group;
+    grupo.querySelectorAll('.b-opt').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const yaEstaba = btn.classList.contains('is-on');
+        grupo.querySelectorAll('.b-opt').forEach((o) => {
+          o.classList.remove('is-on');
+          o.setAttribute('aria-pressed', 'false');
+        });
+        // volver a tocar la misma opcion la deselecciona
+        if (!yaEstaba) {
+          btn.classList.add('is-on');
+          btn.setAttribute('aria-pressed', 'true');
+          elegido[clave] = btn.dataset.val;
+        } else {
+          elegido[clave] = '';
+        }
+        refrescar();
+      });
+      btn.setAttribute('aria-pressed', 'false');
+    });
+  });
+
+  refrescar();
+})();
+
 /* ---------- Recorrido automático en pantallas táctiles ----------
    En la computadora alcanza con pasar el mouse por encima para que la
    captura recorra el sitio. En el celular no hay hover, así que el

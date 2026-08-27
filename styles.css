@@ -2052,12 +2052,33 @@ svg { display: block; }
 .contact-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: var(--space-5) var(--gutter);
-  text-align: center;
+  padding: var(--space-5) var(--gutter) var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  align-items: start;
+  gap: var(--space-5);
+}
+
+.contact-copy { text-align: left; }
+
+.contact-copy .section-title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--gold-bright);
+}
+
+.contact-copy .section-lead { margin-left: 0; margin-right: 0; max-width: 40ch; }
+.contact-inner .eyebrow::before { margin-left: 0; margin-right: 0; }
+
+@media (max-width: 900px) {
+  .contact-inner { grid-template-columns: 1fr; gap: var(--space-4); }
+  /* apiladas ocupan todo el ancho: centrarlas dejaba el icono suelto */
+  .contact-cards { justify-content: stretch; }
+  .contact-cards .contact-card { flex: 1 1 240px; }
 }
 
 .contact-inner .eyebrow { margin-left: 0; }
-.contact-inner .section-lead { margin-left: auto; margin-right: auto; }
+.contact-inner .section-lead { margin-left: 0; margin-right: 0; }
 
 .contact-cards {
   display: flex;
@@ -2091,6 +2112,8 @@ svg { display: block; }
 .contact-card small  { display: block; margin-top: 0.1rem; font-size: 0.83rem; color: var(--on-dark-mute); }
 
 /* el número queda como dato, no como botón: la acción es el flotante */
+.contact-copy .contact-note { max-width: 46ch; }
+
 .contact-note {
   margin-top: var(--space-3);
   font-size: 0.92rem;
@@ -2275,7 +2298,7 @@ svg { display: block; }
 }
 
 /* en los bloques centrados el filete tambien va al centro */
-.contact-inner .eyebrow-rule { margin-left: auto; margin-right: auto; }
+.contact-inner .eyebrow-rule { margin-left: 0; margin-right: 0; }
 
 /* ==========================================================================
    Navegacion: seccion activa
@@ -2356,4 +2379,250 @@ section[id] { scroll-margin-top: 84px; }
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+
+/* ==========================================================================
+   Armador de consulta
+   El visitante elige y el mensaje se escribe solo. Es la unica parte del
+   sitio donde el chat se abre con texto: lo redacto el que consulta.
+   ========================================================================== */
+
+.builder {
+  position: relative;
+  padding: var(--space-3);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(ellipse 90% 60% at 100% 0%, rgba(201, 162, 75, 0.10), transparent 70%),
+    linear-gradient(165deg, var(--ink-2) 0%, var(--ink) 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* filete dorado que corona la tarjeta */
+.builder::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: var(--space-3); right: var(--space-3);
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+}
+
+.builder-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.builder-step {
+  font-family: var(--font-word);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+}
+
+.builder-count {
+  font-family: var(--font-word);
+  font-size: 0.75rem;
+  color: var(--on-dark-mute);
+}
+
+.builder-count b { color: var(--on-dark); font-weight: 600; }
+
+.b-group { border: 0; padding: 0; margin: 0 0 var(--space-3); }
+
+.b-group legend {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0;
+  margin-bottom: 0.7rem;
+  font-family: var(--font-word);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--on-dark);
+}
+
+.b-group legend span {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--gold);
+}
+
+.b-opts { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+
+.b-opt {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line-dark);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--on-dark-mute);
+  font-family: var(--font-word);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 220ms ease-out, background-color 220ms ease-out,
+              color 220ms ease-out, transform 220ms var(--ease);
+}
+
+.b-opt:hover { border-color: var(--gold-bright); color: var(--on-dark); transform: translateY(-1px); }
+
+.b-opt.is-on {
+  border-color: var(--gold-bright);
+  background: rgba(201, 162, 75, 0.16);
+  color: var(--on-dark);
+  font-weight: 600;
+}
+
+/* el mensaje que se va a mandar, a la vista antes de enviarlo */
+.b-preview {
+  padding: var(--space-2);
+  margin-bottom: var(--space-3);
+  border: 1px dashed var(--line-dark);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.b-preview-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-word);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-dark-mute);
+}
+
+#b-msg {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--on-dark);
+}
+
+.b-send { width: 100%; }
+
+@media (max-width: 560px) {
+  .builder { padding: var(--space-2); }
+  .b-opt { font-size: 0.78rem; padding: 0.45rem 0.75rem; }
+}
+
+
+/* ==========================================================================
+   Portfolio: franja de datos bajo la cabecera y tarjetas con mas caracter
+   ========================================================================== */
+
+.pf-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  margin: calc(var(--space-5) * -1 + var(--space-2)) 0 var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.pf-meta li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.pf-meta b {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold-bright);
+  letter-spacing: -0.02em;
+}
+
+.pf-meta span {
+  font-family: var(--font-word);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.pf-meta-live { margin-left: auto; align-items: center; }
+
+.pf-meta-live i {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--wa);
+  animation: live-pulse 2.4s ease-out infinite;
+}
+
+.pf-meta-live span { color: #1B7F45; }
+
+@media (max-width: 720px) {
+  .pf-meta { gap: var(--space-2) var(--space-3); }
+  .pf-meta-live { margin-left: 0; }
+}
+
+/* --- tarjetas: el numero manda y el borde reacciona --- */
+
+.work-info {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 380ms ease-out, transform 380ms var(--ease);
+}
+
+/* filete dorado que se dibuja al pasar el mouse */
+.work-info::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-bright), rgba(201, 162, 75, 0));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 620ms var(--ease);
+}
+
+.work:hover .work-info::before { transform: scaleX(1); }
+.work:hover .work-info { border-color: rgba(201, 162, 75, 0.42); }
+
+/* el numero pasa a ser una pieza grafica, no un dato mas */
+.work-index {
+  font-size: 3.4rem;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-dark);
+  transition: -webkit-text-stroke-color 420ms ease-out, color 420ms ease-out;
+}
+
+.work:hover .work-index { -webkit-text-stroke-color: var(--gold-bright); }
+
+/* si el navegador no sabe calar texto, el numero se pinta lleno en vez de
+   quedar invisible */
+@supports not (-webkit-text-stroke: 1px currentColor) {
+  .work-index { color: var(--line-dark); }
+  .work:hover .work-index { color: var(--gold-bright); }
+}
+
+.work-head { align-items: center; }
+
+.work-frame { transition: transform 460ms var(--ease), box-shadow 460ms var(--ease), border-color 320ms ease-out; }
+
+.work:hover .work-frame {
+  border-color: rgba(201, 162, 75, 0.55);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(201, 162, 75, 0.14);
+}
+
+@media (max-width: 980px) {
+  .work-index { font-size: 2.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-info::before { transition: none; }
+  .pf-meta-live i { animation: none; }
 }
