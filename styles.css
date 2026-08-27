@@ -970,6 +970,10 @@ svg { display: block; }
   padding: var(--space-6) var(--gutter);
 }
 
+/* Cabecera de seccion: el titulo a la izquierda y la bajada a la derecha.
+   Con todo apilado a la izquierda, la mitad derecha de cada seccion quedaba
+   vacia y la pagina entera se leia como una plantilla. */
+.sec-head,
 .portfolio-head {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
@@ -978,6 +982,20 @@ svg { display: block; }
   margin-bottom: var(--space-5);
   padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--line);
+}
+
+/* la bajada se apoya en la linea de base del titulo */
+.sec-head .section-lead { margin-top: 0; padding-bottom: 0.3rem; max-width: 44ch; }
+
+/* las grillas ya traen su propio margen superior */
+.sec-head + .price-grid,
+.sec-head + .plan-grid,
+.sec-head + .steps,
+.sec-head + .inc-grid { margin-top: var(--space-4); }
+
+@media (max-width: 900px) {
+  .sec-head { grid-template-columns: 1fr; align-items: start; gap: var(--space-2); }
+  .sec-head .section-lead { max-width: none; }
 }
 
 .portfolio-lead { padding-bottom: 0.3rem; }
@@ -1519,6 +1537,8 @@ svg { display: block; }
 }
 
 .steps li {
+  display: flex;
+  flex-direction: column;
   padding-top: var(--space-2);
   border-top: 2px solid var(--line-dark);
   transition: border-color 320ms ease-out;
@@ -1534,6 +1554,18 @@ svg { display: block; }
   letter-spacing: 0.08em;
   color: var(--gold-bright);
   margin-bottom: var(--space-2);
+}
+
+.step-when {
+  display: block;
+  margin-top: auto;
+  padding-top: var(--space-2);
+  font-family: var(--font-word);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 .steps h3 { font-size: 1.08rem; margin-bottom: 0.4rem; color: var(--on-dark); }
@@ -1700,8 +1732,7 @@ svg { display: block; }
 
 .plan-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 760px;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-3);
   margin-top: var(--space-5);
 }
@@ -1896,15 +1927,26 @@ svg { display: block; }
   max-width: var(--max-w);
   margin: 0 auto;
   padding: var(--space-6) var(--gutter);
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  align-items: start;
+  gap: var(--space-5);
+}
+
+/* el encabezado acompana mientras se abren y cierran las preguntas */
+.faq-head { position: sticky; top: 104px; }
+.faq-head .section-lead { max-width: 34ch; }
+
+@media (max-width: 900px) {
+  .faq-inner { grid-template-columns: 1fr; gap: var(--space-3); }
+  .faq-head  { position: static; }
+  .faq-head .section-lead { max-width: none; }
 }
 
 .faq .eyebrow { color: var(--gold-bright); }
 .faq .section-title { color: var(--on-dark); }
 
-.faq-list {
-  max-width: 780px;
-  margin-top: var(--space-5);
-}
+.faq-list { margin-top: 0; }
 
 .faq-item {
   border-top: 1px solid var(--line-dark);
@@ -2019,7 +2061,9 @@ svg { display: block; }
 
 .contact-cards {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: var(--space-2);
   margin-top: var(--space-3);
 }
 
