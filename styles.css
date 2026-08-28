@@ -337,23 +337,22 @@ svg { display: block; }
 .nav-link:hover { color: var(--on-dark); }
 .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
 
-.nav-ig {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--line-dark);
-  border-radius: 999px;
-  font-family: var(--font-word);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--on-dark);
-  transition: border-color 240ms ease-out, background-color 240ms ease-out, transform 240ms var(--ease);
+.nav-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--line-dark);
 }
 
-.nav-ig:hover {
-  border-color: var(--gold-bright);
-  background: rgba(201, 162, 75, 0.12);
+.nav-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-dark-mute);
+  transition: color 240ms ease-out, transform 240ms var(--ease);
+}
+
+.nav-social:hover {
+  color: var(--gold-bright);
   transform: translateY(-1px);
 }
 
