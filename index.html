@@ -26,12 +26,13 @@
 <meta name="twitter:description" content="Diseñamos y desarrollamos la web de tu negocio. Sin plantillas, a medida.">
 <meta name="twitter:image" content="https://zek-webs-vbrd.vercel.app/assets/og.jpg">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23FFFFFF%22/><path d=%22M18,18 H82 V32 H18 Z M18,18 H32 V82 H18 Z M18,44 H62 V58 H18 Z M82,18 L82,34 L34,82 L18,82 L18,66 L66,18 Z M18,68 H82 V82 H18 Z M66,58 H82 V72 H66 Z%22 fill=%22%23C9A24B%22/></svg>">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/zek-mark-touch.png">
 
 <!-- Las dos que se ven en la primera pantalla: sin esto el navegador
      recien las descubre cuando termina de leer el CSS -->
 <link rel="preload" href="assets/fonts/playfair-display-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/space-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="styles.css">
@@ -46,7 +47,7 @@
 <header class="nav">
   <div class="nav-inner">
     <a href="#inicio" class="brand" aria-label="ZEK — volver al inicio">
-      <img class="brand-mark" src="assets/zek-mark.svg" alt="" width="26" height="26">
+      <img class="brand-mark" src="assets/zek-mark.png" alt="" width="26" height="26">
       <span class="brand-word">ZEK</span>
     </a>
 
@@ -83,9 +84,9 @@
             Ver proyectos
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="btn btn-ghost" href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer">
+          <a class="text-cta" href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer">
             Ver Instagram
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
@@ -136,9 +137,9 @@
     <div class="values-lead">
       <p class="eyebrow">Qué hacemos</p>
       <p class="values-copy">Diseñamos y programamos el sitio completo de tu negocio: la carta digital, el sistema de turnos o el pedido por WhatsApp — funcionando de verdad, no solo una landing bonita.</p>
-      <a class="btn btn-ghost values-cta" href="#servicios">
+      <a class="text-cta values-cta" href="#servicios">
         Ver qué hacemos
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
     <div class="values-inner">
@@ -176,6 +177,7 @@
 
   <!-- ===================== PORTFOLIO ===================== -->
   <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+   <div class="portfolio-inner">
     <div class="portfolio-head">
       <div>
         <p class="eyebrow">Trabajo real</p>
@@ -185,7 +187,7 @@
     </div>
 
     <ul class="pf-meta">
-      <li><b>07</b><span>proyectos publicados</span></li>
+      <li><b>08</b><span>proyectos publicados</span></li>
       <li><b>06</b><span>rubros distintos</span></li>
       <li><b>03</b><span>ciudades</span></li>
       <li class="pf-meta-live"><i></i><span>Todos online ahora mismo</span></li>
@@ -193,21 +195,17 @@
 
     <div class="portfolio-grid">
 
-      <article class="work" data-work>
+      <article class="work work--static" data-work>
         <div class="work-visual">
-          <a class="work-frame" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SCRUM en una pestaña nueva">
+          <a class="work-frame" href="https://fullfardo.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir FULLFARDO en una pestaña nueva">
             <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">scrumzone.com</span>
+              <span class="work-url">fullfardo.com</span>
             </span>
             <span class="work-screen">
               <picture>
-                <source type="image/webp" srcset="assets/work/scrum-480.webp 480w, assets/work/scrum.webp 840w" sizes="(max-width: 980px) 100vw, 620px">
-                <img class="work-shot" src="assets/work/scrum.jpg" alt="Recorrido por el sitio de SCRUM" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
+                <source type="image/webp" srcset="assets/work/fullfardo-640.webp 640w, assets/work/fullfardo.webp 1280w" sizes="(max-width: 980px) 100vw, 620px">
+                <img class="work-shot" src="assets/work/fullfardo.jpg" alt="Portada del sitio de FULLFARDO" width="1280" height="900" loading="eager" decoding="async" fetchpriority="high">
               </picture>
-            </span>
-            <span class="work-cue" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              Recorrer
             </span>
             <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
           </a>
@@ -220,24 +218,71 @@
             <span class="work-live"><i></i>Online</span>
           </div>
 
-          <h3>SCRUM</h3>
-          <p class="work-desc">Una marca de rugby de Rosario con treinta y nueve temporadas encima y un archivo de 340 piezas. La tienda tenía que sostener ese peso: el catálogo ordenado por categoría, las reediciones del archivo con su año al lado, y el carrito armado para que la compra se cierre sin salir de la página.</p>
+          <h3>FULLFARDO</h3>
+          <p class="work-desc">Una feria de ropa importada de Estados Unidos en Temperley: remeras, buzos y camperas de marca, una sola unidad de cada prenda. No hay envíos ni pasarela de pago — el cliente arma el pedido, reserva por WhatsApp y retira en el local. La web es el escaparate del próximo drop.</p>
 
           <dl class="work-meta">
-            <div><dt>Rubro</dt><dd>Indumentaria de rugby</dd></div>
-            <div><dt>Zona</dt><dd>Rosario · envíos a todo el país</dd></div>
-            <div><dt>Proyecto</dt><dd>Tienda online</dd></div>
+            <div><dt>Rubro</dt><dd>Feria de ropa importada</dd></div>
+            <div><dt>Zona</dt><dd>Temperley, Buenos Aires</dd></div>
+            <div><dt>Proyecto</dt><dd>Catálogo + reservas</dd></div>
           </dl>
 
           <ul class="work-tags">
               <li>Catálogo por categoría</li>
-              <li>Archivo 1912–1987</li>
-              <li>Carrito de compra</li>
-              <li>Envíos y cambios</li>
-              <li>Journal editorial</li>
+              <li>Drops de 36 prendas</li>
+              <li>Reserva por WhatsApp</li>
+              <li>Retiro en el local</li>
+              <li>Una unidad por prenda</li>
           </ul>
 
-          <a class="work-link" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <a class="work-link" href="https://fullfardo.vercel.app/" target="_blank" rel="noopener noreferrer">
+            Ver el sitio
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="work work--static" data-work>
+        <div class="work-visual">
+          <a class="work-frame" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Iurisdictio Derecho en una pestaña nueva">
+            <span class="work-chrome" aria-hidden="true">
+              <span class="work-url">iurisdictioderecho.com</span>
+            </span>
+            <span class="work-screen">
+              <picture>
+                <source type="image/webp" srcset="assets/work/iurisdictio-640.webp 640w, assets/work/iurisdictio.webp 1280w" sizes="(max-width: 980px) 100vw, 620px">
+                <img class="work-shot" src="assets/work/iurisdictio.jpg" alt="Portada del sitio de Iurisdictio Derecho" width="1280" height="900" loading="eager" decoding="async" fetchpriority="high">
+              </picture>
+            </span>
+            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
+          </a>
+        </div>
+
+        <div class="work-info">
+          <div class="work-head">
+            <span class="work-index">02</span>
+            <span class="work-cat">Abogacía</span>
+            <span class="work-live"><i></i>Online</span>
+          </div>
+
+          <h3>Iurisdictio Derecho</h3>
+          <p class="work-desc">Un estudio jurídico integral de La Plata (García y Asociados) con diez áreas de práctica, de laboral a sucesiones. El sitio ordena esas áreas para que el cliente encuentre la suya en un vistazo y arranque la consulta por WhatsApp — buena parte del trabajo se hace a distancia para clientes de toda la provincia.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Estudio jurídico integral</dd></div>
+            <div><dt>Zona</dt><dd>La Plata · toda la provincia</dd></div>
+            <div><dt>Proyecto</dt><dd>Sitio institucional + consulta</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>10 áreas de práctica</li>
+              <li>Consulta por WhatsApp</li>
+              <li>Atención en toda la provincia</li>
+              <li>Consultas a distancia</li>
+              <li>Instagram del estudio</li>
+          </ul>
+
+          <a class="work-link" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
           </a>
@@ -266,7 +311,7 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">02</span>
+            <span class="work-index">03</span>
             <span class="work-cat">Gastronomía</span>
             <span class="work-live"><i></i>Online</span>
           </div>
@@ -297,6 +342,57 @@
 
       <article class="work" data-work>
         <div class="work-visual">
+          <a class="work-frame" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SCRUM en una pestaña nueva">
+            <span class="work-chrome" aria-hidden="true">
+              <span class="work-url">scrumzone.com</span>
+            </span>
+            <span class="work-screen">
+              <picture>
+                <source type="image/webp" srcset="assets/work/scrum-480.webp 480w, assets/work/scrum.webp 840w" sizes="(max-width: 980px) 100vw, 620px">
+                <img class="work-shot" src="assets/work/scrum.jpg" alt="Recorrido por el sitio de SCRUM" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
+              </picture>
+            </span>
+            <span class="work-cue" aria-hidden="true">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              Recorrer
+            </span>
+            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
+          </a>
+        </div>
+
+        <div class="work-info">
+          <div class="work-head">
+            <span class="work-index">04</span>
+            <span class="work-cat">Indumentaria</span>
+            <span class="work-live"><i></i>Online</span>
+          </div>
+
+          <h3>SCRUM</h3>
+          <p class="work-desc">Una marca de rugby de Rosario con treinta y nueve temporadas encima y un archivo de 340 piezas. La tienda tenía que sostener ese peso: el catálogo ordenado por categoría, las reediciones del archivo con su año al lado, y el carrito armado para que la compra se cierre sin salir de la página.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Indumentaria de rugby</dd></div>
+            <div><dt>Zona</dt><dd>Rosario · envíos a todo el país</dd></div>
+            <div><dt>Proyecto</dt><dd>Tienda online</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>Catálogo por categoría</li>
+              <li>Archivo 1912–1987</li>
+              <li>Carrito de compra</li>
+              <li>Envíos y cambios</li>
+              <li>Journal editorial</li>
+          </ul>
+
+          <a class="work-link" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer">
+            Ver el sitio
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="work" data-work>
+        <div class="work-visual">
           <a class="work-frame" href="https://impetugimnasio.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir ÍMPETU en una pestaña nueva">
             <span class="work-chrome" aria-hidden="true">
               <span class="work-url">impetugimnasio.com</span>
@@ -317,7 +413,7 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">03</span>
+            <span class="work-index">05</span>
             <span class="work-cat">Gimnasio</span>
             <span class="work-live"><i></i>Online</span>
           </div>
@@ -364,7 +460,7 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">04</span>
+            <span class="work-index">06</span>
             <span class="work-cat">Salud</span>
             <span class="work-live"><i></i>Online</span>
           </div>
@@ -415,7 +511,7 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">05</span>
+            <span class="work-index">07</span>
             <span class="work-cat">Gastronomía</span>
             <span class="work-live"><i></i>Online</span>
           </div>
@@ -462,7 +558,7 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">06</span>
+            <span class="work-index">08</span>
             <span class="work-cat">Escribanía</span>
             <span class="work-live"><i></i>Online</span>
           </div>
@@ -491,59 +587,13 @@
         </div>
       </article>
 
-      <article class="work work--static" data-work>
-        <div class="work-visual">
-          <a class="work-frame" href="https://luminaclinicadental.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Lumina Clínica Dental en una pestaña nueva">
-            <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">luminaclinicadental.com</span>
-            </span>
-            <span class="work-screen">
-              <picture>
-                <source type="image/webp" srcset="assets/work/lumina-640.webp 640w, assets/work/lumina.webp 1280w" sizes="(max-width: 980px) 100vw, 620px">
-                <img class="work-shot" src="assets/work/lumina.jpg" alt="Portada del sitio de Lumina Clínica Dental" width="1280" height="900" loading="lazy" decoding="async" fetchpriority="low">
-              </picture>
-            </span>
-            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
-          </a>
-        </div>
-
-        <div class="work-info">
-          <div class="work-head">
-            <span class="work-index">07</span>
-            <span class="work-cat">Odontología</span>
-            <span class="work-live"><i></i>Online</span>
-          </div>
-
-          <h3>Lumina Clínica Dental</h3>
-          <p class="work-desc">Una clínica dental en Recoleta que quería mostrar la tecnología antes que nada: escaneo 3D sin moldes, con 0,02mm de precisión, para que el paciente vea el resultado en pantalla antes de empezar. Sumamos la reserva de consulta y el WhatsApp directo, con cada tratamiento —ortodoncia invisible, diseño de sonrisa, implantes, blanqueamiento— explicado por separado.</p>
-
-          <dl class="work-meta">
-            <div><dt>Rubro</dt><dd>Clínica odontológica</dd></div>
-            <div><dt>Zona</dt><dd>Recoleta, Buenos Aires</dd></div>
-            <div><dt>Proyecto</dt><dd>Tratamientos + reserva</dd></div>
-          </dl>
-
-          <ul class="work-tags">
-              <li>Escaneo 3D sin moldes</li>
-              <li>Reserva de consulta online</li>
-              <li>WhatsApp directo</li>
-              <li>4 tratamientos explicados</li>
-              <li>18 años de trayectoria</li>
-          </ul>
-
-          <a class="work-link" href="https://luminaclinicadental.netlify.app/" target="_blank" rel="noopener noreferrer">
-            Ver el sitio
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </a>
-        </div>
-      </article>
-
     </div>
 
     <a class="portfolio-cta" href="#contacto">
       <span>¿Querés que la próxima sea la tuya?</span>
       <strong>Hablemos ↗</strong>
     </a>
+   </div>
   </section>
 
   <!-- ===================== PRECIOS ===================== -->
@@ -806,18 +856,20 @@
 
         <div class="contact-cards">
           <a class="contact-card" href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
-            <span>
-              <strong>Instagram</strong>
-              <small>@zek.webs</small>
+            <span class="contact-num">01</span>
+            <span class="contact-name">Instagram</span>
+            <span class="contact-handle">
+              @zek.webs
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
             </span>
           </a>
 
           <a class="contact-card" href="https://wa.me/5492216715279" target="_blank" rel="noopener noreferrer">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm5.8 14.15c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.1.11-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.37c.26-.29.56-.36.75-.36l.54.01c.17.01.4-.03.63.48.24.53.8 1.85.87 1.99.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.16 1.52 1.88 1.05.93 1.93 1.22 2.21 1.35.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.61.76 1.89.9.28.14.46.21.53.32.07.13.07.7-.17 1.38z"/></svg>
-            <span>
-              <strong>WhatsApp</strong>
-              <small>221 671-5279</small>
+            <span class="contact-num">02</span>
+            <span class="contact-name">WhatsApp</span>
+            <span class="contact-handle">
+              221 671-5279
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
             </span>
           </a>
         </div>
@@ -884,7 +936,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="assets/zek-mark.svg" alt="" width="34" height="34">
+      <img src="assets/zek-mark.png" alt="" width="34" height="34">
       <div>
         <p class="footer-word">ZEK</p>
         <p class="footer-tagline">Estudio web</p>

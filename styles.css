@@ -7,14 +7,6 @@
    ========================================================================== */
 
 @font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('assets/fonts/inter-400-latin.woff2') format('woff2');
-}
-
-@font-face {
   font-family: 'Space Grotesk';
   font-style: normal;
   font-weight: 500;
@@ -89,10 +81,10 @@
   --wa:           #25D366;
   --wa-deep:      #1DA851;
 
-  /* --- tipografías --- */
+  /* --- tipografías: dos familias, no tres --- */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-word:    'Space Grotesk', sans-serif;
-  --font-body:    'Inter', system-ui, sans-serif;
+  --font-body:    'Space Grotesk', sans-serif;
 
   /* --- métrica --- */
   --max-w:   1360px;
@@ -132,6 +124,7 @@ body {
   background: var(--paper);
   color: var(--ink-soft);
   font-family: var(--font-body);
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -264,12 +257,11 @@ svg { display: block; }
 
 .brand:hover { transform: scale(1.03); }
 
-.brand.is-tapped { animation: brand-bounce 420ms cubic-bezier(0.3, 1.4, 0.5, 1); }
+.brand.is-tapped { animation: brand-bounce 420ms cubic-bezier(0.16, 1, 0.3, 1); }
 
 @keyframes brand-bounce {
   0%   { transform: scale(1.03); }
-  35%  { transform: scale(0.91); }
-  70%  { transform: scale(1.07); }
+  40%  { transform: scale(0.97); }
   100% { transform: scale(1); }
 }
 
@@ -412,12 +404,6 @@ svg { display: block; }
 
 .btn-primary:hover::before { background-position: -30% 0; }
 
-.btn-ghost {
-  border: 1px solid var(--line);
-  color: var(--ink);
-  background: var(--paper);
-}
-
 /* El verde vivo de la marca (#25D366) con texto blanco da 2:1 y el
    #1DA851 da 3.1:1: los dos por debajo de AA. Se usa un verde mas
    cerrado, que llega a 5.1:1 y sigue leyendose como WhatsApp. */
@@ -427,17 +413,25 @@ svg { display: block; }
   box-shadow: 0 2px 10px rgba(23, 127, 62, 0.26);
 }
 
+/* acción secundaria: nunca compite en peso con el botón sólido de la sección */
+.text-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-word);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--on-dark-mute);
+  transition: color 240ms ease-out, gap 240ms var(--ease);
+}
+
+.text-cta svg { flex-shrink: 0; transition: transform 240ms var(--ease); }
+.text-cta:hover { color: var(--gold-bright); gap: 0.7rem; }
+
 .btn-wa:hover {
   background: #12692F;   /* 6.8:1 */
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(23, 127, 62, 0.32);
-}
-
-.btn-ghost:hover {
-  border-color: var(--gold-bright);
-  background: var(--gold-wash);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
 }
 
 /* ==========================================================================
@@ -467,15 +461,8 @@ svg { display: block; }
 .hero .btn-primary:hover { filter: brightness(1.06); }
 .hero .btn-primary::before { display: none; }
 
-.hero .btn-ghost {
-  background: transparent;
-  border-color: var(--line-dark);
-  color: var(--on-dark);
-}
-.hero .btn-ghost:hover {
-  border-color: var(--gold-bright);
-  background: rgba(201, 162, 75, 0.12);
-}
+.hero .text-cta { color: var(--on-dark-mute); }
+.hero .text-cta:hover { color: var(--gold-bright); }
 
 .hero-grid {
   position: relative;
@@ -495,9 +482,9 @@ svg { display: block; }
 .hero-copy .eyebrow { margin-left: 0; }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 5vw, 4.1rem);
-  line-height: 1.04;
-  letter-spacing: -0.028em;
+  font-size: clamp(2.8rem, 5.6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
 .hero h1 em {
@@ -508,9 +495,9 @@ svg { display: block; }
 
 .hero-sub {
   margin-top: var(--space-3);
-  max-width: 42ch;
-  font-size: 1.08rem;
-  color: var(--ink-mute);
+  max-width: 38ch;
+  font-size: 0.98rem;
+  font-weight: 500;
 }
 
 .hero-cta {
@@ -872,16 +859,8 @@ svg { display: block; }
 }
 
 .values-cta { margin-top: var(--space-3); }
-
-.values .btn-ghost {
-  background: transparent;
-  border-color: var(--line-dark);
-  color: var(--on-dark);
-}
-.values .btn-ghost:hover {
-  border-color: var(--gold-bright);
-  background: rgba(201, 162, 75, 0.12);
-}
+.values .text-cta { color: var(--on-dark-mute); }
+.values .text-cta:hover { color: var(--gold-bright); }
 
 .values-inner {
   max-width: var(--max-w);
@@ -964,10 +943,20 @@ svg { display: block; }
    ========================================================================== */
 
 .portfolio {
+  max-width: none;
+  background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.portfolio-inner {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: var(--space-6) var(--gutter);
 }
+
+.portfolio .eyebrow { color: var(--gold-bright); }
+.portfolio .section-title { color: var(--on-dark); }
+.portfolio .portfolio-lead { color: var(--on-dark-mute); }
 
 /* Cabecera de seccion: el titulo a la izquierda y la bajada a la derecha.
    Con todo apilado a la izquierda, la mitad derecha de cada seccion quedaba
@@ -980,7 +969,7 @@ svg { display: block; }
   gap: var(--space-4);
   margin-bottom: var(--space-5);
   padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line-dark);
 }
 
 /* la bajada se apoya en la linea de base del titulo */
@@ -1394,7 +1383,7 @@ svg { display: block; }
   gap: var(--space-2);
   margin-top: var(--space-4);
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-dark);
   border-radius: var(--radius);
   background: linear-gradient(100deg, var(--gold-wash), rgba(201, 162, 75, 0) 60%);
   transition: border-color 300ms ease-out, transform 300ms var(--ease), box-shadow 300ms var(--ease);
@@ -1410,7 +1399,7 @@ svg { display: block; }
   font-family: var(--font-display);
   font-style: italic;
   font-size: clamp(1.05rem, 2vw, 1.35rem);
-  color: var(--ink);
+  color: var(--on-dark);
 }
 
 .portfolio-cta strong {
@@ -1419,7 +1408,7 @@ svg { display: block; }
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-bright);
 }
 
 /* --- responsive del portfolio --- */
@@ -1585,7 +1574,7 @@ svg { display: block; }
 .pricing-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: var(--space-6) var(--gutter) var(--space-5);
+  padding: var(--space-6) var(--gutter);
 }
 
 .price-grid {
@@ -2071,9 +2060,6 @@ svg { display: block; }
 
 @media (max-width: 900px) {
   .contact-inner { grid-template-columns: 1fr; gap: var(--space-4); }
-  /* apiladas ocupan todo el ancho: centrarlas dejaba el icono suelto */
-  .contact-cards { justify-content: stretch; }
-  .contact-cards .contact-card { flex: 1 1 240px; }
 }
 
 .contact-inner .eyebrow { margin-left: 0; }
@@ -2081,34 +2067,83 @@ svg { display: block; }
 
 .contact-cards {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-2);
+  flex-direction: column;
   margin-top: var(--space-3);
+  border-top: 1px solid var(--line-dark);
 }
 
 .contact-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line-dark);
+  text-align: left;
+  overflow: hidden;
+  transition: border-color 340ms ease-out;
+}
+
+/* filete dorado que entra desde la izquierda al pasar el mouse, igual que en "Incluye" */
+.contact-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--gold-bright);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 420ms var(--ease);
+}
+
+.contact-card:hover::before { transform: scaleX(1); }
+
+.contact-num, .contact-name, .contact-handle { transition: transform 320ms var(--ease); }
+.contact-card:hover .contact-num,
+.contact-card:hover .contact-name,
+.contact-card:hover .contact-handle { transform: translateX(0.5rem); }
+
+.contact-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--line-dark);
+  transition: color 340ms ease-out;
+}
+
+.contact-card:hover .contact-num { color: var(--gold-bright); }
+
+.contact-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  font-weight: 600;
+  color: var(--on-dark);
+}
+
+.contact-handle {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  min-width: 260px;
-  padding: var(--space-3);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line-dark);
-  border-radius: var(--radius);
-  text-align: left;
-  transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 300ms ease-out;
+  gap: 0.4rem;
+  font-family: var(--font-word);
+  font-size: 0.88rem;
+  color: var(--on-dark-mute);
+  white-space: nowrap;
+  transition: color 300ms ease-out;
 }
 
-.contact-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold-bright);
-  box-shadow: var(--shadow-md);
-}
+.contact-card:hover .contact-handle { color: var(--gold-bright); }
 
-.contact-card svg { flex-shrink: 0; color: var(--gold-bright); }
-.contact-card strong { display: block; font-family: var(--font-word); font-size: 1rem; color: var(--on-dark); }
-.contact-card small  { display: block; margin-top: 0.1rem; font-size: 0.83rem; color: var(--on-dark-mute); }
+.contact-handle svg { flex-shrink: 0; transition: transform 300ms var(--ease); }
+.contact-card:hover .contact-handle svg { transform: translate(2px, -2px); }
+
+@media (max-width: 520px) {
+  .contact-card { grid-template-columns: 2rem 1fr; row-gap: 0.35rem; }
+  .contact-handle { grid-column: 2; }
+}
 
 /* el número queda como dato, no como botón: la acción es el flotante */
 .contact-copy .contact-note { max-width: 46ch; }
@@ -2525,7 +2560,7 @@ section[id] { scroll-margin-top: 84px; }
   gap: var(--space-2) var(--space-4);
   margin: calc(var(--space-5) * -1 + var(--space-2)) 0 var(--space-5);
   padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line-dark);
 }
 
 .pf-meta li {
@@ -2549,7 +2584,7 @@ section[id] { scroll-margin-top: 84px; }
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-mute);
+  color: var(--on-dark-mute);
 }
 
 .pf-meta-live { margin-left: auto; align-items: center; }
@@ -2561,7 +2596,7 @@ section[id] { scroll-margin-top: 84px; }
   animation: live-pulse 2.4s ease-out infinite;
 }
 
-.pf-meta-live span { color: #1B7F45; }
+.pf-meta-live span { color: var(--wa); }
 
 @media (max-width: 720px) {
   .pf-meta { gap: var(--space-2) var(--space-3); }
