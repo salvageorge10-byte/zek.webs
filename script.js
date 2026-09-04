@@ -66,6 +66,13 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
   mark(document.querySelector('.portfolio-cta'), 'up', 0);
 
+  mark(document.querySelector('.device-monitor'), 'zoom', 120);
+  mark(document.querySelector('.showcase-link'), 'up', 260);
+
+  mark(document.querySelector('.automations-intro .btn-primary'), 'up', 340);
+  markAll('.zek-diagram__side .zek-callout', 'up', 90);
+  mark(document.querySelector('.zek-phone'), 'zoom', 120);
+
   markAll('.plan-grid .plan', 'up', 90);
   markAll('.about-body p', 'up', 90);
   mark(document.querySelector('.about-meta'), 'up', 220);
@@ -240,6 +247,25 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
 
   brand.addEventListener('animationend', () => brand.classList.remove('is-tapped'));
+})();
+
+/* ---------- Vitrina: la pista de "scrolleá" se apaga apenas se usa ---------- */
+(() => {
+  const viewport = document.querySelector('.monitor-viewport');
+  const cue = document.querySelector('.monitor-scroll-cue');
+  if (!viewport || !cue) return;
+
+  viewport.addEventListener('scroll', () => {
+    cue.classList.toggle('is-hidden', viewport.scrollTop > 24);
+  }, { passive: true });
+})();
+
+/* ---------- Automatizaciones: el chat abre mostrando el ultimo mensaje,
+   como una conversacion real, en vez del arranque del historial ---------- */
+(() => {
+  const body = document.querySelector('.zek-chat__body');
+  if (!body) return;
+  body.scrollTop = body.scrollHeight;
 })();
 
 /* ---------- FAQ: despliegue animado por altura ---------- */
