@@ -66,8 +66,13 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
   mark(document.querySelector('.portfolio-cta'), 'up', 0);
 
+  mark(document.querySelector('.automations-intro .btn-primary'), 'up', 340);
+  markAll('.zek-diagram__side .zek-callout', 'up', 90);
+  mark(document.querySelector('.zek-phone'), 'zoom', 120);
+
   markAll('.plan-grid .plan', 'up', 90);
-  markAll('.steps li', 'up', 90);
+  markAll('.about-body p', 'up', 90);
+  mark(document.querySelector('.about-meta'), 'up', 220);
   markAll('.inc-grid .inc', 'up', 80);
   markAll('.faq-list .faq-item', 'up', 70);
   markAll('.contact-cards .contact-card', 'up', 90);
@@ -239,6 +244,14 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   });
 
   brand.addEventListener('animationend', () => brand.classList.remove('is-tapped'));
+})();
+
+/* ---------- Automatizaciones: el chat abre mostrando el ultimo mensaje,
+   como una conversacion real, en vez del arranque del historial ---------- */
+(() => {
+  const body = document.querySelector('.zek-chat__body');
+  if (!body) return;
+  body.scrollTop = body.scrollHeight;
 })();
 
 /* ---------- FAQ: despliegue animado por altura ---------- */
