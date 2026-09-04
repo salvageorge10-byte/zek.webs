@@ -32,8 +32,8 @@
 <!-- Las dos que se ven en la primera pantalla: sin esto el navegador
      recien las descubre cuando termina de leer el CSS -->
 <link rel="preload" href="assets/fonts/playfair-display-600-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/familjen-grotesk-500-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/familjen-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -52,12 +52,10 @@
     </a>
 
     <nav class="nav-links" aria-label="Secciones y contacto">
-      <a class="nav-link" href="#servicios">Servicios</a>
       <a class="nav-link" href="#portfolio">Portfolio</a>
-      <a class="nav-link" href="#sobre">Sobre ZEK</a>
-
-      <a class="btn btn-primary nav-cta" href="#contacto">Pedí tu web</a>
-
+      <a class="nav-link" href="#precios">Precios</a>
+      <a class="nav-link" href="#proceso">Proceso</a>
+      <a class="nav-link" href="#servicios">Servicios</a>
       <span class="nav-divider" aria-hidden="true"></span>
 
       <a class="nav-social" href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de ZEK">
@@ -93,7 +91,7 @@
         </div>
       </div>
 
-      <!-- Mockup: un proyecto real (Veinticinco Ocho) en notebook y celular -->
+      <!-- Mockup: un proyecto real (Sancho · Tapas y Barra) en notebook y celular -->
       <div class="hero-stage">
         <span class="stage-wash" aria-hidden="true"></span>
         <span class="stage-arc" aria-hidden="true"></span>
@@ -104,9 +102,9 @@
             <div class="laptop-screen">
               <picture>
                 <source type="image/webp"
-                  srcset="assets/work/hero-veinticincoocho-desk-720.webp 720w, assets/work/hero-veinticincoocho-desk.webp 1280w"
+                  srcset="assets/work/hero-sancho-desk-720.webp 720w, assets/work/hero-sancho-desk.webp 1280w"
                   sizes="(max-width: 860px) min(540px, calc(100vw - 2.5rem)), (max-width: 1240px) 52vw, 669px">
-                <img src="assets/work/hero-veinticincoocho-desk.jpg" alt="Sitio de Veinticinco Ocho desarrollado por ZEK, visto en notebook" width="1280" height="800" loading="eager" decoding="async" fetchpriority="high">
+                <img src="assets/work/hero-sancho-desk.jpg" alt="Sitio de Sancho · Tapas y Barra desarrollado por ZEK, visto en notebook" width="1280" height="800" loading="eager" decoding="async" fetchpriority="high">
               </picture>
             </div>
           </div>
@@ -121,9 +119,9 @@
             <div class="phone-screen">
               <picture>
                 <source type="image/webp"
-                  srcset="assets/work/hero-veinticincoocho-mob-320.webp 320w, assets/work/hero-veinticincoocho-mob.webp 460w"
+                  srcset="assets/work/hero-sancho-mob-320.webp 320w, assets/work/hero-sancho-mob.webp 460w"
                   sizes="(max-width: 860px) 24vw, 155px">
-                <img src="assets/work/hero-veinticincoocho-mob.jpg" alt="El mismo sitio adaptado a celular" width="460" height="995" loading="eager" decoding="async">
+                <img src="assets/work/hero-sancho-mob.jpg" alt="El mismo sitio adaptado a celular" width="460" height="995" loading="eager" decoding="async">
               </picture>
             </div>
           </div>
@@ -147,7 +145,7 @@
     <div class="values-inner">
       <a class="value" href="#portfolio">
         <span class="value-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </span>
         <span class="value-text">
           <strong>Diseño con identidad propia<svg class="value-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></strong>
@@ -157,7 +155,7 @@
 
       <a class="value" href="#portfolio">
         <span class="value-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg>
         </span>
         <span class="value-text">
           <strong>Funciones reales, no solo diseño<svg class="value-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></strong>
@@ -167,7 +165,7 @@
 
       <a class="value" href="#servicios">
         <span class="value-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V11M11 21V6M16 21v-7M21 21V9"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V11M11 21V6M16 21v-7M21 21V9"/></svg>
         </span>
         <span class="value-text">
           <strong>Pensada para que el cliente actúe<svg class="value-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></strong>
@@ -189,8 +187,8 @@
     </div>
 
     <ul class="pf-meta">
-      <li><b>09</b><span>proyectos publicados</span></li>
-      <li><b>07</b><span>rubros distintos</span></li>
+      <li><b>08</b><span>proyectos publicados</span></li>
+      <li><b>06</b><span>rubros distintos</span></li>
       <li><b>03</b><span>ciudades</span></li>
       <li class="pf-meta-live"><i></i><span>Todos online ahora mismo</span></li>
     </ul>
@@ -199,7 +197,7 @@
 
       <article class="work work--static" data-work>
         <div class="work-visual">
-          <a class="work-frame" href="https://www.fullfardo.com.ar/" target="_blank" rel="noopener noreferrer" aria-label="Abrir FULLFARDO en una pestaña nueva">
+          <a class="work-frame" href="https://fullfardo.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir FULLFARDO en una pestaña nueva">
             <span class="work-chrome" aria-hidden="true">
               <span class="work-url">fullfardo.com</span>
             </span>
@@ -221,9 +219,23 @@
           </div>
 
           <h3>FULLFARDO</h3>
-          <p class="work-desc">Feria de ropa importada en Temperley: reservás por WhatsApp y retirás en el local.</p>
+          <p class="work-desc">Una feria de ropa importada de Estados Unidos en Temperley: remeras, buzos y camperas de marca, una sola unidad de cada prenda. No hay envíos ni pasarela de pago — el cliente arma el pedido, reserva por WhatsApp y retira en el local. La web es el escaparate del próximo drop.</p>
 
-          <a class="work-link" href="https://www.fullfardo.com.ar/" target="_blank" rel="noopener noreferrer">
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Feria de ropa importada</dd></div>
+            <div><dt>Zona</dt><dd>Temperley, Buenos Aires</dd></div>
+            <div><dt>Proyecto</dt><dd>Catálogo + reservas</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>Catálogo por categoría</li>
+              <li>Drops de 36 prendas</li>
+              <li>Reserva por WhatsApp</li>
+              <li>Retiro en el local</li>
+              <li>Una unidad por prenda</li>
+          </ul>
+
+          <a class="work-link" href="https://fullfardo.vercel.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
           </a>
@@ -254,7 +266,21 @@
           </div>
 
           <h3>Iurisdictio Derecho</h3>
-          <p class="work-desc">Estudio jurídico de La Plata, diez áreas de práctica, consulta por WhatsApp.</p>
+          <p class="work-desc">Un estudio jurídico integral de La Plata (García y Asociados) con diez áreas de práctica, de laboral a sucesiones. El sitio ordena esas áreas para que el cliente encuentre la suya en un vistazo y arranque la consulta por WhatsApp — buena parte del trabajo se hace a distancia para clientes de toda la provincia.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Estudio jurídico integral</dd></div>
+            <div><dt>Zona</dt><dd>La Plata · toda la provincia</dd></div>
+            <div><dt>Proyecto</dt><dd>Sitio institucional + consulta</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>10 áreas de práctica</li>
+              <li>Consulta por WhatsApp</li>
+              <li>Atención en toda la provincia</li>
+              <li>Consultas a distancia</li>
+              <li>Instagram del estudio</li>
+          </ul>
 
           <a class="work-link" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
@@ -291,7 +317,21 @@
           </div>
 
           <h3>Sancho · Tapas y Barra</h3>
-          <p class="work-desc">Bar de tapas en City Bell: la carta, la historia y cómo funciona sin reservas.</p>
+          <p class="work-desc">Un bar sin reservas donde se pide en la barra. El problema no era mostrar la carta: era explicar cómo funciona el lugar antes de que el cliente llegue. La web cuenta el sistema, la historia del local y la paella de los jueves.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Bar de tapas españolas</dd></div>
+            <div><dt>Zona</dt><dd>City Bell, La Plata</dd></div>
+            <div><dt>Proyecto</dt><dd>Carta + pedidos</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>Carta de tapas y raciones</li>
+              <li>Pedidos para llevar</li>
+              <li>Happy hour</li>
+              <li>Cómo funciona el local</li>
+              <li>Cómo llegar</li>
+          </ul>
 
           <a class="work-link" href="https://sanchoweb.netlify.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
@@ -328,46 +368,23 @@
           </div>
 
           <h3>SCRUM</h3>
-          <p class="work-desc">Marca de rugby de Rosario, 39 temporadas de archivo, tienda online.</p>
+          <p class="work-desc">Una marca de rugby de Rosario con treinta y nueve temporadas encima y un archivo de 340 piezas. La tienda tenía que sostener ese peso: el catálogo ordenado por categoría, las reediciones del archivo con su año al lado, y el carrito armado para que la compra se cierre sin salir de la página.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Indumentaria de rugby</dd></div>
+            <div><dt>Zona</dt><dd>Rosario · envíos a todo el país</dd></div>
+            <div><dt>Proyecto</dt><dd>Tienda online</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>Catálogo por categoría</li>
+              <li>Archivo 1912–1987</li>
+              <li>Carrito de compra</li>
+              <li>Envíos y cambios</li>
+              <li>Journal editorial</li>
+          </ul>
 
           <a class="work-link" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer">
-            Ver el sitio
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="work" data-work>
-        <div class="work-visual">
-          <a class="work-frame" href="https://veinticincoocho.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Veinticinco Ocho en una pestaña nueva">
-            <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">veinticincoocho.vercel.app</span>
-            </span>
-            <span class="work-screen">
-              <picture>
-                <source type="image/webp" srcset="assets/work/veinticincoocho-480.webp 480w, assets/work/veinticincoocho.webp 840w" sizes="(max-width: 980px) 100vw, 620px">
-                <img class="work-shot" src="assets/work/veinticincoocho.jpg" alt="Recorrido por el sitio de Veinticinco Ocho" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
-              </picture>
-            </span>
-            <span class="work-cue" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              Recorrer
-            </span>
-            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
-          </a>
-        </div>
-
-        <div class="work-info">
-          <div class="work-head">
-            <span class="work-index">05</span>
-            <span class="work-cat">Barbería</span>
-            <span class="work-live"><i></i>Online</span>
-          </div>
-
-          <h3>Veinticinco Ocho</h3>
-          <p class="work-desc">Barbería de City Bell: carta de precios, equipo de barberos y reserva de turno online.</p>
-
-          <a class="work-link" href="https://veinticincoocho.vercel.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
           </a>
@@ -396,13 +413,27 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">06</span>
+            <span class="work-index">05</span>
             <span class="work-cat">Gimnasio</span>
             <span class="work-live"><i></i>Online</span>
           </div>
 
           <h3>ÍMPETU</h3>
-          <p class="work-desc">Club de rendimiento en Palermo: modalidades, planes y reserva de clase.</p>
+          <p class="work-desc">Un club de rendimiento de Palermo con 38 clases semanales y doce coaches. Acá el trabajo fue de orden: que la web explicara el método antes que el precio. Las cinco modalidades de entrenamiento, las instalaciones por sector y los planes comparados, con la clase de prueba siempre a un toque.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Club de rendimiento</dd></div>
+            <div><dt>Zona</dt><dd>Palermo, Buenos Aires</dd></div>
+            <div><dt>Proyecto</dt><dd>Servicios + reservas</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>Cinco modalidades</li>
+              <li>Planes por nivel</li>
+              <li>Reserva de clase</li>
+              <li>Equipo de coaches</li>
+              <li>Horarios semanales</li>
+          </ul>
 
           <a class="work-link" href="https://impetugimnasio.netlify.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
@@ -429,13 +460,27 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">07</span>
+            <span class="work-index">06</span>
             <span class="work-cat">Salud</span>
             <span class="work-live"><i></i>Online</span>
           </div>
 
           <h3>Pharmacist Yanina</h3>
-          <p class="work-desc">Blog bilingüe de seguridad medicamentosa con guía descargable.</p>
+          <p class="work-desc">Una farmacéutica con 24 años de práctica clínica que necesitaba un espacio propio para publicar sus guías de seguridad medicamentosa. Armamos un blog bilingüe (inglés/español) con las interacciones entre medicamentos explicadas en lenguaje claro, más una guía descargable como contenido destacado.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Educación en seguridad medicamentosa</dd></div>
+            <div><dt>Idioma</dt><dd>Inglés / Español</dd></div>
+            <div><dt>Proyecto</dt><dd>Blog bilingüe + guía</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>Blog de artículos</li>
+              <li>Guía descargable</li>
+              <li>Contenido bilingüe EN/ES</li>
+              <li>Interacciones medicamentosas</li>
+              <li>Misión y contacto</li>
+          </ul>
 
           <a class="work-link" href="https://pharmacist-yanina.vercel.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
@@ -466,13 +511,27 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">08</span>
+            <span class="work-index">07</span>
             <span class="work-cat">Gastronomía</span>
             <span class="work-live"><i></i>Online</span>
           </div>
 
           <h3>Brodog's</h3>
-          <p class="work-desc">Hamburguesería en City Bell con menú autoadministrable y pedido armado.</p>
+          <p class="work-desc">El menú está conectado a una base de datos que el local edita solo: cambian un precio y la web se actualiza sin tocar código. El cliente arma el pedido eligiendo simple, doble o triple, y le llega a WhatsApp con el resumen ya escrito.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Hamburguesas artesanales</dd></div>
+            <div><dt>Zona</dt><dd>City Bell, La Plata</dd></div>
+            <div><dt>Proyecto</dt><dd>Menú autoadministrable</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>Menú autoadministrable</li>
+              <li>Carrito con variantes</li>
+              <li>Abierto/cerrado en vivo</li>
+              <li>Pedido armado</li>
+              <li>Panel de administración</li>
+          </ul>
 
           <a class="work-link" href="https://brodogs.netlify.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
@@ -499,13 +558,27 @@
 
         <div class="work-info">
           <div class="work-head">
-            <span class="work-index">09</span>
+            <span class="work-index">08</span>
             <span class="work-cat">Escribanía</span>
             <span class="work-live"><i></i>Online</span>
           </div>
 
           <h3>Escribanía Delavault Rocco</h3>
-          <p class="work-desc">Escribanía de La Plata, los trámites más consultados, contacto directo.</p>
+          <p class="work-desc">Una escribanía de La Plata que necesitaba transmitir seriedad y trayectoria institucional antes que nada. Ordenamos los cinco trámites que más consultan —compraventas, poderes, testamentos, donaciones, certificación de firmas— y dejamos la consulta por WhatsApp y el teléfono siempre a la vista.</p>
+
+          <dl class="work-meta">
+            <div><dt>Rubro</dt><dd>Escribanía · estudio notarial</dd></div>
+            <div><dt>Zona</dt><dd>Calle 48 · La Plata</dd></div>
+            <div><dt>Proyecto</dt><dd>Sitio institucional + consulta</dd></div>
+          </dl>
+
+          <ul class="work-tags">
+              <li>5 trámites notariales</li>
+              <li>Consulta por WhatsApp</li>
+              <li>Por qué elegirnos</li>
+              <li>Preguntas frecuentes</li>
+              <li>Teléfono directo</li>
+          </ul>
 
           <a class="work-link" href="https://escribaniadelavaultrocco.vercel.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
@@ -523,116 +596,65 @@
    </div>
   </section>
 
-  <!-- ===================== AUTOMATIZACIONES ===================== -->
-  <section class="automations" id="automatizaciones" aria-labelledby="automations-title">
-    <div class="automations-inner">
-
-      <div class="automations-intro">
-        <p class="eyebrow">Automatizaciones</p>
-        <h2 id="automations-title" class="section-title">El cliente escribe a las 23&nbsp;h.<br>Vos contestás igual.</h2>
-        <p class="section-lead">La mayoría de las consultas por Instagram y WhatsApp llegan fuera de horario o mientras estás con otra cosa. Así responde ahora mismo el WhatsApp de ZEK cuando alguien escribe — con IA, sobre la cuenta real.</p>
-        <a class="btn btn-primary" href="https://wa.me/5492216715279?text=Hola%20ZEK%2C%20quiero%20esto%20para%20mi%20negocio" target="_blank" rel="noopener noreferrer">
-          Quiero esto para mi negocio
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+  <!-- ===================== PRECIOS ===================== -->
+  <section class="pricing" id="precios" aria-labelledby="pricing-title">
+    <div class="pricing-inner">
+      <div class="sec-head">
+        <div>
+        <p class="eyebrow">Precios</p>
+        <h2 id="pricing-title" class="section-title">Planes claros, sin sorpresas.</h2>
+        </div>
+        <p class="section-lead">Precio de referencia para arrancar. Si tu negocio necesita algo distinto, lo ajustamos igual.</p>
       </div>
 
-      <div class="zek-diagram">
+      <div class="price-grid">
 
-        <div class="zek-diagram__side zek-diagram__side--left">
-          <div class="zek-callout zek-callout--to-header">
-            <span class="zek-callout__label">Es tu cuenta real</span>
-            <span class="zek-callout__desc">Mismo número, mismo usuario: seguís usando el WhatsApp de siempre.</span>
-          </div>
-          <div class="zek-callout zek-callout--to-input">
-            <span class="zek-callout__label">Vos podés entrar</span>
-            <span class="zek-callout__desc">En cualquier momento tomás la charla y seguís vos.</span>
-          </div>
-        </div>
+        <article class="price">
+          <h3>Plan Básico</h3>
+          <p class="price-tag"><span class="price-num">$149.000</span><span class="price-cur">ARS</span></p>
+          <p class="price-one">Una sola página con lo esencial: WhatsApp, ubicación, horarios y galería de fotos.</p>
+          <ul class="price-list">
+            <li>Diseño responsive (celular y compu)</li>
+            <li>Botón directo a WhatsApp</li>
+            <li>Mapa de ubicación</li>
+            <li>Horarios de atención</li>
+            <li>Galería de fotos</li>
+            <li>Enlaces a redes sociales</li>
+          </ul>
+        </article>
 
-        <div class="zek-phone" aria-hidden="true">
-          <div class="zek-phone__screen">
+        <article class="price price--highlight">
+          <span class="price-badge">Más elegido</span>
+          <h3>Plan Profesional</h3>
+          <p class="price-tag"><span class="price-num">$219.000</span><span class="price-cur">ARS</span></p>
+          <p class="price-one">Varias secciones, dominio propio el primer año y posicionamiento en Google.</p>
+          <ul class="price-list">
+            <li>Todo lo del Plan Básico</li>
+            <li>Dominio propio incluido el primer año</li>
+            <li>Estructura web más compleja</li>
+            <li>Animaciones avanzadas</li>
+            <li>SEO optimizado</li>
+            <li>15 días de soporte post-lanzamiento</li>
+          </ul>
+        </article>
 
-            <div class="zek-chat__header">
-              <svg class="zek-chat__back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
-              <div class="zek-chat__avatar">Z</div>
-              <div class="zek-chat__who">
-                <div class="zek-chat__title">ZEK</div>
-                <div class="zek-chat__status">en línea</div>
-              </div>
-              <div class="zek-chat__icons">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
-              </div>
-            </div>
-
-            <div class="zek-chat__body">
-              <div class="zek-daychip">Hoy</div>
-
-              <div class="zek-row zek-row--in zek-row--first">
-                <div class="zek-bubble zek-bubble--in">
-                  <span class="zek-bubble__text">hola vi el reel de la barberia, cuanto sale una web asi para mi local de ropa?</span>
-                </div>
-              </div>
-
-              <div class="zek-row zek-row--out zek-row--first zek-row--last">
-                <div class="zek-bubble zek-bubble--out">
-                  <span class="zek-bubble__text">¡Hola! Tenemos 3 planes: Básico, Profesional (el más elegido, con dominio incluido) y Premium con tienda online. ¿Buscás vender online o mostrar catálogo?</span>
-                  <span class="zek-bubble__meta">21:14
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg>
-                  </span>
-                </div>
-              </div>
-
-              <div class="zek-row zek-row--in zek-row--first">
-                <div class="zek-bubble zek-bubble--in">
-                  <span class="zek-bubble__text">mas que nada mostrar, despues veo si sumo venta</span>
-                </div>
-              </div>
-              <div class="zek-row zek-row--in zek-row--last">
-                <div class="zek-bubble zek-bubble--in">
-                  <span class="zek-bubble__text">el profesional lleva mucho tiempo armarlo?</span>
-                </div>
-              </div>
-
-              <div class="zek-row zek-row--out zek-row--first zek-row--last">
-                <div class="zek-bubble zek-bubble--out">
-                  <span class="zek-bubble__text">Te alcanza de sobra, y podés sumar la tienda después sin rehacer nada. Se arma en 1 a 2 semanas. ¿Te paso el precio exacto?</span>
-                  <span class="zek-bubble__meta">21:16
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg>
-                  </span>
-                </div>
-              </div>
-
-              <div class="zek-row zek-row--in">
-                <div class="zek-typing"><span></span><span></span><span></span></div>
-              </div>
-            </div>
-
-            <div class="zek-chat__inputbar">
-              <div class="zek-chat__inputpill">Mensaje</div>
-              <div class="zek-chat__mic">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 18v3" stroke="currentColor" stroke-width="2"/></svg>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="zek-diagram__side zek-diagram__side--right">
-          <div class="zek-callout zek-callout--to-msg-in">
-            <span class="zek-callout__label">Entiende cómo escribe la gente</span>
-            <span class="zek-callout__desc">Sin formularios ni botones, lee la pregunta tal cual llega.</span>
-          </div>
-          <div class="zek-callout zek-callout--to-msg-out">
-            <span class="zek-callout__label">Responde con tu info real</span>
-            <span class="zek-callout__desc">Responde con los planes, tiempos y precios que vos le pasaste.</span>
-          </div>
-        </div>
+        <article class="price">
+          <h3>Plan Premium</h3>
+          <p class="price-tag"><span class="price-num">$329.000</span><span class="price-cur">ARS</span></p>
+          <p class="price-one">Tienda online, sistema de ventas y reservas, administrados desde la misma web.</p>
+          <ul class="price-list">
+            <li>Todo lo del Plan Profesional</li>
+            <li>Tienda online integrada</li>
+            <li>Sistema de ventas</li>
+            <li>Sistema de reservas y turnos</li>
+            <li>SEO avanzado</li>
+            <li>30 días de soporte post-lanzamiento</li>
+          </ul>
+        </article>
 
       </div>
 
+      <p class="pricing-note">El dominio propio incluido en los planes Profesional y Premium cubre el primer año. La renovación, a partir del segundo, se cotiza por separado.</p>
     </div>
   </section>
 
@@ -705,27 +727,42 @@
     </div>
   </section>
 
-  <!-- ===================== SOBRE ZEK ===================== -->
-  <section class="about" id="sobre" aria-labelledby="about-title">
-    <div class="about-inner">
+  <!-- ===================== PROCESO ===================== -->
+  <section class="process" id="proceso" aria-labelledby="process-title">
+    <div class="process-inner">
       <div class="sec-head">
         <div>
-        <p class="eyebrow">Quién lo hace</p>
-        <h2 id="about-title" class="section-title">Sobre ZEK</h2>
+        <p class="eyebrow">Proceso</p>
+        <h2 id="process-title" class="section-title">Cómo trabajamos</h2>
         </div>
-        <p class="section-lead">Estudio de diseño y desarrollo web con base en La Plata.</p>
+        <p class="section-lead">Cuatro pasos con plazo. En cada uno sabés qué está pasando y cuánto falta para el siguiente.</p>
       </div>
-
-      <div class="about-body">
-        <p>ZEK diseña y programa el sitio completo de tu negocio de punta a punta: sin plantillas, sin pasos tercerizados y sin depender de un plugin para que algo funcione. Cada proyecto arranca de cero, porque no hay dos negocios que vendan de la misma forma.</p>
-        <p>Trabajamos con clientes de rubros bien distintos — gastronomía, indumentaria, salud, abogacía, barberías — y nos metemos en cada uno para entender cómo funciona antes de diseñar una sola pantalla. Por eso los sitios del portfolio no se parecen entre sí: cada negocio tampoco se parece al de al lado.</p>
-      </div>
-
-      <ul class="pf-meta about-meta">
-        <li><b>09</b><span>proyectos publicados</span></li>
-        <li><b>07</b><span>rubros distintos</span></li>
-        <li><b>0</b><span>plantillas usadas</span></li>
-      </ul>
+      <ol class="steps">
+        <li>
+          <span class="step-num">01</span>
+          <h3>Contás tu idea</h3>
+          <p>Nos escribís por WhatsApp y nos contás qué vende tu negocio y qué querés que haga el que entra a la web.</p>
+          <span class="step-when">Te respondemos el mismo día</span>
+        </li>
+        <li>
+          <span class="step-num">02</span>
+          <h3>Diseñamos</h3>
+          <p>Armamos la propuesta a tu medida —colores, tipografías y estructura de cada sección—, sin plantillas.</p>
+          <span class="step-when">Primera propuesta en 72 horas</span>
+        </li>
+        <li>
+          <span class="step-num">03</span>
+          <h3>Construimos</h3>
+          <p>Programamos el sitio, cargamos tus textos y tus fotos, y lo probamos en celular, tablet y computadora.</p>
+          <span class="step-when">Entre 1 y 3 semanas</span>
+        </li>
+        <li>
+          <span class="step-num">04</span>
+          <h3>Lanzamos</h3>
+          <p>Conectamos el dominio, publicamos y te pasamos los accesos. El sitio queda a tu nombre desde el día uno.</p>
+          <span class="step-when">15 o 30 días de soporte según el plan</span>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -790,7 +827,7 @@
       </details>
       <details class="faq-item">
         <summary>¿Cuánto cuesta?</summary>
-        <p>Depende del plan: Básico, Profesional o Premium, según cuánto necesite tu negocio. Contanos cuál te cierra y te pasamos el precio exacto por WhatsApp.</p>
+        <p>Tenés tres planes con precio fijo más arriba, desde $149.000. Si tu negocio necesita algo que no entra en ninguno, lo cotizamos a medida.</p>
       </details>
       <details class="faq-item">
         <summary>¿El sitio queda a mi nombre?</summary>
@@ -907,7 +944,8 @@
     </div>
     <div class="footer-links">
       <a href="#portfolio">Portfolio</a>
-      <a href="#sobre">Sobre ZEK</a>
+      <a href="#precios">Precios</a>
+      <a href="#proceso">Proceso</a>
       <a href="#servicios">Servicios</a>
       <a href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
     </div>
