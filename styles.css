@@ -1922,7 +1922,7 @@ svg { display: block; }
 
 .device-monitor {
   position: relative;
-  max-width: 1120px;
+  max-width: 860px;
   margin: var(--space-5) auto 0;
 }
 
@@ -1940,7 +1940,7 @@ svg { display: block; }
 }
 
 .monitor-viewport {
-  height: min(72vh, 660px);
+  height: min(58vh, 480px);
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 6px;
@@ -2032,7 +2032,7 @@ svg { display: block; }
 }
 
 @media (max-width: 720px) {
-  .monitor-viewport { height: min(66vh, 460px); }
+  .monitor-viewport { height: min(64vh, 420px); }
   .monitor-scroll-cue { font-size: 0.68rem; padding: 0.45rem 0.8rem; }
 }
 
