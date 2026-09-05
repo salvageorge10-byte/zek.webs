@@ -357,10 +357,10 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 })();
 
 /* ---------- Armador de consulta ----------
-   El visitante elige tipo, rubro y plan, y el mensaje de WhatsApp se
-   escribe solo. El texto va precargado a proposito: lo redacta el que
-   consulta con sus propias elecciones, no es un "hola" automatico.
-   El boton flotante sigue abriendo el chat vacio. */
+   El visitante completa tipo, negocio, detalles y sus datos, y el mensaje
+   de WhatsApp se escribe solo. El texto va precargado a proposito: lo
+   redacta el que consulta con sus propias elecciones, no es un "hola"
+   automatico. El envio sigue siendo un link de WhatsApp, sitio sin backend. */
 (() => {
   const caja = document.getElementById('armar');
   const salida = document.getElementById('b-msg');
@@ -369,13 +369,15 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   if (!caja || !salida || !enviar) return;
 
   const TEL = '5492216715279';
-  const elegido = { tipo: '', rubro: '', plan: '' };
+  const elegido = { tipo: '', rubro: '', detalles: '', nombre: '', contacto: '' };
 
   const redactar = () => {
     const t = elegido.tipo || 'una web';
-    let m = `Hola ZEK, quiero ${t}`;
-    m += elegido.rubro ? ` para mi negocio de ${elegido.rubro}.` : ' para mi negocio.';
-    if (elegido.plan) m += ` Estaba mirando ${elegido.plan}.`;
+    const nombre = elegido.nombre.trim();
+    let m = nombre ? `Hola ZEK, soy ${nombre}. Quiero ${t}` : `Hola ZEK, quiero ${t}`;
+    m += elegido.rubro.trim() ? ` para mi negocio de ${elegido.rubro.trim()}.` : ' para mi negocio.';
+    if (elegido.detalles.trim()) m += ` ${elegido.detalles.trim()}`;
+    if (elegido.contacto.trim()) m += ` Mi contacto: ${elegido.contacto.trim()}.`;
     return m;
   };
 
@@ -384,17 +386,21 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     salida.textContent = texto;
     enviar.href = `https://wa.me/${TEL}?text=${encodeURIComponent(texto)}`;
     if (contador) {
-      contador.textContent = ['tipo', 'rubro', 'plan']
-        .filter((k) => caja.querySelector(`[data-group="${k}"] .b-opt.is-on`)).length;
+      contador.textContent = [
+        elegido.tipo,
+        elegido.rubro.trim(),
+        elegido.detalles.trim(),
+        elegido.nombre.trim() && elegido.contacto.trim(),
+      ].filter(Boolean).length;
     }
   };
 
-  caja.querySelectorAll('.b-group').forEach((grupo) => {
-    const clave = grupo.dataset.group;
-    grupo.querySelectorAll('.b-opt').forEach((btn) => {
+  const grupoTipo = caja.querySelector('[data-group="tipo"]');
+  if (grupoTipo) {
+    grupoTipo.querySelectorAll('.b-opt').forEach((btn) => {
       btn.addEventListener('click', () => {
         const yaEstaba = btn.classList.contains('is-on');
-        grupo.querySelectorAll('.b-opt').forEach((o) => {
+        grupoTipo.querySelectorAll('.b-opt').forEach((o) => {
           o.classList.remove('is-on');
           o.setAttribute('aria-pressed', 'false');
         });
@@ -402,13 +408,29 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
         if (!yaEstaba) {
           btn.classList.add('is-on');
           btn.setAttribute('aria-pressed', 'true');
-          elegido[clave] = btn.dataset.val;
+          elegido.tipo = btn.dataset.val;
         } else {
-          elegido[clave] = '';
+          elegido.tipo = '';
         }
         refrescar();
       });
       btn.setAttribute('aria-pressed', 'false');
+    });
+  }
+
+  const camposTexto = {
+    rubro: 'b-rubro',
+    detalles: 'b-detalles',
+    nombre: 'b-nombre',
+    contacto: 'b-contacto',
+  };
+
+  Object.entries(camposTexto).forEach(([clave, id]) => {
+    const campo = document.getElementById(id);
+    if (!campo) return;
+    campo.addEventListener('input', () => {
+      elegido[clave] = campo.value;
+      refrescar();
     });
   });
 

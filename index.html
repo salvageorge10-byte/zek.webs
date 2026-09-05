@@ -35,7 +35,7 @@
 <link rel="preload" href="assets/fonts/familjen-grotesk-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/familjen-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="styles.css?v=20260904">
+<link rel="stylesheet" href="styles.css?v=20260905">
 </head>
 <body>
 
@@ -48,15 +48,23 @@
   <div class="nav-inner">
     <a href="#inicio" class="brand" aria-label="ZEK — volver al inicio">
       <img class="brand-mark" src="assets/zek-mark.png" alt="" width="26" height="26">
-      <span class="brand-word">ZEK</span>
+      <span class="brand-text">
+        <span class="brand-word">ZEK</span>
+        <span class="brand-tagline">Webs que impulsan</span>
+      </span>
     </a>
 
     <nav class="nav-links" aria-label="Secciones y contacto">
+      <a class="nav-link" href="#inicio">Inicio</a>
       <a class="nav-link" href="#servicios">Servicios</a>
       <a class="nav-link" href="#portfolio">Portfolio</a>
       <a class="nav-link" href="#proceso">Proceso</a>
+      <a class="nav-link" href="#nosotros">Nosotros</a>
 
-      <a class="btn btn-primary nav-cta" href="#contacto">Pedí tu web</a>
+      <a class="btn btn-outline nav-cta" href="#contacto">
+        Pedí tu web
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
 
       <span class="nav-divider" aria-hidden="true"></span>
 
@@ -249,21 +257,17 @@
         </div>
       </article>
 
-      <article class="work" data-work>
+      <article class="work work--static" data-work>
         <div class="work-visual">
-          <a class="work-frame" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SCRUM en una pestaña nueva">
+          <a class="work-frame" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Iurisdictio en una pestaña nueva">
             <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">scrumzone.com</span>
+              <span class="work-url">iurisdictio.com</span>
             </span>
             <span class="work-screen">
               <picture>
-                <source type="image/webp" srcset="assets/work/scrum-480.webp 480w, assets/work/scrum.webp 840w" sizes="(max-width: 980px) 100vw, 620px">
-                <img class="work-shot" src="assets/work/scrum.jpg" alt="Recorrido por el sitio de SCRUM" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
+                <source type="image/webp" srcset="assets/work/iurisdictio-640.webp 640w, assets/work/iurisdictio.webp 1280w" sizes="(max-width: 980px) 100vw, 620px">
+                <img class="work-shot" src="assets/work/iurisdictio.jpg" alt="Portada del sitio de Iurisdictio" width="1280" height="900" loading="lazy" decoding="async">
               </picture>
-            </span>
-            <span class="work-cue" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              Recorrer
             </span>
             <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
           </a>
@@ -272,35 +276,31 @@
         <div class="work-info">
           <div class="work-head">
             <span class="work-index">02</span>
-            <span class="work-cat">Indumentaria</span>
+            <span class="work-cat">Estudio jurídico</span>
             <span class="work-live"><i></i>Online</span>
           </div>
 
-          <h3>SCRUM</h3>
-          <p class="work-desc">Marca de rugby de Rosario, 39 temporadas de archivo, tienda online.</p>
+          <h3>Iurisdictio</h3>
+          <p class="work-desc">Estudio jurídico que ahora recibe consultas por WhatsApp directo desde la web.</p>
 
-          <a class="work-link" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <a class="work-link" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
           </a>
         </div>
       </article>
 
-      <article class="work" data-work>
+      <article class="work work--static" data-work>
         <div class="work-visual">
-          <a class="work-frame" href="https://sanchoweb.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Sancho · Tapas y Barra en una pestaña nueva">
+          <a class="work-frame" href="https://pharmacist-yanina.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Pharmacist Yanina en una pestaña nueva">
             <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">sanchoweb.app</span>
+              <span class="work-url">pharmacistyanina.com</span>
             </span>
             <span class="work-screen">
               <picture>
-                <source type="image/webp" srcset="assets/work/sancho-480.webp 480w, assets/work/sancho.webp 840w" sizes="(max-width: 980px) 100vw, 620px">
-                <img class="work-shot" src="assets/work/sancho.jpg" alt="Recorrido por el sitio de Sancho · Tapas y Barra" width="840" height="2100" loading="lazy" decoding="async" fetchpriority="low">
+                <source type="image/webp" srcset="assets/work/pharmacist-640.webp 640w, assets/work/pharmacist.webp 1280w" sizes="(max-width: 980px) 100vw, 620px">
+                <img class="work-shot" src="assets/work/pharmacist.jpg" alt="Portada del sitio de Pharmacist Yanina" width="1280" height="900" loading="lazy" decoding="async">
               </picture>
-            </span>
-            <span class="work-cue" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              Recorrer
             </span>
             <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
           </a>
@@ -309,14 +309,14 @@
         <div class="work-info">
           <div class="work-head">
             <span class="work-index">03</span>
-            <span class="work-cat">Gastronomía</span>
+            <span class="work-cat">Salud</span>
             <span class="work-live"><i></i>Online</span>
           </div>
 
-          <h3>Sancho · Tapas y Barra</h3>
-          <p class="work-desc">Bar de tapas en City Bell: la carta, la historia y cómo funciona sin reservas.</p>
+          <h3>Pharmacist Yanina</h3>
+          <p class="work-desc">Farmacia con catálogo y atención por WhatsApp, para que el cliente encuentre el producto rápido.</p>
 
-          <a class="work-link" href="https://sanchoweb.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <a class="work-link" href="https://pharmacist-yanina.vercel.app/" target="_blank" rel="noopener noreferrer">
             Ver el sitio
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
           </a>
@@ -334,11 +334,32 @@
     </div>
 
     <div class="more-grid">
+      <a class="more-card" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer">
+        <span class="more-card-shot"><img src="assets/work/scrum.jpg" alt="" loading="lazy" decoding="async"></span>
+        <span class="more-card-info">
+          <span class="more-card-name">SCRUM</span>
+          <span class="more-card-cat">Indumentaria</span>
+        </span>
+      </a>
+      <a class="more-card" href="https://impetugimnasio.netlify.app/" target="_blank" rel="noopener noreferrer">
+        <span class="more-card-shot"><img src="assets/work/impetu.jpg" alt="" loading="lazy" decoding="async"></span>
+        <span class="more-card-info">
+          <span class="more-card-name">ÍMPETU</span>
+          <span class="more-card-cat">Fitness</span>
+        </span>
+      </a>
       <a class="more-card" href="https://veinticincoocho.vercel.app/" target="_blank" rel="noopener noreferrer">
         <span class="more-card-shot"><img src="assets/work/veinticincoocho.jpg" alt="" loading="lazy" decoding="async"></span>
         <span class="more-card-info">
           <span class="more-card-name">Veinticinco Ocho</span>
           <span class="more-card-cat">Barbería</span>
+        </span>
+      </a>
+      <a class="more-card" href="https://sanchoweb.netlify.app/" target="_blank" rel="noopener noreferrer">
+        <span class="more-card-shot"><img src="assets/work/sancho.jpg" alt="" loading="lazy" decoding="async"></span>
+        <span class="more-card-info">
+          <span class="more-card-name">Sancho · Tapas y Barra</span>
+          <span class="more-card-cat">Gastronomía</span>
         </span>
       </a>
       <a class="more-card" href="https://brodogs.netlify.app/" target="_blank" rel="noopener noreferrer">
@@ -355,27 +376,6 @@
           <span class="more-card-cat">Servicios</span>
         </span>
       </a>
-      <a class="more-card" href="https://pharmacist-yanina.vercel.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/pharmacist.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">Pharmacist Yanina</span>
-          <span class="more-card-cat">Salud</span>
-        </span>
-      </a>
-      <a class="more-card" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/iurisdictio.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">Iurisdictio</span>
-          <span class="more-card-cat">Estudio jurídico</span>
-        </span>
-      </a>
-      <a class="more-card" href="https://impetugimnasio.netlify.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/impetu.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">ÍMPETU</span>
-          <span class="more-card-cat">Fitness</span>
-        </span>
-      </a>
     </div>
 
     <a class="portfolio-cta" href="#contacto">
@@ -386,7 +386,7 @@
   </section>
 
   <!-- ===================== POR QUÉ ZEK ===================== -->
-  <section class="why" aria-labelledby="why-title">
+  <section class="why" id="nosotros" aria-labelledby="why-title">
     <div class="why-inner">
 
       <div class="why-copy">
@@ -689,6 +689,18 @@
             <svg class="stage-note-arrow" width="44" height="32" viewBox="0 0 44 32" fill="none"><path d="M41 3c-15-1-27 7-34 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 23l-9 3 3-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
 
+          <span class="stage-note stage-note--right" aria-hidden="true">
+            <span>100% responsive<br>en todos tus dispositivos.</span>
+            <svg class="stage-note-arrow" width="44" height="32" viewBox="0 0 44 32" fill="none"><path d="M41 3c-15-1-27 7-34 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 23l-9 3 3-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+
+          <ul class="process-pillars process-pillars--top" aria-hidden="true">
+            <li>Estrategia</li><li>Diseño</li><li>Desarrollo</li><li>Resultados</li>
+          </ul>
+          <ul class="process-pillars process-pillars--bottom" aria-hidden="true">
+            <li>Estrategia</li><li>Diseño</li><li>Desarrollo</li><li>Resultados</li>
+          </ul>
+
           <div class="stage-inner">
             <div class="device-laptop">
               <div class="laptop-lid">
@@ -745,6 +757,15 @@
           <p>Dominio, hosting y código quedan a tu nombre desde el día uno.</p>
         </li>
       </ol>
+
+      <div class="process-closing">
+        <div class="process-closing-brand">
+          <span class="process-closing-mark">ZEK</span>
+          <span class="process-closing-divider" aria-hidden="true"></span>
+          <span class="process-closing-tagline">Más que webs<br>Negocios reales</span>
+        </div>
+        <p class="process-closing-note">Proyectos reales<br>Clientes reales</p>
+      </div>
     </div>
   </section>
 
@@ -834,8 +855,17 @@
       <div class="contact-copy">
         <p class="eyebrow">Contacto</p>
         <h2 id="contact-title" class="section-title">Contanos qué<br><em>necesitás</em>.</h2>
-        <p class="section-lead">Armá tu consulta en tres toques y te llega a nuestro WhatsApp ya escrita. Te respondemos el mismo día.</p>
+        <p class="section-lead">Armá tu consulta en cuatro pasos y te llega a nuestro WhatsApp ya escrita. Te respondemos el mismo día.</p>
 
+        <div class="contact-emblem" aria-hidden="true">
+          <span class="contact-emblem-glow"></span>
+          <img src="assets/zek-mark-champagne.png" alt="" width="128" height="128" loading="lazy" decoding="async">
+          <ul class="contact-emblem-pillars">
+            <li>Diseño</li><li>Desarrollo</li><li>Estrategia</li><li>Resultados</li>
+          </ul>
+        </div>
+
+        <p class="eyebrow contact-cards-label">Otros canales</p>
         <div class="contact-cards">
           <a class="contact-card" href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer">
             <span class="contact-num">01</span>
@@ -857,44 +887,65 @@
         </div>
 
         <p class="contact-note">Trabajamos desde La Plata, con proyectos publicados en City Bell, Rosario, Recoleta y Palermo.</p>
+
+        <div class="contact-closing">
+          <span class="contact-closing-mark">ZEK</span>
+          <span class="contact-closing-divider" aria-hidden="true"></span>
+          <span class="contact-closing-tagline">Ideas que se convierten en negocios</span>
+        </div>
       </div>
 
-      <!-- Armador de consulta: el visitante elige y el mensaje se escribe solo -->
+      <!-- Armador de consulta: el visitante completa y el mensaje se escribe solo -->
       <div class="builder" id="armar">
         <div class="builder-top">
-          <span class="builder-step">Armá tu consulta</span>
-          <span class="builder-count"><b id="b-done">0</b>/3</span>
+          <span class="builder-step">Contanos sobre tu proyecto</span>
+          <span class="builder-count"><b id="b-done">0</b>/4</span>
         </div>
 
         <fieldset class="b-group" data-group="tipo">
           <legend><span>01</span> ¿Qué necesitás?</legend>
-          <div class="b-opts">
-            <button type="button" class="b-opt" data-val="una carta o menú digital">Carta digital</button>
-            <button type="button" class="b-opt" data-val="un sitio de servicios con turnos">Sitio de servicios</button>
-            <button type="button" class="b-opt" data-val="una tienda online">Tienda online</button>
-            <button type="button" class="b-opt" data-val="una web, todavía no sé de qué tipo">Todavía no sé</button>
+          <div class="b-opts b-opts--cards">
+            <button type="button" class="b-opt b-radio" data-val="una carta o menú digital">
+              <span class="b-radio-dot" aria-hidden="true"></span>Carta digital
+            </button>
+            <button type="button" class="b-opt b-radio" data-val="un sitio de servicios con turnos">
+              <span class="b-radio-dot" aria-hidden="true"></span>Sitio de servicios
+            </button>
+            <button type="button" class="b-opt b-radio" data-val="una tienda online">
+              <span class="b-radio-dot" aria-hidden="true"></span>Tienda online
+            </button>
+            <button type="button" class="b-opt b-radio" data-val="una web, todavía no sé de qué tipo">
+              <span class="b-radio-dot" aria-hidden="true"></span>Todavía no sé
+            </button>
           </div>
         </fieldset>
 
         <fieldset class="b-group" data-group="rubro">
           <legend><span>02</span> ¿De qué es tu negocio?</legend>
-          <div class="b-opts">
-            <button type="button" class="b-opt" data-val="gastronomía">Gastronomía</button>
-            <button type="button" class="b-opt" data-val="salud">Salud</button>
-            <button type="button" class="b-opt" data-val="indumentaria">Indumentaria</button>
-            <button type="button" class="b-opt" data-val="deporte">Deporte</button>
-            <button type="button" class="b-opt" data-val="servicios profesionales">Profesional</button>
-            <button type="button" class="b-opt" data-val="otro rubro">Otro</button>
-          </div>
+          <label class="b-field">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg>
+            <input type="text" id="b-rubro" placeholder="Ej: restaurante, indumentaria, salud…" autocomplete="off">
+          </label>
         </fieldset>
 
-        <fieldset class="b-group" data-group="plan">
-          <legend><span>03</span> ¿Qué plan mirabas?</legend>
-          <div class="b-opts">
-            <button type="button" class="b-opt" data-val="el Plan Básico">Básico</button>
-            <button type="button" class="b-opt" data-val="el Plan Profesional">Profesional</button>
-            <button type="button" class="b-opt" data-val="el Plan Premium">Premium</button>
-            <button type="button" class="b-opt" data-val="">Todavía no lo definí</button>
+        <fieldset class="b-group" data-group="detalles">
+          <legend><span>03</span> Contanos más detalles</legend>
+          <label class="b-field b-field--area">
+            <textarea id="b-detalles" rows="3" placeholder="Objetivos, referencias, plazos…"></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset class="b-group" data-group="datos">
+          <legend><span>04</span> Tus datos de contacto</legend>
+          <div class="b-fields-row">
+            <label class="b-field">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg>
+              <input type="text" id="b-nombre" placeholder="Nombre y apellido" autocomplete="name">
+            </label>
+            <label class="b-field">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 5 8 7 8-7"/></svg>
+              <input type="text" id="b-contacto" placeholder="WhatsApp o email" autocomplete="tel">
+            </label>
           </div>
         </fieldset>
 
@@ -903,10 +954,11 @@
           <p id="b-msg">Hola ZEK, quiero hacer una web para mi negocio.</p>
         </div>
 
-        <a class="btn btn-wa b-send" id="b-send" href="https://wa.me/5492216715279" target="_blank" rel="noopener noreferrer">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm5.8 14.15c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.1.11-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.37c.26-.29.56-.36.75-.36l.54.01c.17.01.4-.03.63.48.24.53.8 1.85.87 1.99.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.16 1.52 1.88 1.05.93 1.93 1.22 2.21 1.35.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.61.76 1.89.9.28.14.46.21.53.32.07.13.07.7-.17 1.38z"/></svg>
-          Enviar por WhatsApp
+        <a class="btn b-send" id="b-send" href="https://wa.me/5492216715279" target="_blank" rel="noopener noreferrer">
+          Enviar consulta
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
+        <p class="b-fineprint">Al enviar se abre WhatsApp con tu mensaje ya armado.</p>
       </div>
 
     </div>
@@ -939,6 +991,6 @@
   <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm5.8 14.15c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.1.11-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.37c.26-.29.56-.36.75-.36l.54.01c.17.01.4-.03.63.48.24.53.8 1.85.87 1.99.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.16 1.52 1.88 1.05.93 1.93 1.22 2.21 1.35.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.61.76 1.89.9.28.14.46.21.53.32.07.13.07.7-.17 1.38z"/></svg>
 </a>
 
-<script src="script.js?v=20260904" defer></script>
+<script src="script.js?v=20260905" defer></script>
 </body>
 </html>
