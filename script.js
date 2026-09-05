@@ -74,8 +74,9 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   mark(document.querySelector('.zek-phone'), 'zoom', 120);
 
   markAll('.plan-grid .plan', 'up', 90);
-  markAll('.about-body p', 'up', 90);
-  mark(document.querySelector('.about-meta'), 'up', 220);
+  mark(document.querySelector('.process-copy .text-cta'), 'up', 260);
+  mark(document.querySelector('.process-stage'), 'zoom', 120);
+  markAll('.process-steps li', 'up', 90);
   markAll('.inc-grid .inc', 'up', 80);
   markAll('.faq-list .faq-item', 'up', 70);
   markAll('.contact-cards .contact-card', 'up', 90);
