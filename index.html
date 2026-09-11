@@ -35,7 +35,7 @@
 <link rel="preload" href="assets/fonts/familjen-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/familjen-grotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="styles.css?v=20260911hdr5">
+<link rel="stylesheet" href="styles.css?v=20260911demo7">
 </head>
 <body>
 
@@ -348,6 +348,8 @@
 
         <p class="auto-lead">Conectamos una automatización a tu WhatsApp para detectar consultas, responder con información real de tu negocio y convertir más clientes, incluso cuando estás ocupado o fuera de horario.</p>
 
+        <p class="auto-try">Probala acá al lado: escribile una consulta como si fueras un cliente.</p>
+
         <a class="btn auto-cta" href="https://wa.me/5492216715279?text=Hola%20ZEK%2C%20quiero%20esto%20para%20mi%20negocio" target="_blank" rel="noopener noreferrer">
           Quiero esto para mi negocio
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -371,12 +373,12 @@
 
       <!-- --- el telefono. Decorativo: la charla se cuenta en texto en la
            columna de al lado, asi que el lector de pantalla no la repite. --- -->
-      <div class="auto-phone" aria-hidden="true">
+      <div class="auto-phone">
         <div class="auto-device">
           <span class="auto-device__notch"></span>
 
           <div class="auto-device__screen">
-            <div class="auto-sysbar">
+            <div class="auto-sysbar" aria-hidden="true">
               <span class="auto-sysbar__clock">23:08</span>
               <span class="auto-sysbar__icons">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 17h3v4H2zM7.5 13h3v8h-3zM13 9h3v12h-3zM18.5 4h3v17h-3z"/></svg>
@@ -386,72 +388,48 @@
             </div>
 
             <div class="chat-header">
-              <svg class="chat-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+              <svg class="chat-back" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
               <span class="chat-avatar"><img src="assets/zek-mark-white.png" alt=""></span>
               <span class="chat-who">
                 <span class="chat-name">ZEK</span>
                 <span class="chat-state">en línea</span>
               </span>
-              <span class="chat-actions">
+              <span class="chat-actions" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2.5"/></svg>
                 <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>
               </span>
             </div>
 
-            <div class="chat-body">
+            <div class="chat-body" id="demo-log" role="log" aria-live="polite" aria-label="Conversación con la automatización de ZEK">
               <span class="chat-day">Hoy</span>
 
-              <div class="msg msg--in">
-                <p>Hola! Tienen planes para mi local de ropa?</p>
-                <span class="msg-meta">23:08</span>
-              </div>
-
               <div class="msg msg--out">
-                <p>¡Hola! Tenemos 3 planes: Básico, Profesional (el más elegido) y Premium con tienda online.</p>
-                <p>¿Buscás vender online o mostrar catálogo?</p>
-                <span class="msg-meta">23:08
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg>
-                </span>
+                <p>¡Hola! Soy la automatización de ZEK, la misma que conectamos al WhatsApp de cada negocio.</p>
+                <p>Preguntame lo que quieras: qué incluye una web, cuánto tarda, ejemplos de tu rubro o cómo seguimos.</p>
+                <span class="msg-meta"><time>23:08</time> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg></span>
               </div>
-
-              <div class="msg msg--in">
-                <p>Me interesa el profesional, que incluye?</p>
-                <span class="msg-meta">23:09</span>
-              </div>
-
-              <div class="msg msg--out">
-                <p>Incluye:</p>
-                <ul>
-                  <li>Diseño propio, sin plantillas</li>
-                  <li>Dominio y hosting a tu nombre</li>
-                  <li>Preparada para Google</li>
-                  <li>Soporte después del lanzamiento</li>
-                </ul>
-                <p>¿Te paso el precio exacto?</p>
-                <span class="msg-meta">23:09
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg>
-                </span>
-              </div>
-
-              <div class="msg msg--in">
-                <p>Si dale, pasame</p>
-                <span class="msg-meta">23:10</span>
-              </div>
-
-              <span class="chat-typing"><span></span><span></span><span></span></span>
             </div>
 
-            <div class="chat-input">
+            <div class="chat-quick" id="demo-quick" aria-label="Consultas sugeridas">
+              <button type="button" data-q="¿Cuánto sale una web?">¿Cuánto sale?</button>
+              <button type="button" data-q="¿Cuánto tardan en hacerla?">¿Cuánto tarda?</button>
+              <button type="button" data-q="¿Qué incluye?">¿Qué incluye?</button>
+              <button type="button" data-q="Tengo una barbería, se puede sacar turnos?">Tengo una barbería</button>
+              <button type="button" data-q="Quiero vender online con carrito">Vender online</button>
+              <button type="button" data-q="Tengo un restaurante y quiero la carta digital">Carta digital</button>
+            </div>
+
+            <form class="chat-input" id="demo-form" autocomplete="off">
+              <label class="sr-only" for="demo-text">Escribí tu consulta para la automatización</label>
               <span class="chat-input-pill">
-                <svg class="chat-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0" stroke-linecap="round"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
-                <span class="chat-placeholder">Mensaje</span>
-                <svg class="chat-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M21.4 11.1 12.3 20a5.5 5.5 0 0 1-7.8-7.8l8.5-8.4a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.4a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg>
-                <svg class="chat-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.2l1.1-1.7h6.4L15.3 6h3.2A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>
+                <svg class="chat-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0" stroke-linecap="round"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+                <input class="chat-field" id="demo-text" name="consulta" type="text" placeholder="Escribí tu consulta…" maxlength="160">
+                <svg class="chat-ico chat-ico--opt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M21.4 11.1 12.3 20a5.5 5.5 0 0 1-7.8-7.8l8.5-8.4a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.4a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg>
               </span>
-              <span class="chat-mic">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor" stroke="none"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg>
-              </span>
-            </div>
+              <button class="chat-mic" type="submit" aria-label="Enviar consulta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2.5 2.8 9.9l6.4 2.4 2.4 6.4z"/><path d="M21.5 2.5 9.2 12.3"/></svg>
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -466,9 +444,9 @@
             <span class="auto-step-text">
               <span class="auto-step-head">
                 <b>1. Consulta recibida</b>
-                <time>23:08</time>
+                <time>--:--</time>
               </span>
-              <span class="auto-step-desc">&ldquo;Hola! Tienen planes para mi local de ropa?&rdquo;</span>
+              <span class="auto-step-desc">Esperando tu consulta. Escribile al chat y el paso se completa con lo que preguntes.</span>
             </span>
           </li>
 
@@ -479,7 +457,7 @@
             <span class="auto-step-text">
               <span class="auto-step-head">
                 <b>2. IA procesando</b>
-                <time>23:08</time>
+                <time>--:--</time>
               </span>
               <span class="auto-step-desc">La automatización analiza la pregunta y genera una respuesta con la información de tu negocio.</span>
             </span>
@@ -492,7 +470,7 @@
             <span class="auto-step-text">
               <span class="auto-step-head">
                 <b>3. Respuesta enviada</b>
-                <time>23:09</time>
+                <time>--:--</time>
               </span>
               <span class="auto-step-desc">El cliente recibe la información al instante, sin que tengas que escribir nada.</span>
             </span>
@@ -509,6 +487,8 @@
       </div>
 
     </div>
+
+    <p class="auto-note">Esta es una demo del sitio, con respuestas preparadas sobre ZEK. La que conectamos a tu WhatsApp responde con la información de tu negocio.</p>
 
     <p class="auto-rule"><span>Automatizá tu crecimiento</span></p>
   </section>
@@ -689,6 +669,6 @@
   <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm5.8 14.15c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.1.11-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.37c.26-.29.56-.36.75-.36l.54.01c.17.01.4-.03.63.48.24.53.8 1.85.87 1.99.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.16 1.52 1.88 1.05.93 1.93 1.22 2.21 1.35.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.61.76 1.89.9.28.14.46.21.53.32.07.13.07.7-.17 1.38z"/></svg>
 </a>
 
-<script src="script.js?v=20260911hdr5" defer></script>
+<script src="script.js?v=20260911demo7" defer></script>
 </body>
 </html>

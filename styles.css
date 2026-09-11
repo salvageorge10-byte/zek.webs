@@ -1311,6 +1311,15 @@ svg { display: block; }
   color: var(--on-dark-mute);
 }
 
+.auto-try {
+  margin-top: var(--space-3);
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--gold-bright);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--on-dark);
+}
+
 .auto-cta {
   margin-top: var(--space-4);
   padding: 1rem 1.7rem;
@@ -1500,12 +1509,32 @@ svg { display: block; }
 
 /* --- burbujas --- */
 
+/* Ahora la conversacion crece con el uso: se le fija un alto de trabajo y
+   scrollea sola. Los mensajes se apoyan abajo, como en un chat real. */
 .chat-body {
   display: flex;
   flex-direction: column;
+  /* arranca desde arriba, como una conversacion recien abierta: con
+     flex-end el saludo solo quedaba con un vacio de 280px encima */
+  justify-content: flex-start;
   gap: 0.45rem;
   padding: 0.8rem 0.65rem;
+  height: 412px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(233, 237, 239, 0.22) transparent;
 }
+
+.chat-body::-webkit-scrollbar { width: 5px; }
+.chat-body::-webkit-scrollbar-track { background: transparent; }
+.chat-body::-webkit-scrollbar-thumb {
+  background: rgba(233, 237, 239, 0.22);
+  border-radius: 99px;
+}
+
+/* al apoyarse abajo, el primer hijo no puede encogerse */
+.chat-body > * { flex-shrink: 0; }
 
 .chat-day {
   align-self: center;
@@ -1560,6 +1589,21 @@ svg { display: block; }
   content: '• ';
 }
 
+/* atajo al WhatsApp real dentro de la respuesta, como un boton de negocio */
+.msg-cta {
+  display: block;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(233, 237, 239, 0.16);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+  color: #7FE3C4;
+  transition: color 200ms ease-out;
+}
+
+.msg-cta:hover { color: #A8F0D9; }
+
 .msg-meta {
   position: absolute;
   right: 0.6rem;
@@ -1607,6 +1651,39 @@ svg { display: block; }
   30%           { opacity: 1;    transform: translateY(-2.5px); }
 }
 
+/* Consultas sugeridas: fila arrastrable arriba de la barra de escritura,
+   como las respuestas rapidas de una cuenta de negocio. */
+.chat-quick {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.5rem 0.65rem 0.15rem;
+  background: #0B141A;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chat-quick::-webkit-scrollbar { display: none; }
+
+.chat-quick button {
+  flex: 0 0 auto;
+  padding: 0.34rem 0.7rem;
+  border: 1px solid rgba(0, 168, 132, 0.5);
+  border-radius: 999px;
+  background: rgba(0, 168, 132, 0.1);
+  font-family: var(--font-word);
+  font-size: 0.68rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #7FE3C4;
+  cursor: pointer;
+  transition: background 200ms ease-out, color 200ms ease-out;
+}
+
+.chat-quick button:hover {
+  background: rgba(0, 168, 132, 0.22);
+  color: #C6F5E6;
+}
+
 .chat-input {
   display: flex;
   align-items: center;
@@ -1633,22 +1710,50 @@ svg { display: block; }
   height: 15px;
 }
 
-.chat-placeholder {
+/* el campo de verdad, sin herencia de estilos de form del sitio */
+.chat-field {
   flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  padding: 0;
+  font-family: var(--font-word);
   font-size: 0.8rem;
-  color: #8696A0;
+  color: #E9EDEF;
+}
+
+.chat-field::placeholder { color: #8696A0; }
+.chat-field:focus { outline: none; }
+
+/* el foco se marca en la pastilla entera, no en el input suelto */
+.chat-input-pill:focus-within {
+  box-shadow: 0 0 0 2px rgba(0, 168, 132, 0.55);
+}
+
+/* el clip solo estorba cuando el campo es angosto */
+@media (max-width: 400px) {
+  .chat-ico--opt { display: none; }
 }
 
 .chat-mic {
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
+  border: 0;
   border-radius: 50%;
   background: #00A884;
   color: #0B141A;
+  cursor: pointer;
+  transition: background 200ms ease-out, transform 200ms var(--ease);
 }
+
+.chat-mic:hover { background: #0ABF98; }
+.chat-mic:active { transform: scale(0.94); }
+
+/* mientras la automatizacion escribe, no se puede encimar otra consulta */
+.chat-input[aria-busy="true"] .chat-mic { opacity: 0.5; pointer-events: none; }
 
 .chat-mic svg {
   width: 16px;
@@ -1774,6 +1879,19 @@ svg { display: block; }
 
 /* ------------------------------ pie de banda ----------------------------- */
 
+/* aclaracion de la demo: no se promete lo que no hace */
+.auto-note {
+  position: relative;
+  z-index: 1;
+  max-width: 62ch;
+  margin: 0 auto;
+  padding: 0 var(--gutter) var(--space-3);
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--on-dark-mute);
+}
+
 .auto-rule {
   position: relative;
   z-index: 1;
@@ -1810,7 +1928,9 @@ svg { display: block; }
 @media (max-width: 1100px) {
   /* el telefono baja al centro y el flujo pasa abajo, a lo ancho */
   .automations-inner {
-    grid-template-columns: 1fr;
+    /* minmax(0,...) y no 1fr: con 1fr la columna toma el min-content del
+       telefono (378px) y en pantallas de 390 se pasa del ancho util */
+    grid-template-columns: minmax(0, 1fr);
     justify-items: center;
     gap: var(--space-5);
   }
@@ -1821,10 +1941,21 @@ svg { display: block; }
     max-width: 620px;
   }
 
+  /* sin esto el telefono se dimensiona por su max-content (402px) y en
+     pantallas de 390 se le corta el borde derecho */
+  .auto-phone {
+    width: 100%;
+    max-width: 378px;
+  }
+
   .auto-lead { max-width: none; }
 }
 
 @media (max-width: 520px) {
+  .auto-device { padding: 9px; border-radius: 42px; }
+  .auto-device__screen { border-radius: 33px; }
+  .auto-device__notch { top: 17px; width: 74px; height: 19px; }
+
   .auto-feats li {
     flex: 1 1 45%;
     padding-inline: 0;
