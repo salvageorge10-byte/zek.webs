@@ -227,68 +227,85 @@ svg { display: block; }
 }
 
 /* ==========================================================================
-   Nav — riel segmentado. Los links viven dentro de una capsula centrada y
-   la seccion que estas leyendo queda como pastilla: el nav deja de ser una
-   fila de texto suelto y muestra donde estas parado.
+   Nav — lockup a la izquierda (marca, filete y secciones) y la accion a la
+   derecha. Con solo dos secciones, una capsula centrada quedaba perdida en
+   el medio de la barra; agrupadas contra el logo la barra se sostiene.
+   Al scrollear la barra se comprime y se oscurece.
    ========================================================================== */
 
 .nav {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(18, 16, 14, 0.86);
-  backdrop-filter: saturate(1.6) blur(14px);
-  -webkit-backdrop-filter: saturate(1.6) blur(14px);
-  border-bottom: 1px solid var(--line-dark);
+  background: var(--ink-2);
+  border-bottom: 1px solid transparent;
+  transition: border-color 320ms ease-out, box-shadow 320ms ease-out;
+}
+
+/* al bajar se despega del contenido con un filete y una sombra corta */
+.nav.is-stuck {
+  border-bottom-color: var(--line-dark);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
 }
 
 .nav-inner {
-  position: relative;
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0.9rem var(--gutter);
+  padding: 1.1rem var(--gutter);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-2);
+  transition: padding 320ms ease-out;
 }
 
-/* --- logo --- */
+.nav.is-stuck .nav-inner { padding-block: 0.7rem; }
+
+/* --- marca --- */
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
   cursor: pointer;
-  transition: transform 260ms var(--ease);
+  transition: opacity 240ms ease-out;
 }
 
-.brand:hover { transform: scale(1.03); }
+.brand:hover { opacity: 0.82; }
 
 .brand.is-tapped { animation: brand-bounce 420ms cubic-bezier(0.16, 1, 0.3, 1); }
 
 @keyframes brand-bounce {
-  0%   { transform: scale(1.03); }
+  0%   { transform: scale(1.02); }
   40%  { transform: scale(0.97); }
   100% { transform: scale(1); }
 }
 
 .brand-mark {
-  width: 32px;
-  transition: transform 600ms var(--ease), filter 300ms ease-out;
+  width: 34px;
+  transition: width 320ms ease-out;
 }
 
-.brand:hover .brand-mark {
-  transform: rotateY(360deg);
-  filter: drop-shadow(0 2px 6px rgba(247, 244, 236, 0.35));
-}
+.nav.is-stuck .brand-mark { width: 29px; }
 
 .brand-word {
   font-family: var(--font-word);
   font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: 0.09em;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
   color: var(--on-dark);
+}
+
+/* filete que separa la marca de las secciones (solo en escritorio: en el
+   celular los links viven en el panel y el filete quedaba colgando) */
+.nav-rule {
+  display: none;
+  width: 1px;
+  height: 26px;
+  margin-inline: var(--space-2);
+  background: linear-gradient(180deg,
+    rgba(247, 244, 236, 0) 0%,
+    rgba(247, 244, 236, 0.26) 50%,
+    rgba(247, 244, 236, 0) 100%);
 }
 
 /* --- boton de menu (solo celular) --- */
@@ -300,6 +317,7 @@ svg { display: block; }
   gap: 5px;
   width: 42px;
   height: 42px;
+  margin-left: auto;
   border: 1px solid var(--line-dark);
   border-radius: 12px;
   background: rgba(247, 244, 236, 0.04);
@@ -321,11 +339,9 @@ svg { display: block; }
 
 /* --- panel de links --- */
 
-/* En celular baja como panel desde el header; en escritorio se desarma y
-   la capsula pasa a flotar centrada. */
 .nav-links {
   position: fixed;
-  inset: 65px 0 auto 0;
+  inset: 66px 0 auto 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -346,45 +362,36 @@ svg { display: block; }
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
 
-.nav-capsule {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
+.nav-spacer { display: none; }
 
 .nav-link {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
+  position: relative;
   font-family: var(--font-word);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0.7rem 0;
   color: var(--on-dark-mute);
   border-bottom: 1px solid var(--line-dark);
-  transition: color 240ms ease-out, background 240ms ease-out;
+  transition: color 240ms ease-out;
 }
 
-.nav-capsule .nav-link:last-child { border-bottom: 0; }
-.nav-link:hover { color: var(--on-dark); }
-
-/* el punto reserva su lugar siempre, asi al marcarse una seccion no se
-   corre el texto de los demas links */
-.nav-dot {
-  flex: 0 0 auto;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: transparent;
-  transition: background 240ms ease-out;
-}
-
+.nav-link:last-of-type { border-bottom: 0; }
+.nav-link:hover,
 .nav-link.is-current { color: var(--on-dark); }
-.nav-link.is-current .nav-dot { background: var(--on-dark); }
 
 .nav-cta {
-  padding: 0.7rem 1.2rem;
-  font-size: 0.86rem;
+  padding: 0.72rem 1.3rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--on-dark);
+  color: var(--ink);
+}
+
+.nav-cta:hover {
+  background: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.38);
 }
 
 .nav-cta svg { transition: transform 240ms var(--ease); }
@@ -392,12 +399,14 @@ svg { display: block; }
 
 @media (min-width: 900px) {
   .nav-toggle { display: none; }
+  .nav-rule { display: block; }
 
   .nav-links {
     position: static;
+    flex: 1;
     flex-direction: row;
     align-items: center;
-    gap: 0;
+    gap: var(--space-3);
     padding: 0;
     background: none;
     border: 0;
@@ -407,34 +416,41 @@ svg { display: block; }
     box-shadow: none;
   }
 
-  /* la capsula se centra contra el ancho del header, no contra los links:
-     asi queda alineada al medio aunque el logo y el boton midan distinto */
-  .nav-capsule {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    flex-direction: row;
-    gap: 0.2rem;
-    padding: 0.3rem;
-    border: 1px solid var(--line-dark);
-    border-radius: 999px;
-    background: rgba(247, 244, 236, 0.04);
-  }
+  /* empuja la accion al extremo derecho */
+  .nav-spacer { display: block; flex: 1; }
 
+  /* las secciones en versalitas: se leen como indice, no como menu de blog */
   .nav-link {
-    font-size: 0.88rem;
-    padding: 0.5rem 0.95rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0;
     border-bottom: 0;
-    border-radius: 999px;
+    color: rgba(247, 244, 236, 0.82);
   }
 
-  .nav-capsule .nav-link:hover { background: rgba(247, 244, 236, 0.07); }
-
-  .nav-capsule .nav-link.is-current {
-    background: rgba(247, 244, 236, 0.12);
-    color: var(--on-dark);
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1.5px;
+    background: var(--gold-bright);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 320ms var(--ease);
   }
+
+  .nav-link:hover::after,
+  .nav-link.is-current::after { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .nav-inner,
+  .brand-mark { transition: none; }
 }
 
 /* ==========================================================================
@@ -545,9 +561,7 @@ svg { display: block; }
   position: relative;
   overflow: hidden;
   padding: var(--space-5) var(--gutter) calc(var(--space-5) + 1rem);
-  background:
-    radial-gradient(ellipse 60% 55% at 78% 28%, rgba(201, 162, 75, 0.16), transparent 68%),
-    linear-gradient(165deg, var(--ink-2) 0%, var(--ink) 72%);
+  background: linear-gradient(165deg, var(--ink-2) 0%, var(--ink) 72%);
 }
 
 /* el hero es la unica franja oscura de arriba: todo el texto de adentro
@@ -673,7 +687,7 @@ svg { display: block; }
   position: relative;
   isolation: isolate;
   /* el celular sobresale por abajo: le dejamos aire para no recortarlo */
-  padding-bottom: 7%;
+  padding-bottom: 12%;
 }
 
 /* Capa aparte para el movimiento: así el flotado y el parallax del
@@ -686,35 +700,6 @@ svg { display: block; }
 @keyframes stage-float {
   0%, 100% { transform: translateY(calc(var(--par, 0px))); }
   50%      { transform: translateY(calc(var(--par, 0px) - 7px)); }
-}
-
-/* mancha crema que integra el mockup con el fondo */
-.stage-wash {
-  position: absolute;
-  z-index: -2;
-  top: -14%;
-  right: -12%;
-  width: 86%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%,
-    rgba(201, 162, 75, 0.24) 0%,
-    rgba(201, 162, 75, 0.07) 45%,
-    rgba(201, 162, 75, 0) 72%);
-}
-
-/* arco dorado finito, apenas visible */
-.stage-arc {
-  position: absolute;
-  z-index: -1;
-  top: -9%;
-  right: 2%;
-  width: 62%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1px solid rgba(201, 162, 75, 0.34);
-  /* recortamos el círculo para que quede solo el arco de arriba */
-  clip-path: polygon(0 0, 100% 0, 100% 46%, 0 46%);
 }
 
 /* ==========================================================================
@@ -781,28 +766,29 @@ svg { display: block; }
   margin: 0 auto;
   height: clamp(3px, 0.42vw, 6px);
   border-radius: 0 0 3px 3px;
-  background: linear-gradient(180deg, #1B2029 0%, #2B3140 55%, #3A4152 100%);
+  background: linear-gradient(180deg, #14181F 0%, #242936 55%, #343A48 100%);
 }
 
 /* --- base: trapecio, más ancha adelante --- */
 
+/* Media 116% del ancho de la tapa con un degrade que arrancaba en blanco
+   puro: sobresalia por los costados y leia como un estante, no como la base
+   de una notebook. Ahora apenas excede la tapa y usa el mismo grafito. */
 .laptop-deck {
   position: relative;
   z-index: 3;
-  width: 116%;
-  margin: 0 -8%;
-  height: clamp(15px, 2.05vw, 27px);
-  /* el trapecio abre hacia adelante, como se ve una notebook desde el frente */
-  clip-path: polygon(2.2% 0, 97.8% 0, 100% 55%, 99.2% 100%, 0.8% 100%, 0 55%);
+  width: 104%;
+  margin: 0 -2%;
+  height: clamp(11px, 1.5vw, 19px);
+  clip-path: polygon(1.4% 0, 98.6% 0, 100% 58%, 99.4% 100%, 0.6% 100%, 0 58%);
   background:
     linear-gradient(180deg,
-      #FFFFFF 0%,
-      #EDEEF2 14%,
-      #D5D8DF 38%,
-      #B4B7C1 66%,
-      #8C8F9B 88%,
-      #6E7180 100%);
-  box-shadow: 0 14px 20px rgba(23, 27, 36, 0.16);
+      #6E7686 0%,
+      #59606F 16%,
+      #454B59 44%,
+      #333846 72%,
+      #23272F 100%);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.32);
 }
 
 /* filo superior que capta la luz */
@@ -812,10 +798,10 @@ svg { display: block; }
   top: 0; left: 2.2%; right: 2.2%;
   height: 2px;
   background: linear-gradient(90deg,
-    rgba(255, 255, 255, 0.45),
-    rgba(255, 255, 255, 0.95) 18%,
-    rgba(255, 255, 255, 0.95) 82%,
-    rgba(255, 255, 255, 0.45));
+    rgba(247, 244, 236, 0.1),
+    rgba(247, 244, 236, 0.42) 18%,
+    rgba(247, 244, 236, 0.42) 82%,
+    rgba(247, 244, 236, 0.1));
 }
 
 /* canto frontal en sombra: le da espesor al aluminio */
@@ -823,8 +809,8 @@ svg { display: block; }
   content: '';
   position: absolute;
   bottom: 0; left: 0.8%; right: 0.8%;
-  height: 26%;
-  background: linear-gradient(180deg, rgba(23, 27, 36, 0), rgba(23, 27, 36, 0.22));
+  height: 30%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.34));
 }
 
 /* hueco central para abrir la tapa */
@@ -834,10 +820,10 @@ svg { display: block; }
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 12%;
-  height: 52%;
+  width: 11%;
+  height: 48%;
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  background: linear-gradient(180deg, rgba(23, 27, 36, 0.26), rgba(23, 27, 36, 0.10));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.16));
 }
 
 /* --- sombra de apoyo sobre la superficie --- */
@@ -861,12 +847,14 @@ svg { display: block; }
    Celular, delante y a la derecha
    ========================================================================== */
 
+/* Se corre hacia afuera y hacia abajo: antes se montaba sobre el titular de
+   la captura y quedaba cortado por la base. */
 .device-phone {
   position: absolute;
-  z-index: 3;
-  right: 1%;
-  bottom: 3%;
-  width: 20%;
+  z-index: 4;
+  right: -5%;
+  bottom: -7%;
+  width: 18.5%;
 }
 
 .phone-body {
@@ -966,8 +954,6 @@ svg { display: block; }
     padding-bottom: 9%;
   }
 
-  .stage-wash { top: -18%; right: -8%; width: 78%; }
-  .stage-arc  { display: none; }
 }
 
 @media (max-width: 560px) {
