@@ -60,18 +60,16 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   markAll('.values-inner .value', 'up', 90);
 
   // --- portfolio: primero la imagen, despues la ficha ---
-  document.querySelectorAll('[data-work]').forEach((work) => {
-    mark(work.querySelector('.work-visual'), 'zoom', 0);
-    mark(work.querySelector('.work-info'), 'up', 150);
-  });
+  markAll('.pf-bento .pf-tile', 'up', 70);
   mark(document.querySelector('.portfolio-cta'), 'up', 0);
 
   mark(document.querySelector('.device-monitor'), 'zoom', 120);
   mark(document.querySelector('.showcase-link'), 'up', 260);
 
-  mark(document.querySelector('.automations-intro .btn-primary'), 'up', 340);
-  markAll('.zek-diagram__side .zek-callout', 'up', 90);
-  mark(document.querySelector('.zek-phone'), 'zoom', 120);
+  mark(document.querySelector('.auto-cta'), 'up', 340);
+  markAll('.auto-steps li', 'up', 90);
+  mark(document.querySelector('.auto-outcome'), 'up', 320);
+  mark(document.querySelector('.auto-phone'), 'zoom', 120);
 
   markAll('.plan-grid .plan', 'up', 90);
   mark(document.querySelector('.process-copy .text-cta'), 'up', 260);
@@ -90,16 +88,10 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     if (!bar) return;
   }
 
-  // En tactil el recorrido de las capturas lo maneja la animacion "tour"
-  // (mas abajo), asi que el paneo por scroll se deja de lado.
-  const tactil = window.matchMedia('(hover: none)').matches;
-  const shots = (prefersReducedMotion || tactil)
-    ? []
-    : Array.from(document.querySelectorAll('[data-work] .work-shot'));
   const stage = prefersReducedMotion ? null : document.querySelector('.stage-inner');
   const reveals = prefersReducedMotion ? [] : targets;
 
-  if (!reveals.length && !shots.length && !stage && !bar) return;
+  if (!reveals.length && !stage && !bar) return;
 
   const clamp = (v, a = 0, b = 1) => (v < a ? a : v > b ? b : v);
 
@@ -107,10 +99,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   // la pantalla y termina de acomodarse un 32% mas arriba
   const START = 0.92;
   const RUN = 0.32;
-
-  // Cuánto llega a desplazarse la captura. El recorrido completo es 70%;
-  // usamos una fracción para que la portada nunca quede lejos.
-  const PAN = 24;
 
   let ticking = false;
 
@@ -130,16 +118,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       return clamp((vh * START - top - (el._revShift || 0)) / (vh * RUN));
     });
 
-    const pans = shots.map((shot) => {
-      const r = shot.closest('[data-work]').getBoundingClientRect();
-      // fuera de pantalla: no gastamos calculo
-      if (r.bottom < -200 || r.top > vh + 200) return null;
-      // 0 mientras la tarjeta entra o esta centrada -> se ve la portada.
-      // Crece solo cuando la tarjeta empieza a salir por arriba.
-      const p = clamp((vh / 2 - (r.top + r.height / 2)) / (vh / 2 + r.height / 2));
-      return `${(-p * PAN).toFixed(2)}%`;
-    });
-
     let par = null;
     if (stage) {
       const r = stage.getBoundingClientRect();
@@ -157,9 +135,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     for (let i = 0; i < reveals.length; i++) {
       reveals[i].style.setProperty('--p', ps[i].toFixed(3));
     }
-    for (let i = 0; i < shots.length; i++) {
-      if (pans[i] !== null) shots[i].style.setProperty('--pan', pans[i]);
-    }
     if (par !== null) stage.style.setProperty('--par', par);
     if (bar) bar.style.transform = `scaleX(${avance})`;
 
@@ -175,6 +150,36 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   window.addEventListener('resize', update, { passive: true });
 
   update();
+})();
+
+/* ---------- Menu del celular ---------- */
+(() => {
+  const toggle = document.getElementById('nav-toggle');
+  const panel = document.getElementById('nav-links');
+  if (!toggle || !panel) return;
+
+  const close = () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    panel.classList.remove('is-open');
+  };
+
+  toggle.addEventListener('click', () => {
+    const abierto = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!abierto));
+    panel.classList.toggle('is-open', !abierto);
+  });
+
+  // al elegir una seccion el panel se cierra solo
+  panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+
+  // si se pasa a escritorio el panel deja de existir como panel
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 900) close();
+  }, { passive: true });
 })();
 
 /* ---------- Nav: resalta la seccion que se esta leyendo ---------- */
@@ -259,14 +264,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   viewport.addEventListener('scroll', () => {
     cue.classList.toggle('is-hidden', viewport.scrollTop > 24);
   }, { passive: true });
-})();
-
-/* ---------- Automatizaciones: el chat abre mostrando el ultimo mensaje,
-   como una conversacion real, en vez del arranque del historial ---------- */
-(() => {
-  const body = document.querySelector('.zek-chat__body');
-  if (!body) return;
-  body.scrollTop = body.scrollHeight;
 })();
 
 /* ---------- FAQ: despliegue animado por altura ---------- */
@@ -437,41 +434,3 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   refrescar();
 })();
 
-/* ---------- Recorrido automático en pantallas táctiles ----------
-   En la computadora alcanza con pasar el mouse por encima para que la
-   captura recorra el sitio. En el celular no hay hover, así que el
-   recorrido arranca solo cuando la tarjeta queda centrada, y se corta al
-   salir: nunca hay más de una animando a la vez. */
-(() => {
-  if (prefersReducedMotion) return;
-  if (!window.matchMedia('(hover: none)').matches) return;
-  if (!('IntersectionObserver' in window)) return;
-
-  // Se observa la ventana del navegador, no la tarjeta entera: la tarjeta
-  // completa mide mas que la pantalla de un celular y en equipos chicos
-  // nunca llegaria a cumplir el umbral. La imagen mide ~320px y siempre
-  // entra holgada.
-  const frames = document.querySelectorAll('[data-work] .work-visual');
-  if (!frames.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const card = entry.target.closest('[data-work]');
-        if (!card) return;
-
-        if (entry.isIntersecting) {
-          card.classList.add('is-touring');
-          return;
-        }
-
-        // Al salir se quita la clase para que, si volvés a subir, el
-        // recorrido se vuelva a reproducir desde la portada.
-        card.classList.remove('is-touring');
-      });
-    },
-    { threshold: 0.6 }
-  );
-
-  frames.forEach((f) => observer.observe(f));
-})();

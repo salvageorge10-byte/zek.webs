@@ -31,11 +31,11 @@
 
 <!-- Las dos que se ven en la primera pantalla: sin esto el navegador
      recien las descubre cuando termina de leer el CSS -->
-<link rel="preload" href="assets/fonts/playfair-display-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/familjen-grotesk-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/familjen-grotesk-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/familjen-grotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="styles.css?v=20260905b">
+<link rel="stylesheet" href="styles.css?v=20260910auto6">
 </head>
 <body>
 
@@ -47,32 +47,25 @@
 <header class="nav">
   <div class="nav-inner">
     <a href="#inicio" class="brand" aria-label="ZEK — volver al inicio">
-      <img class="brand-mark" src="assets/zek-mark.png" alt="" width="26" height="26">
-      <span class="brand-text">
-        <span class="brand-word">ZEK</span>
-        <span class="brand-tagline">Webs que impulsan</span>
-      </span>
+      <img class="brand-mark" src="assets/zek-mark-white.png" alt="" width="32" height="32">
+      <span class="brand-word">ZEK</span>
     </a>
 
-    <nav class="nav-links" aria-label="Secciones y contacto">
-      <a class="nav-link" href="#inicio">Inicio</a>
-      <a class="nav-link" href="#servicios">Servicios</a>
-      <a class="nav-link" href="#portfolio">Portfolio</a>
-      <a class="nav-link" href="#proceso">Proceso</a>
-      <a class="nav-link" href="#nosotros">Nosotros</a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="nav-links" aria-label="Secciones">
+      <div class="nav-capsule">
+        <a class="nav-link" href="#servicios"><i class="nav-dot" aria-hidden="true"></i>Servicios</a>
+        <a class="nav-link" href="#portfolio"><i class="nav-dot" aria-hidden="true"></i>Proyectos</a>
+        <a class="nav-link" href="#proceso"><i class="nav-dot" aria-hidden="true"></i>Proceso</a>
+        <a class="nav-link" href="#blog"><i class="nav-dot" aria-hidden="true"></i>Blog</a>
+      </div>
 
       <a class="btn btn-outline nav-cta" href="#contacto">
-        Pedí tu web
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-
-      <span class="nav-divider" aria-hidden="true"></span>
-
-      <a class="nav-social" href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de ZEK">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
-      </a>
-      <a class="nav-social" href="https://wa.me/5492216715279" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm5.8 14.15c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.1.11-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.37c.26-.29.56-.36.75-.36l.54.01c.17.01.4-.03.63.48.24.53.8 1.85.87 1.99.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.16 1.52 1.88 1.05.93 1.93 1.22 2.21 1.35.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.61.76 1.89.9.28.14.46.21.53.32.07.13.07.7-.17 1.38z"/></svg>
+        Hablemos
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </nav>
   </div>
@@ -100,22 +93,22 @@
           </a>
         </div>
 
-        <ul class="hero-features">
+        <ul class="hero-specs">
           <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2-6.3-4.5-6.3 4.5 2.3-7.2-6-4.4h7.6z"/></svg>
-            <span><b>Diseño</b>100% personalizado</span>
+            <b>72 h</b>
+            <span>Primera propuesta de diseño</span>
           </li>
           <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
-            <span><b>Más visibilidad</b>en Google</span>
+            <b>1&ndash;3 sem</b>
+            <span>Sitio completo online</span>
           </li>
           <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
-            <span><b>Sitios rápidos</b>y optimizados</span>
+            <b>100%</b>
+            <span>Dominio y hosting a tu nombre</span>
           </li>
           <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2z"/><path d="M3 19a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z"/></svg>
-            <span><b>Acompañamiento</b>en todo el proceso</span>
+            <b>0</b>
+            <span>Plantillas: todo es a medida</span>
           </li>
         </ul>
       </div>
@@ -161,7 +154,401 @@
     </div>
   </section>
 
-  <!-- ===================== QUÉ INCLUYE ===================== -->
+  <!-- ===================== PORTFOLIO ===================== -->
+  <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+   <div class="portfolio-inner">
+    <div class="portfolio-head">
+      <div>
+        <p class="eyebrow">Trabajo real</p>
+        <h2 id="portfolio-title" class="section-title">Webs que están online<br>ahora mismo.</h2>
+      </div>
+      <p class="section-lead portfolio-lead">Cada proyecto se diseñó desde cero para su negocio. Tocá cualquiera para abrir el sitio real en una pestaña nueva.</p>
+    </div>
+
+    <ul class="pf-meta">
+      <li><b>09</b><span>proyectos publicados</span></li>
+      <li><b>06</b><span>rubros distintos</span></li>
+      <li><b>03</b><span>ciudades</span></li>
+      <li class="pf-meta-live"><i></i><span>Todos online ahora mismo</span></li>
+    </ul>
+
+    <div class="pf-bento">
+
+      <a class="pf-tile pf-tile--lg" href="https://www.fullfardo.com.ar/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de FULLFARDO en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/fullfardo-640.webp 640w, assets/work/fullfardo.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/fullfardo.jpg" alt="Portada del sitio de FULLFARDO" loading="eager" decoding="async" fetchpriority="high">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Indumentaria</span>
+            <span class="pf-tile-name">FULLFARDO</span>
+            <span class="pf-tile-desc">Feria de ropa importada en Temperley: reservás por WhatsApp y retirás en el local.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a class="pf-tile pf-tile--sm" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de Iurisdictio en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/iurisdictio-640.webp 640w, assets/work/iurisdictio.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/iurisdictio.jpg" alt="Portada del sitio de Iurisdictio" loading="lazy" decoding="async">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Estudio jurídico</span>
+            <span class="pf-tile-name">Iurisdictio</span>
+            <span class="pf-tile-desc">Recibe consultas por WhatsApp directo desde la web.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a class="pf-tile pf-tile--sm" href="https://lumenrestaurant.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de LUMEN en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/lumen-640.webp 640w, assets/work/lumen.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/lumen.jpg" alt="Portada del sitio de LUMEN" loading="lazy" decoding="async">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Gastronomía</span>
+            <span class="pf-tile-name">LUMEN</span>
+            <span class="pf-tile-desc">Cocina de autor en Palermo Soho, con reserva de mesa y menú online.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a class="pf-tile pf-tile--lg" href="https://veinticincoocho.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de Veinticinco Ocho en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/veinticincoocho-480.webp 480w, assets/work/veinticincoocho.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/veinticincoocho.jpg" alt="Portada del sitio de Veinticinco Ocho" loading="lazy" decoding="async">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Barbería</span>
+            <span class="pf-tile-name">Veinticinco Ocho</span>
+            <span class="pf-tile-desc">Estudio de imagen masculina en City Bell, con turnos online de 20 minutos.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a class="pf-tile pf-tile--lg" href="https://sanchoweb.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de Sancho · Tapas y Barra en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/sancho-480.webp 480w, assets/work/sancho.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/sancho.jpg" alt="Portada del sitio de Sancho · Tapas y Barra" loading="lazy" decoding="async">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Gastronomía</span>
+            <span class="pf-tile-name">Sancho · Tapas y Barra</span>
+            <span class="pf-tile-desc">El primer bar de tapas de City Bell: armás el pedido y lo retirás por el local.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a class="pf-tile pf-tile--sm" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de SCRUM en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/scrum-480.webp 480w, assets/work/scrum.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/scrum.jpg" alt="Portada del sitio de SCRUM" loading="lazy" decoding="async">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Indumentaria</span>
+            <span class="pf-tile-name">SCRUM</span>
+            <span class="pf-tile-desc">Camisetas de rugby retro, tejidas en Argentina desde 1987.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a class="pf-tile pf-tile--sm" href="https://impetugimnasio.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de ÍMPETU en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/impetu-480.webp 480w, assets/work/impetu.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/impetu.jpg" alt="Portada del sitio de ÍMPETU" loading="lazy" decoding="async">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Fitness</span>
+            <span class="pf-tile-name">ÍMPETU</span>
+            <span class="pf-tile-desc">Club de rendimiento en Palermo: fuerza, movilidad y comunidad.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a class="pf-tile pf-tile--lg" href="https://brodogs.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de Brodog's en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/brodogs-480.webp 480w, assets/work/brodogs.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/brodogs.jpg" alt="Portada del sitio de Brodog's" loading="lazy" decoding="async">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Gastronomía</span>
+            <span class="pf-tile-name">Brodog's</span>
+            <span class="pf-tile-desc">Hamburguesería en City Bell.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+      <a class="pf-tile pf-tile--lg" href="https://escribaniadelavaultrocco.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el sitio de Escribanía Delavault Rocco en una pestaña nueva">
+        <span class="pf-tile-shot">
+          <picture>
+            <source type="image/webp" srcset="assets/work/escribania-640.webp 640w, assets/work/escribania.webp 1280w" sizes="(max-width: 980px) 100vw, 660px">
+            <img src="assets/work/escribania.jpg" alt="Portada del sitio de Escribanía Delavault Rocco" loading="lazy" decoding="async">
+          </picture>
+        </span>
+        <span class="pf-tile-body">
+          <span class="pf-tile-text">
+            <span class="pf-tile-cat">Servicios</span>
+            <span class="pf-tile-name">Escribanía Delavault Rocco</span>
+            <span class="pf-tile-desc">Registro N.º 456 del Distrito Notarial de La Plata: poderes, testamentos y compraventas.</span>
+          </span>
+          <svg class="pf-tile-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </span>
+      </a>
+
+    </div>
+
+    <a class="portfolio-cta" href="#contacto">
+      <span>¿Querés que la próxima sea la tuya?</span>
+      <strong>Hablemos ↗</strong>
+    </a>
+   </div>
+  </section>
+
+  <!-- ===================== AUTOMATIZACIONES ===================== -->
+  <section class="automations" id="automatizaciones" aria-labelledby="automations-title">
+    <div class="automations-inner">
+
+      <!-- --- columna de texto --- -->
+      <div class="auto-copy">
+        <div class="auto-badges">
+          <span class="auto-badge">Automatización + IA</span>
+          <span class="auto-badge auto-badge--live"><i aria-hidden="true"></i>24/7</span>
+        </div>
+
+        <h2 id="automations-title" class="auto-title">Tu negocio responde.<br>Aunque vos <em>no estés</em>.</h2>
+
+        <p class="auto-lead">Conectamos una automatización a tu WhatsApp para detectar consultas, responder con información real de tu negocio y convertir más clientes, incluso cuando estás ocupado o fuera de horario.</p>
+
+        <a class="btn auto-cta" href="https://wa.me/5492216715279?text=Hola%20ZEK%2C%20quiero%20esto%20para%20mi%20negocio" target="_blank" rel="noopener noreferrer">
+          Quiero esto para mi negocio
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <ul class="auto-feats">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            <span><b>24/7</b>Siempre activo</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+            <span><b>Respuestas</b>en segundos</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 20v-6M12 20V7M19 20v-9"/></svg>
+            <span><b>Más consultas</b>en clientes</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- --- el telefono. Decorativo: la charla se cuenta en texto en la
+           columna de al lado, asi que el lector de pantalla no la repite. --- -->
+      <div class="auto-phone" aria-hidden="true">
+        <div class="auto-device">
+          <span class="auto-device__notch"></span>
+
+          <div class="auto-device__screen">
+            <div class="auto-sysbar">
+              <span class="auto-sysbar__clock">23:08</span>
+              <span class="auto-sysbar__icons">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 17h3v4H2zM7.5 13h3v8h-3zM13 9h3v12h-3zM18.5 4h3v17h-3z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 18.5 14.5 16a3.6 3.6 0 0 0-5 0zM12 13.5c1.6 0 3.1.6 4.2 1.7l1.8-1.8a8.8 8.8 0 0 0-12 0l1.8 1.8A5.9 5.9 0 0 1 12 13.5zM12 8.5c2.9 0 5.6 1.1 7.6 3.1l1.8-1.8a13.2 13.2 0 0 0-18.8 0l1.8 1.8A10.7 10.7 0 0 1 12 8.5z"/></svg>
+                <svg viewBox="0 0 26 24" fill="none"><rect x="1.5" y="8" width="19" height="9" rx="2.4" stroke="currentColor" stroke-width="1.6"/><rect x="3.4" y="9.9" width="15.2" height="5.2" rx="1.2" fill="currentColor"/><path d="M22.6 11v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+            </div>
+
+            <div class="chat-header">
+              <svg class="chat-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+              <span class="chat-avatar"><img src="assets/zek-mark-white.png" alt=""></span>
+              <span class="chat-who">
+                <span class="chat-name">ZEK</span>
+                <span class="chat-state">en línea</span>
+              </span>
+              <span class="chat-actions">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2.5"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>
+              </span>
+            </div>
+
+            <div class="chat-body">
+              <span class="chat-day">Hoy</span>
+
+              <div class="msg msg--in">
+                <p>Hola! Tienen planes para mi local de ropa?</p>
+                <span class="msg-meta">23:08</span>
+              </div>
+
+              <div class="msg msg--out">
+                <p>¡Hola! Tenemos 3 planes: Básico, Profesional (el más elegido) y Premium con tienda online.</p>
+                <p>¿Buscás vender online o mostrar catálogo?</p>
+                <span class="msg-meta">23:08
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg>
+                </span>
+              </div>
+
+              <div class="msg msg--in">
+                <p>Me interesa el profesional, que incluye?</p>
+                <span class="msg-meta">23:09</span>
+              </div>
+
+              <div class="msg msg--out">
+                <p>Incluye:</p>
+                <ul>
+                  <li>Diseño propio, sin plantillas</li>
+                  <li>Dominio y hosting a tu nombre</li>
+                  <li>Preparada para Google</li>
+                  <li>Soporte después del lanzamiento</li>
+                </ul>
+                <p>¿Te paso el precio exacto?</p>
+                <span class="msg-meta">23:09
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg>
+                </span>
+              </div>
+
+              <div class="msg msg--in">
+                <p>Si dale, pasame</p>
+                <span class="msg-meta">23:10</span>
+              </div>
+
+              <span class="chat-typing"><span></span><span></span><span></span></span>
+            </div>
+
+            <div class="chat-input">
+              <span class="chat-input-pill">
+                <svg class="chat-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0" stroke-linecap="round"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+                <span class="chat-placeholder">Mensaje</span>
+                <svg class="chat-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M21.4 11.1 12.3 20a5.5 5.5 0 0 1-7.8-7.8l8.5-8.4a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.4a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg>
+                <svg class="chat-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.2l1.1-1.7h6.4L15.3 6h3.2A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg>
+              </span>
+              <span class="chat-mic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor" stroke="none"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- columna del flujo: lo mismo que pasa en el telefono, en texto --- -->
+      <div class="auto-flow">
+        <ol class="auto-steps">
+          <li>
+            <span class="auto-step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.2-4.3A8 8 0 0 1 13 4a8 8 0 0 1 8 8z"/></svg>
+            </span>
+            <span class="auto-step-text">
+              <span class="auto-step-head">
+                <b>1. Consulta recibida</b>
+                <time>23:08</time>
+              </span>
+              <span class="auto-step-desc">&ldquo;Hola! Tienen planes para mi local de ropa?&rdquo;</span>
+            </span>
+          </li>
+
+          <li>
+            <span class="auto-step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/><path d="M18.5 16.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>
+            </span>
+            <span class="auto-step-text">
+              <span class="auto-step-head">
+                <b>2. IA procesando</b>
+                <time>23:08</time>
+              </span>
+              <span class="auto-step-desc">La automatización analiza la pregunta y genera una respuesta con la información de tu negocio.</span>
+            </span>
+          </li>
+
+          <li>
+            <span class="auto-step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M21.5 2.5 2.8 9.9l6.4 2.4 2.4 6.4z"/><path d="M21.5 2.5 9.2 12.3"/></svg>
+            </span>
+            <span class="auto-step-text">
+              <span class="auto-step-head">
+                <b>3. Respuesta enviada</b>
+                <time>23:09</time>
+              </span>
+              <span class="auto-step-desc">El cliente recibe la información al instante, sin que tengas que escribir nada.</span>
+            </span>
+          </li>
+        </ol>
+
+        <div class="auto-outcome">
+          <svg class="auto-outcome-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20v-6M12 20V7M19 20v-9"/></svg>
+          <div>
+            <h3>Más oportunidades, menos trabajo manual.</h3>
+            <p>Cada consulta que entra fuera de horario sigue siendo una oportunidad, aunque no estés.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="auto-rule"><span>Automatizá tu crecimiento</span></p>
+  </section>
+
+  <!-- ===================== VITRINA: PROYECTO REAL EN VIVO ===================== -->
+  <section class="showcase" aria-labelledby="showcase-title">
+    <div class="showcase-inner">
+      <p class="eyebrow">Proyecto real, no una captura</p>
+      <h2 id="showcase-title" class="section-title">Tocalo vos mismo.</h2>
+      <p class="section-lead">Esto es FULLFARDO, funcionando de verdad. Agarralo con el mouse y recorrelo de punta a punta, como lo haría cualquier cliente que llega desde Instagram.</p>
+
+      <div class="device-monitor" aria-hidden="true">
+        <div class="monitor-screen">
+          <div class="monitor-viewport" tabindex="0" role="group" aria-label="Sitio de FULLFARDO, desplazable">
+            <picture>
+              <source type="image/webp" srcset="assets/work/fullfardo-live.webp">
+              <img src="assets/work/fullfardo-live.jpg" alt="" width="900" height="6441" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <span class="monitor-scroll-cue" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            Scrolleá para recorrerlo
+          </span>
+        </div>
+        <div class="monitor-neck"></div>
+        <div class="monitor-base"></div>
+        <div class="monitor-cast"></div>
+      </div>
+
+      <a class="text-cta showcase-link" href="https://www.fullfardo.com.ar/" target="_blank" rel="noopener noreferrer">
+        Ver el sitio real
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== QUÉ HACEMOS ===================== -->
   <section class="values" aria-label="Qué hacemos">
     <div class="values-lead">
       <p class="eyebrow">Qué hacemos</p>
@@ -200,394 +587,6 @@
           <strong>Pensada para que el cliente actúe<svg class="value-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></strong>
           <small>El pedido, el turno o la consulta quedan a un clic, no escondidos en un menú.</small>
         </span>
-      </a>
-    </div>
-  </section>
-
-  <!-- ===================== PORTFOLIO ===================== -->
-  <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
-   <div class="portfolio-inner">
-    <div class="portfolio-head">
-      <div>
-        <p class="eyebrow">Trabajo real</p>
-        <h2 id="portfolio-title" class="section-title">Webs que están online<br>ahora mismo.</h2>
-      </div>
-      <p class="section-lead portfolio-lead">Cada proyecto se diseñó desde cero para su negocio. Tocá cualquiera para abrir el sitio real en una pestaña nueva.</p>
-    </div>
-
-    <ul class="pf-meta">
-      <li><b>09</b><span>proyectos publicados</span></li>
-      <li><b>06</b><span>rubros distintos</span></li>
-      <li><b>03</b><span>ciudades</span></li>
-      <li class="pf-meta-live"><i></i><span>Todos online ahora mismo</span></li>
-    </ul>
-
-    <div class="portfolio-grid">
-
-      <article class="work work--static" data-work>
-        <div class="work-visual">
-          <a class="work-frame" href="https://www.fullfardo.com.ar/" target="_blank" rel="noopener noreferrer" aria-label="Abrir FULLFARDO en una pestaña nueva">
-            <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">fullfardo.com</span>
-            </span>
-            <span class="work-screen">
-              <picture>
-                <source type="image/webp" srcset="assets/work/fullfardo-640.webp 640w, assets/work/fullfardo.webp 1280w" sizes="(max-width: 980px) 100vw, 620px">
-                <img class="work-shot" src="assets/work/fullfardo.jpg" alt="Portada del sitio de FULLFARDO" width="1280" height="900" loading="eager" decoding="async" fetchpriority="high">
-              </picture>
-            </span>
-            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
-          </a>
-        </div>
-
-        <div class="work-info">
-          <div class="work-head">
-            <span class="work-index">01</span>
-            <span class="work-cat">Indumentaria</span>
-            <span class="work-live"><i></i>Online</span>
-          </div>
-
-          <h3>FULLFARDO</h3>
-          <p class="work-desc">Feria de ropa importada en Temperley: reservás por WhatsApp y retirás en el local.</p>
-
-          <a class="work-link" href="https://www.fullfardo.com.ar/" target="_blank" rel="noopener noreferrer">
-            Ver el sitio
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="work work--static" data-work>
-        <div class="work-visual">
-          <a class="work-frame" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Iurisdictio en una pestaña nueva">
-            <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">iurisdictio.com</span>
-            </span>
-            <span class="work-screen">
-              <picture>
-                <source type="image/webp" srcset="assets/work/iurisdictio-640.webp 640w, assets/work/iurisdictio.webp 1280w" sizes="(max-width: 980px) 100vw, 620px">
-                <img class="work-shot" src="assets/work/iurisdictio.jpg" alt="Portada del sitio de Iurisdictio" width="1280" height="900" loading="lazy" decoding="async">
-              </picture>
-            </span>
-            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
-          </a>
-        </div>
-
-        <div class="work-info">
-          <div class="work-head">
-            <span class="work-index">02</span>
-            <span class="work-cat">Estudio jurídico</span>
-            <span class="work-live"><i></i>Online</span>
-          </div>
-
-          <h3>Iurisdictio</h3>
-          <p class="work-desc">Estudio jurídico que ahora recibe consultas por WhatsApp directo desde la web.</p>
-
-          <a class="work-link" href="https://iurisdictioderecho.netlify.app/" target="_blank" rel="noopener noreferrer">
-            Ver el sitio
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="work work--static" data-work>
-        <div class="work-visual">
-          <a class="work-frame" href="https://lumenrestaurant.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir LUMEN en una pestaña nueva">
-            <span class="work-chrome" aria-hidden="true">
-              <span class="work-url">lumenrestaurant.com</span>
-            </span>
-            <span class="work-screen">
-              <picture>
-                <source type="image/webp" srcset="assets/work/lumen-640.webp 640w, assets/work/lumen.webp 1280w" sizes="(max-width: 980px) 100vw, 620px">
-                <img class="work-shot" src="assets/work/lumen.jpg" alt="Portada del sitio de LUMEN" width="1280" height="900" loading="lazy" decoding="async">
-              </picture>
-            </span>
-            <span class="work-open" aria-hidden="true"><span>Abrir sitio ↗</span></span>
-          </a>
-        </div>
-
-        <div class="work-info">
-          <div class="work-head">
-            <span class="work-index">03</span>
-            <span class="work-cat">Gastronomía</span>
-            <span class="work-live"><i></i>Online</span>
-          </div>
-
-          <h3>LUMEN</h3>
-          <p class="work-desc">Restaurante de cocina de autor en Palermo Soho, con reserva de mesa y menú online.</p>
-
-          <a class="work-link" href="https://lumenrestaurant.netlify.app/" target="_blank" rel="noopener noreferrer">
-            Ver el sitio
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg>
-          </a>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="more-band">
-      <div class="more-head">
-        <p class="eyebrow">Y esto es solo el comienzo</p>
-        <h3>Más negocios que confían en ZEK.</h3>
-      </div>
-      <p class="section-lead">Distintos rubros, un mismo objetivo: generar oportunidades a través del diseño.</p>
-    </div>
-
-    <div class="more-grid">
-      <a class="more-card" href="https://scrumzone.netlify.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/scrum.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">SCRUM</span>
-          <span class="more-card-cat">Indumentaria</span>
-        </span>
-      </a>
-      <a class="more-card" href="https://impetugimnasio.netlify.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/impetu.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">ÍMPETU</span>
-          <span class="more-card-cat">Fitness</span>
-        </span>
-      </a>
-      <a class="more-card" href="https://veinticincoocho.vercel.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/veinticincoocho.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">Veinticinco Ocho</span>
-          <span class="more-card-cat">Barbería</span>
-        </span>
-      </a>
-      <a class="more-card" href="https://sanchoweb.netlify.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/sancho.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">Sancho · Tapas y Barra</span>
-          <span class="more-card-cat">Gastronomía</span>
-        </span>
-      </a>
-      <a class="more-card" href="https://brodogs.netlify.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/brodogs.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">Brodog's</span>
-          <span class="more-card-cat">Gastronomía</span>
-        </span>
-      </a>
-      <a class="more-card" href="https://escribaniadelavaultrocco.vercel.app/" target="_blank" rel="noopener noreferrer">
-        <span class="more-card-shot"><img src="assets/work/escribania.jpg" alt="" loading="lazy" decoding="async"></span>
-        <span class="more-card-info">
-          <span class="more-card-name">Escribanía Delavault Rocco</span>
-          <span class="more-card-cat">Servicios</span>
-        </span>
-      </a>
-    </div>
-
-    <a class="portfolio-cta" href="#contacto">
-      <span>¿Querés que la próxima sea la tuya?</span>
-      <strong>Hablemos ↗</strong>
-    </a>
-   </div>
-  </section>
-
-  <!-- ===================== POR QUÉ ZEK ===================== -->
-  <section class="why" id="nosotros" aria-labelledby="why-title">
-    <div class="why-inner">
-
-      <div class="why-copy">
-        <p class="eyebrow">Por qué ZEK</p>
-        <h2 id="why-title" class="section-title">Tu negocio merece más<br><em>que una plantilla</em>.</h2>
-        <p class="section-lead">Cada sitio se piensa y se programa para tu negocio puntual — no es una plantilla con tu logo pegado encima. Eso es lo que se nota cuando un cliente real entra.</p>
-
-        <div class="why-cta">
-          <a class="btn btn-primary" href="#portfolio">
-            Ver nuestros proyectos
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a class="text-cta" href="#proceso">
-            Nuestro proceso
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-
-        <ul class="pf-meta why-stats">
-          <li><b>09</b><span>proyectos publicados</span></li>
-          <li><b>100%</b><span>diseños a medida</span></li>
-          <li><b>0</b><span>plantillas usadas</span></li>
-        </ul>
-      </div>
-
-      <div class="why-grid">
-        <a class="why-card why-card--big" href="#portfolio">
-          <span class="why-card-shot"><img src="assets/work/fullfardo.jpg" alt="" loading="lazy" decoding="async"></span>
-          <span class="why-card-body">
-            <span class="why-card-num">01</span>
-            <span class="why-card-title">Tu esencia, en digital.</span>
-            <span class="why-card-desc">Una feria de ropa importada que ahora se recorre como una tienda propia, sin perder su identidad de calle.</span>
-            <span class="why-card-link">Ver más <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></span>
-          </span>
-        </a>
-
-        <a class="why-card" href="#portfolio">
-          <span class="why-card-shot"><img src="assets/work/hero-veinticincoocho-desk.jpg" alt="" loading="lazy" decoding="async"></span>
-          <span class="why-card-body">
-            <span class="why-card-num">02</span>
-            <span class="why-card-title">Diseño que genera confianza.</span>
-            <span class="why-card-desc">Turnos claros, carta de precios visible y una estética que representa a la barbería real.</span>
-            <span class="why-card-link">Ver más <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></span>
-          </span>
-        </a>
-
-        <a class="why-card" href="#portfolio">
-          <span class="why-card-shot"><img src="assets/work/iurisdictio.jpg" alt="" loading="lazy" decoding="async"></span>
-          <span class="why-card-body">
-            <span class="why-card-num">03</span>
-            <span class="why-card-title">Más clientes, más oportunidades.</span>
-            <span class="why-card-desc">Un estudio jurídico que ahora recibe consultas por WhatsApp directo desde la web.</span>
-            <span class="why-card-link">Ver más <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H9M17 7V15"/></svg></span>
-          </span>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===================== AUTOMATIZACIONES ===================== -->
-  <section class="automations" id="automatizaciones" aria-labelledby="automations-title">
-    <div class="automations-inner">
-
-      <div class="automations-intro">
-        <p class="eyebrow">Automatizaciones</p>
-        <h2 id="automations-title" class="section-title">El cliente escribe a las 23&nbsp;h.<br>Vos contestás igual.</h2>
-        <p class="section-lead">La mayoría de las consultas por Instagram y WhatsApp llegan fuera de horario o mientras estás con otra cosa. Así responde ahora mismo el WhatsApp de ZEK cuando alguien escribe — con IA, sobre la cuenta real.</p>
-        <a class="btn btn-primary" href="https://wa.me/5492216715279?text=Hola%20ZEK%2C%20quiero%20esto%20para%20mi%20negocio" target="_blank" rel="noopener noreferrer">
-          Quiero esto para mi negocio
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="zek-diagram">
-
-        <div class="zek-diagram__side zek-diagram__side--left">
-          <div class="zek-callout zek-callout--to-header">
-            <span class="zek-callout__label">Es tu cuenta real</span>
-            <span class="zek-callout__desc">Mismo número, mismo usuario: seguís usando el WhatsApp de siempre.</span>
-          </div>
-          <div class="zek-callout zek-callout--to-input">
-            <span class="zek-callout__label">Vos podés entrar</span>
-            <span class="zek-callout__desc">En cualquier momento tomás la charla y seguís vos.</span>
-          </div>
-        </div>
-
-        <div class="zek-phone" aria-hidden="true">
-          <div class="zek-phone__screen">
-
-            <div class="zek-chat__header">
-              <svg class="zek-chat__back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
-              <div class="zek-chat__avatar">Z</div>
-              <div class="zek-chat__who">
-                <div class="zek-chat__title">ZEK</div>
-                <div class="zek-chat__status">en línea</div>
-              </div>
-              <div class="zek-chat__icons">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
-              </div>
-            </div>
-
-            <div class="zek-chat__body">
-              <div class="zek-daychip">Hoy</div>
-
-              <div class="zek-row zek-row--in zek-row--first">
-                <div class="zek-bubble zek-bubble--in">
-                  <span class="zek-bubble__text">hola vi el reel de la barberia, cuanto sale una web asi para mi local de ropa?</span>
-                </div>
-              </div>
-
-              <div class="zek-row zek-row--out zek-row--first zek-row--last">
-                <div class="zek-bubble zek-bubble--out">
-                  <span class="zek-bubble__text">¡Hola! Tenemos 3 planes: Básico, Profesional (el más elegido, con dominio incluido) y Premium con tienda online. ¿Buscás vender online o mostrar catálogo?</span>
-                  <span class="zek-bubble__meta">21:14
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg>
-                  </span>
-                </div>
-              </div>
-
-              <div class="zek-row zek-row--in zek-row--first">
-                <div class="zek-bubble zek-bubble--in">
-                  <span class="zek-bubble__text">mas que nada mostrar, despues veo si sumo venta</span>
-                </div>
-              </div>
-              <div class="zek-row zek-row--in zek-row--last">
-                <div class="zek-bubble zek-bubble--in">
-                  <span class="zek-bubble__text">el profesional lleva mucho tiempo armarlo?</span>
-                </div>
-              </div>
-
-              <div class="zek-row zek-row--out zek-row--first zek-row--last">
-                <div class="zek-bubble zek-bubble--out">
-                  <span class="zek-bubble__text">Te alcanza de sobra, y podés sumar la tienda después sin rehacer nada. Se arma en 1 a 2 semanas. ¿Te paso el precio exacto?</span>
-                  <span class="zek-bubble__meta">21:16
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M2 12l4 4L14 8"/><path d="M9 12l4 4L21 8"/></svg>
-                  </span>
-                </div>
-              </div>
-
-              <div class="zek-row zek-row--in">
-                <div class="zek-typing"><span></span><span></span><span></span></div>
-              </div>
-            </div>
-
-            <div class="zek-chat__inputbar">
-              <div class="zek-chat__inputpill">Mensaje</div>
-              <div class="zek-chat__mic">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 18v3" stroke="currentColor" stroke-width="2"/></svg>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="zek-diagram__side zek-diagram__side--right">
-          <div class="zek-callout zek-callout--to-msg-in">
-            <span class="zek-callout__label">Entiende cómo escribe la gente</span>
-            <span class="zek-callout__desc">Sin formularios ni botones, lee la pregunta tal cual llega.</span>
-          </div>
-          <div class="zek-callout zek-callout--to-msg-out">
-            <span class="zek-callout__label">Responde con tu info real</span>
-            <span class="zek-callout__desc">Responde con los planes, tiempos y precios que vos le pasaste.</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===================== VITRINA: PROYECTO REAL EN VIVO ===================== -->
-  <section class="showcase" aria-labelledby="showcase-title">
-    <div class="showcase-inner">
-      <p class="eyebrow">Proyecto real, no una captura</p>
-      <h2 id="showcase-title" class="section-title">Tocalo vos mismo.</h2>
-      <p class="section-lead">Esto es FULLFARDO, funcionando de verdad. Agarralo con el mouse y recorrelo de punta a punta, como lo haría cualquier cliente que llega desde Instagram.</p>
-
-      <div class="device-monitor" aria-hidden="true">
-        <div class="monitor-screen">
-          <div class="monitor-viewport" tabindex="0" role="group" aria-label="Sitio de FULLFARDO, desplazable">
-            <picture>
-              <source type="image/webp" srcset="assets/work/fullfardo-live.webp">
-              <img src="assets/work/fullfardo-live.jpg" alt="" width="900" height="6441" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <span class="monitor-scroll-cue" aria-hidden="true">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-            Scrolleá para recorrerlo
-          </span>
-        </div>
-        <div class="monitor-neck"></div>
-        <div class="monitor-base"></div>
-        <div class="monitor-cast"></div>
-      </div>
-
-      <a class="text-cta showcase-link" href="https://www.fullfardo.com.ar/" target="_blank" rel="noopener noreferrer">
-        Ver el sitio real
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
   </section>
@@ -919,6 +918,19 @@
     </div>
   </section>
 
+  <!-- ===================== BLOG ===================== -->
+  <section class="blog-teaser" id="blog" aria-labelledby="blog-title">
+    <div class="blog-teaser-inner">
+      <p class="eyebrow">Blog</p>
+      <h2 id="blog-title" class="section-title">Estamos escribiendo<br><em>el primero</em>.</h2>
+      <p class="section-lead">Acá vamos a publicar procesos, decisiones de diseño y casos reales de los proyectos que hacemos. Todavía no hay notas publicadas — mientras tanto, el día a día lo subimos a Instagram.</p>
+      <a class="btn btn-outline" href="https://www.instagram.com/zek.webs/" target="_blank" rel="noopener noreferrer">
+        Seguir en Instagram
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+      </a>
+    </div>
+  </section>
+
   <!-- ===================== FAQ ===================== -->
   <section class="faq" id="faq" aria-labelledby="faq-title">
    <div class="faq-inner">
@@ -1095,6 +1107,6 @@
   <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm5.8 14.15c-.24.68-1.4 1.3-1.93 1.38-.49.08-1.1.11-1.78-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.37c.26-.29.56-.36.75-.36l.54.01c.17.01.4-.03.63.48.24.53.8 1.85.87 1.99.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.16 1.52 1.88 1.05.93 1.93 1.22 2.21 1.35.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.61.76 1.89.9.28.14.46.21.53.32.07.13.07.7-.17 1.38z"/></svg>
 </a>
 
-<script src="script.js?v=20260905b" defer></script>
+<script src="script.js?v=20260910auto6" defer></script>
 </body>
 </html>
