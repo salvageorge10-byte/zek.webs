@@ -57,8 +57,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     mark(holder.querySelector('.section-lead'), 'up', 260);
   });
 
-  markAll('.values-inner .value', 'up', 90);
-
   // --- portfolio: primero la imagen, despues la ficha ---
   markAll('.pf-bento .pf-tile', 'up', 70);
   mark(document.querySelector('.portfolio-cta'), 'up', 0);
@@ -71,12 +69,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   mark(document.querySelector('.auto-outcome'), 'up', 320);
   mark(document.querySelector('.auto-phone'), 'zoom', 120);
 
-  markAll('.plan-grid .plan', 'up', 90);
-  mark(document.querySelector('.process-copy .text-cta'), 'up', 260);
-  mark(document.querySelector('.process-stage'), 'zoom', 120);
-  markAll('.process-steps li', 'up', 90);
-  markAll('.inc-grid .inc', 'up', 80);
-  markAll('.faq-list .faq-item', 'up', 70);
   markAll('.contact-cards .contact-card', 'up', 90);
   mark(document.querySelector('.contact-note'), 'up', 180);
   markAll('.footer-brand, .footer-links', 'up', 80);
@@ -264,93 +256,6 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   viewport.addEventListener('scroll', () => {
     cue.classList.toggle('is-hidden', viewport.scrollTop > 24);
   }, { passive: true });
-})();
-
-/* ---------- FAQ: despliegue animado por altura ---------- */
-(() => {
-  const items = document.querySelectorAll('.faq-item');
-  if (!items.length) return;
-
-  items.forEach((item) => {
-    const summary = item.querySelector('summary');
-    const body = item.querySelector('p');
-    if (!summary || !body) return;
-
-    // el ícono +/- se dibuja con CSS sobre este span
-    const icon = document.createElement('span');
-    icon.className = 'faq-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    summary.appendChild(icon);
-
-    // envolvemos el texto para poder animar su altura
-    const wrap = document.createElement('div');
-    wrap.className = 'faq-body';
-    body.parentNode.insertBefore(wrap, body);
-    wrap.appendChild(body);
-
-    let animating = false;
-
-    summary.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (animating) return;
-
-      const isOpen = item.hasAttribute('open');
-
-      if (prefersReducedMotion) {
-        item.toggleAttribute('open');
-        wrap.style.height = isOpen ? '0px' : 'auto';
-        return;
-      }
-
-      animating = true;
-
-      // Se lee la altura una sola vez y se fuerza el recalculo antes de
-      // pedir el valor final. Sin ese recalculo el navegador puede unir
-      // los dos cambios en uno solo: al cerrar partiria de "auto", que no
-      // se puede interpolar, no habria transicion y nunca llegaria el
-      // transitionend que libera la tarjeta.
-      const alto = wrap.scrollHeight;
-
-      if (!isOpen) {
-        item.setAttribute('open', '');
-        wrap.style.height = '0px';
-        void wrap.offsetHeight;
-        wrap.style.height = `${alto}px`;
-      } else {
-        wrap.style.height = `${alto}px`;
-        void wrap.offsetHeight;
-        wrap.style.height = '0px';
-      }
-
-      let red;
-
-      const done = (ev) => {
-        // El parrafo de adentro tambien anima (opacidad y desplazamiento)
-        // y sus eventos burbujean hasta aca: sin este filtro, el primero
-        // que llega corta la animacion de altura por la mitad.
-        if (ev && (ev.target !== wrap || ev.propertyName !== 'height')) return;
-
-        clearTimeout(red);
-        wrap.removeEventListener('transitionend', done);
-        wrap.removeEventListener('transitioncancel', done);
-
-        if (isOpen) item.removeAttribute('open');
-        else wrap.style.height = 'auto'; // permite que el texto refluya al cambiar de tamaño
-        animating = false;
-      };
-
-      // Red de seguridad: si por lo que sea no llega ningun evento, la
-      // pregunta no puede quedar trabada para siempre.
-      red = setTimeout(done, 600);
-
-      wrap.addEventListener('transitionend', done);
-      wrap.addEventListener('transitioncancel', done);
-    });
-
-    window.addEventListener('resize', () => {
-      if (item.hasAttribute('open') && !animating) wrap.style.height = 'auto';
-    }, { passive: true });
-  });
 })();
 
 /* ---------- Armador de consulta ----------
