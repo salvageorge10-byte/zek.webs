@@ -24,33 +24,31 @@
 }
 
 /* ==========================================================================
-   ZEK — Agencia digital. Violeta sobre fondo claro, segun el manual de
-   marca. El violeta principal es el unico acento: no hay segundo color de
-   marca, solo neutros.
-   Nota de contraste: el neutro medio del manual (#A1A1AA) da 2.4:1 sobre el
-   fondo claro, asi que no se usa como texto. Para texto secundario va
-   --fg-mute, de la misma familia pero a 5.1:1.
+   ZEK — Estudio de diseño y desarrollo web. Fondo oscuro, violeta de marca
+   como unico acento (no hay segundo color de marca, solo neutros tibios).
+   Nota de contraste: --fg-mute mantiene 5:1+ sobre --bg para texto
+   secundario; --violet-soft es el tono que rinde sobre superficies oscuras.
    ========================================================================== */
 
 :root {
   /* --- superficies --- */
-  --bg:        #F8F7FF;   /* fondo claro del manual */
-  --bg-2:      #FFFFFF;   /* tarjetas y bloques elevados */
-  --bg-3:      #F1EFFB;   /* bandas alternas */
+  --bg:        #0D0B14;   /* fondo principal */
+  --bg-2:      #17131F;   /* tarjetas y bloques elevados */
+  --bg-3:      #1E192B;   /* bandas alternas, paneles */
 
   /* --- tinta --- */
-  --fg:        #111111;   /* texto principal, 18:1 */
-  --fg-soft:   #3B3B46;   /* cuerpo, 10:1 */
-  --fg-mute:   #6B6B75;   /* secundario, 5.1:1 */
-  --line:      #E5E7EB;   /* bordes y filetes */
-  --line-soft: #EFEDF7;
+  --fg:        #F5F2FA;   /* texto principal */
+  --fg-soft:   #C9C4D6;   /* cuerpo */
+  --fg-mute:   #948DA8;   /* secundario, ~5:1 */
+  --line:      #2B2438;   /* bordes y filetes */
+  --line-soft: #221D2E;
 
   /* --- acento --- */
-  --violet:       #6C3BFF;  /* 5.4:1 sobre --bg */
-  --violet-deep:  #5227E0;  /* hover y textos chicos */
-  --violet-soft:  #A78BFA;
-  --violet-wash:  #E9DFFF;
-  --on-violet:    #FFFFFF;  /* 5.6:1 sobre el violeta */
+  --violet:       #8A6BFF;  /* rinde sobre fondo oscuro */
+  --violet-deep:  #6C3BFF;  /* hover y textos chicos */
+  --violet-soft:  #B7A6FF;
+  --violet-wash:  #241C3D;
+  --on-violet:    #0D0B14;  /* texto sobre botones violeta solidos */
 
   --wa:      #25D366;
   --wa-deep: #1DA851;
@@ -72,9 +70,9 @@
   --radius:    16px;
   --radius-sm: 10px;
 
-  --shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.04), 0 2px 8px rgba(17, 17, 17, 0.05);
-  --shadow-md: 0 6px 16px rgba(17, 17, 17, 0.06), 0 16px 36px rgba(17, 17, 17, 0.08);
-  --shadow-lg: 0 12px 28px rgba(17, 17, 17, 0.08), 0 32px 64px rgba(17, 17, 17, 0.12);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.34), 0 16px 36px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.4), 0 32px 64px rgba(0, 0, 0, 0.5);
 
   --ease: cubic-bezier(0.22, 0.75, 0.3, 1);
 }
@@ -137,8 +135,8 @@ svg { display: block; }
   position: absolute;
   left: -999px; top: 0;
   z-index: 100;
-  background: var(--bg);
-  color: var(--bg-2);
+  background: var(--fg);
+  color: var(--bg);
   padding: var(--space-1) var(--space-2);
   border-radius: 0 0 var(--radius-sm) 0;
   font-family: var(--font-body);
@@ -282,9 +280,9 @@ svg { display: block; }
   height: 26px;
   margin-inline: var(--space-2);
   background: linear-gradient(180deg,
-    rgba(17, 17, 17, 0) 0%,
-    rgba(17, 17, 17, 0.26) 50%,
-    rgba(17, 17, 17, 0) 100%);
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0) 100%);
 }
 
 /* --- boton de menu (solo celular) --- */
@@ -299,7 +297,7 @@ svg { display: block; }
   margin-left: auto;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(17, 17, 17, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
 }
 
@@ -406,7 +404,7 @@ svg { display: block; }
     text-transform: uppercase;
     padding: 0.3rem 0;
     border-bottom: 0;
-    color: rgba(17, 17, 17, 0.82);
+    color: rgba(245, 242, 250, 0.78);
   }
 
   .nav-link::after {
@@ -462,8 +460,8 @@ svg { display: block; }
 .btn-primary {
   position: relative;
   overflow: hidden;
-  background: var(--bg);
-  color: var(--bg-2);
+  background: var(--fg);
+  color: var(--bg);
   box-shadow: var(--shadow-sm);
 }
 
@@ -472,9 +470,9 @@ svg { display: block; }
   position: absolute;
   inset: 0;
   background: linear-gradient(120deg,
-    rgba(255,255,255,0) 35%,
-    rgba(255,255,255,0.22) 50%,
-    rgba(255,255,255,0) 65%);
+    rgba(13,11,20,0) 35%,
+    rgba(13,11,20,0.14) 50%,
+    rgba(13,11,20,0) 65%);
   background-size: 250% 100%;
   background-position: 130% 0;
   transition: background-position 620ms var(--ease);
@@ -502,12 +500,12 @@ svg { display: block; }
 .btn-outline {
   background: transparent;
   color: var(--fg);
-  border: 1.5px solid rgba(17, 17, 17, 0.28);
+  border: 1.5px solid rgba(255, 255, 255, 0.24);
 }
 
 .btn-outline:hover {
-  border-color: rgba(17, 17, 17, 0.5);
-  background: rgba(17, 17, 17, 0.06);
+  border-color: rgba(255, 255, 255, 0.46);
+  background: rgba(255, 255, 255, 0.06);
   transform: translateY(-2px);
 }
 
@@ -539,12 +537,24 @@ svg { display: block; }
 .hero {
   position: relative;
   overflow: hidden;
-  padding: var(--space-5) var(--gutter) calc(var(--space-5) + 1rem);
+  padding: calc(var(--space-6) + 1.5rem) var(--gutter) calc(var(--space-5) + 1rem);
   background: linear-gradient(165deg, var(--bg-2) 0%, var(--bg) 72%);
 }
 
-/* el hero es la unica franja oscura de arriba: todo el texto de adentro
-   pasa a la version clara, y el dorado se aclara para seguir en AA */
+/* halo violeta que le da atmosfera al fondo oscuro, sin caer en flat design */
+.hero::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: -18%;
+  left: 50%;
+  width: min(1100px, 130vw);
+  height: 70%;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(138, 107, 255, 0.22), rgba(138, 107, 255, 0) 72%);
+  pointer-events: none;
+}
+
 .hero .eyebrow { color: var(--fg-mute); }
 .hero h1 { color: var(--fg); }
 .hero-sub { color: var(--fg-mute); }
@@ -566,10 +576,14 @@ svg { display: block; }
   margin: 0 auto;
   display: grid;
   /* el mockup manda: es la prueba de lo que hacemos */
-  grid-template-columns: 0.82fr 1.18fr;
-  align-items: center;
+  grid-template-columns: 0.95fr 1.05fr;
+  align-items: start;
   gap: var(--space-4);
 }
+
+/* el mockup arranca a la altura del titular, no vertical-centrado contra
+   toda la columna de texto (que con specs incluidos es mucho mas alta) */
+.hero-stage { margin-top: clamp(0.4rem, 1.6vw, 1.6rem); }
 
 /* --- columna de texto --- */
 
@@ -577,11 +591,10 @@ svg { display: block; }
 .hero-copy .eyebrow { margin-left: 0; }
 
 .hero h1 {
-  /* Sora pesa mas de ancho que la sans anterior: con el maximo viejo el
-     titular se comia cuatro lineas y tapaba el mockup */
-  font-size: clamp(2.6rem, 4.4vw, 4rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.3rem, 1.7rem + 2.1vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .hero h1 em {
@@ -1000,46 +1013,40 @@ svg { display: block; }
 .portfolio-lead { padding-bottom: 0.3rem; }
 
 /* ==========================================================================
-   Bento de proyectos — mosaico de baldosas. Sobre el fondo claro del
-   manual la placa de datos va debajo de la captura, no encima: el texto
-   blanco sobre foto necesitaba un velo oscuro que peleaba con el resto
-   del sitio.
+   Bento de proyectos — mosaico editorial. Sin cards: la imagen ocupa toda
+   la baldosa, el nombre vive siempre encima en un velo bajo, y categoria +
+   descripcion + flecha aparecen recien al pasar el mouse. Tamanos
+   deliberadamente desparejos (hero / wide / reg) via grid-auto-flow dense,
+   asi ningun proyecto compite con el siguiente en el mismo tamano.
    ========================================================================== */
 
 .pf-bento {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-3) var(--space-2);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 15vw;
+  grid-auto-flow: dense;
+  gap: 0.5rem;
   margin-top: var(--space-4);
 }
 
+.pf-tile--hero { grid-column: span 6; grid-row: span 2; }
+.pf-tile--wide { grid-column: span 3; grid-row: span 1; }
+.pf-tile--reg  { grid-column: span 2; grid-row: span 1; }
+
 .pf-tile {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-2);
-  box-shadow: var(--shadow-sm);
-  transition: border-color 280ms ease-out, transform 280ms var(--ease), box-shadow 280ms var(--ease);
-}
-
-/* todas las capturas con la misma proporcion: asi las tarjetas de una fila
-   arrancan el texto a la misma altura */
-.pf-tile-shot { aspect-ratio: 16 / 10; }
-
-.pf-tile:hover {
-  border-color: var(--violet);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-
-.pf-tile-shot {
   position: relative;
   display: block;
   overflow: hidden;
-  border-bottom: 1px solid var(--line);
+  border-radius: var(--radius-sm);
   background: var(--bg-3);
+  isolation: isolate;
+}
+
+.pf-tile-shot {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
 }
 
 .pf-tile-shot picture {
@@ -1055,17 +1062,31 @@ svg { display: block; }
   /* varias capturas son de pagina entera: centradas se veria el medio del
      sitio, asi que se anclan arriba */
   object-position: top center;
-  transition: transform 620ms var(--ease);
+  transition: transform 700ms var(--ease), filter 400ms ease-out;
+  filter: saturate(0.94);
 }
 
-.pf-tile:hover .pf-tile-shot img { transform: scale(1.03); }
+.pf-tile:hover .pf-tile-shot img { transform: scale(1.045); filter: saturate(1.04); }
+
+/* velo permanente para que el nombre siempre se lea sin pelear con la foto */
+.pf-tile-shot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13, 11, 20, 0) 55%, rgba(13, 11, 20, 0.86) 100%);
+  transition: opacity 320ms ease-out;
+}
+
+.pf-tile:hover .pf-tile-shot::after { opacity: 1.15; }
 
 .pf-tile-body {
-  flex: 1;
+  position: relative;
+  z-index: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-2);
+  height: 100%;
   padding: var(--space-3);
 }
 
@@ -1082,8 +1103,15 @@ svg { display: block; }
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--violet);
+  color: var(--violet-soft);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 320ms var(--ease), opacity 220ms ease-out;
 }
+
+.pf-tile:hover .pf-tile-cat,
+.pf-tile:focus-visible .pf-tile-cat { max-height: 1.4rem; opacity: 1; }
 
 .pf-tile-name {
   font-family: var(--font-display);
@@ -1091,47 +1119,67 @@ svg { display: block; }
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.015em;
-  color: var(--fg);
+  color: #FFFFFF;
 }
 
-.pf-bento > :first-child .pf-tile-name { font-size: 1.3rem; }
+.pf-tile--hero .pf-tile-name { font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.4rem); }
+.pf-tile--wide .pf-tile-name { font-size: 1.3rem; }
 
 .pf-tile-desc {
   font-size: 0.86rem;
   line-height: 1.55;
   max-width: 48ch;
-  color: var(--fg-soft);
+  color: rgba(255, 255, 255, 0.72);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 320ms var(--ease), opacity 220ms ease-out;
 }
+
+.pf-tile--hero .pf-tile-desc,
+.pf-tile--wide .pf-tile-desc { max-width: 42ch; }
+
+.pf-tile:hover .pf-tile-desc,
+.pf-tile:focus-visible .pf-tile-desc { max-height: 4.5rem; opacity: 1; margin-top: 0.15rem; }
 
 .pf-tile-arrow {
   flex-shrink: 0;
   margin-top: 0.2rem;
-  color: var(--fg-mute);
-  transition: color 240ms ease-out, transform 240ms var(--ease);
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 240ms ease-out, transform 240ms var(--ease);
 }
 
-.pf-tile:hover .pf-tile-arrow {
-  color: var(--violet);
-  transform: translate(2px, -2px);
+.pf-tile:hover .pf-tile-arrow,
+.pf-tile:focus-visible .pf-tile-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
 }
+
+.pf-tile:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
 
 /* --- responsive del bento --- */
 
 @media (max-width: 980px) {
-  .pf-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pf-bento > :first-child .pf-tile-name { font-size: 1.15rem; }
+  .pf-bento { grid-auto-rows: 22vw; }
+  .pf-tile--wide { grid-column: span 6; }
+  .pf-tile--reg  { grid-column: span 3; }
 }
 
 @media (max-width: 620px) {
-  .pf-bento { grid-template-columns: 1fr; gap: var(--space-2); }
+  .pf-bento { grid-template-columns: 1fr; grid-auto-rows: 58vw; gap: 0.65rem; }
+  .pf-tile--hero, .pf-tile--wide, .pf-tile--reg { grid-column: 1 / -1; grid-row: span 1; }
   .pf-tile-body { padding: var(--space-2); }
   .pf-tile-desc { font-size: 0.82rem; }
+  /* en celular no hay hover: la info va siempre visible */
+  .pf-tile-cat, .pf-tile-desc { max-height: none; opacity: 1; }
+  .pf-tile-arrow { opacity: 1; transform: none; }
+  .pf-tile-shot::after { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pf-tile,
   .pf-tile-shot img { transition: none; }
-  .pf-tile:hover { transform: none; }
   .pf-tile:hover .pf-tile-shot img { transform: none; }
 }
 
@@ -1193,7 +1241,7 @@ svg { display: block; }
   padding: 0.5rem 0.95rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(17, 17, 17, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 600;
@@ -1397,8 +1445,8 @@ svg { display: block; }
 }
 
 .chat-avatar img {
-  width: 19px;
-  height: 19px;
+  width: 20px;
+  height: auto;
 }
 
 .chat-who {
@@ -1899,152 +1947,8 @@ svg { display: block; }
 }
 
 /* ==========================================================================
-   Vitrina — un proyecto real adentro de un monitor, con scroll nativo.
-   No es una captura fija: es el sitio de verdad, recorrible con el mouse.
+   (Vitrina eliminada: FULLFARDO ahora vive como pieza hero del portfolio)
    ========================================================================== */
-
-.showcase {
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-}
-
-.showcase-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: var(--space-5) var(--gutter) var(--space-6);
-  text-align: center;
-}
-
-.showcase .eyebrow { color: var(--fg-mute); }
-.showcase .eyebrow-rule { margin-left: auto; margin-right: auto; }
-.showcase .section-title { color: var(--fg); }
-.showcase .section-lead {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 52ch;
-  color: var(--fg-mute);
-}
-
-.showcase-link { margin-top: var(--space-4); color: var(--fg-mute); }
-.showcase-link:hover { color: var(--fg); }
-
-/* --- el monitor --- */
-
-.device-monitor {
-  position: relative;
-  max-width: 860px;
-  margin: var(--space-5) auto 0;
-}
-
-.monitor-screen {
-  position: relative;
-  padding: 1.1%;
-  border-radius: 14px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 12%),
-    linear-gradient(158deg, #454D5E 0%, #2A3141 38%, #191E28 100%);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
-    0 1px 2px rgba(17, 17, 17, 0.14),
-    0 20px 40px rgba(23, 27, 36, 0.2);
-}
-
-.monitor-viewport {
-  height: min(58vh, 480px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  border-radius: 6px;
-  background: #0B0B0D;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--violet) rgba(255, 255, 255, 0.06);
-}
-
-.monitor-viewport::-webkit-scrollbar { width: 8px; }
-.monitor-viewport::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.06); }
-.monitor-viewport::-webkit-scrollbar-thumb {
-  background: var(--violet);
-  border-radius: 999px;
-  border: 2px solid #0B0B0D;
-}
-
-.monitor-viewport picture,
-.monitor-viewport img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.monitor-scroll-cue {
-  position: absolute;
-  left: 50%;
-  bottom: calc(1.1% + 10px);
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(17, 17, 17, 0.72);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  color: var(--fg);
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-  transition: opacity 320ms ease-out, transform 320ms ease-out;
-  animation: monitor-cue-bob 1.8s ease-in-out infinite;
-}
-
-.monitor-scroll-cue.is-hidden {
-  opacity: 0;
-  transform: translateX(-50%) translateY(6px);
-  pointer-events: none;
-}
-
-@keyframes monitor-cue-bob {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%      { transform: translateX(-50%) translateY(4px); }
-}
-
-/* --- cuello y base, mismo aluminio que la base de la notebook --- */
-
-.monitor-neck {
-  width: 8%;
-  height: clamp(20px, 3vw, 34px);
-  margin: 0 auto;
-  background: linear-gradient(180deg, #2B3140 0%, #191E28 100%);
-  clip-path: polygon(20% 0, 80% 0, 92% 100%, 8% 100%);
-}
-
-.monitor-base {
-  width: 34%;
-  height: clamp(8px, 1vw, 12px);
-  margin: 0 auto;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #D5D8DF 40%, #8C8F9B 88%, #6E7180 100%);
-  box-shadow: 0 10px 16px rgba(23, 27, 36, 0.18);
-}
-
-.monitor-cast {
-  width: 46%;
-  height: 14%;
-  margin: -6px auto 0;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center,
-    rgba(23, 27, 36, 0.30) 0%,
-    rgba(23, 27, 36, 0.14) 40%,
-    rgba(23, 27, 36, 0) 74%);
-  filter: blur(12px);
-}
-
-@media (max-width: 720px) {
-  .monitor-viewport { height: min(64vh, 420px); }
-  .monitor-scroll-cue { font-size: 0.68rem; padding: 0.45rem 0.8rem; }
-}
 
 /* ==========================================================================
    Contacto
@@ -2125,7 +2029,7 @@ svg { display: block; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(17, 17, 17, 0.4);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 @media (max-width: 900px) {
